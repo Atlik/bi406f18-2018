@@ -1,0 +1,2 @@
+C:\Users\jesperth\source\repos\Formler BMI BMR\Formler BMI BMR\obj\Debug\Formler BMI BMR.csprojResolveAssemblyReference.cache
+C:\Users\jesperth\source\repos\Formler BMI BMR\Formler BMI BMR\obj\Debug\Formler BMI BMR.csproj.CoreCompileInputs.cache
