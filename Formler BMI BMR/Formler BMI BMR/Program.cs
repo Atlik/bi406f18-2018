@@ -8,13 +8,18 @@ namespace Formler_BMI_BMR
 {
     class Formler
     {
-        int height, age, weight, activity;
-        bool sex;
+        int height = 19;
+        int age = 1;
+        int weight = 1;
+        int activity = 1;
+        bool sex = true;
 
-        
+
+
         //BMR Calc for both genders
-        public double BMRCalc(int height, int age, int weight, int activity, bool sex)//Height, age, weight, activity niveau, gender
+        public static double BMRCalc(int height, int age, int weight, int activity, bool sex)//Height, age, weight, activity niveau, gender
         {
+
             if (sex == true) //gender check for male
             {
 
@@ -48,7 +53,7 @@ namespace Formler_BMI_BMR
             };
         }
 
-        public int BMICalc (int weight, int height)
+        public int BMICalc(int weight, int height)
         {
             return weight / (height * height);
         }
@@ -59,12 +64,15 @@ namespace Formler_BMI_BMR
 
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var 
-            Console.WriteLine("BMR is" + bmr);
 
-            Console.WriteLine(BMI);
+
+
+            double bmr = bmrcalc();
+            Console.WriteLine("BMR is " + bmr);
+            int BMI = bmicalc;
+            Console.WriteLine(bmi);
         }
     }
 }
