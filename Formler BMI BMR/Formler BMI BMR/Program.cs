@@ -8,6 +8,17 @@ namespace Formler_BMI_BMR
 {
     class Formler
     {
+
+        public static void Main(string[] args)
+        {
+
+            double bmr = BMRCalc(190, 21, 100, 2, true);
+            Console.WriteLine("BMR is " + bmr);
+            double BMI = BMICalc(100, 1.90);
+            Console.WriteLine("BMI is " + BMI);
+        }
+
+
         int height = 19;
         int age = 1;
         int weight = 1;
@@ -17,7 +28,7 @@ namespace Formler_BMI_BMR
 
 
         //BMR Calc for both genders
-        public static double BMRCalc(int height, int age, int weight, int activity, bool sex)//Height, age, weight, activity niveau, gender
+        public static double BMRCalc(double height, double age, double weight, double activity, bool sex)//Height, age, weight, activity niveau, gender
         {
 
             if (sex == true) //gender check for male
@@ -25,15 +36,15 @@ namespace Formler_BMI_BMR
 
                 if (activity == 1) //Activity lvl
                 {
-                    return ((10 * weight) + (6.5 * height) - (5 * age) + 5) * 1.53;
+                    return ((10 * weight) + (6.25 * height) - (5 * age) + 5) * 1.53;
                 }
                 else if (activity == 2)
                 {
-                    return ((10 * weight) + (6.5 * height) - (5 * age) + 5) * 1.76;
+                    return ((10 * weight) + (6.25 * height) - (5 * age) + 5) * 1.76;
                 }
                 else
                 {
-                    return ((10 * weight) + (6.5 * height) - (5 * age) + 5) * 2.25;
+                    return ((10 * weight) + (6.25 * height) - (5 * age) + 5) * 2.25;
                 };
             }
             else // else Female
@@ -53,9 +64,9 @@ namespace Formler_BMI_BMR
             };
         }
 
-        public int BMICalc(int weight, int height)
+        public static double BMICalc(double weight, double height)
         {
-            return weight / (height * height);
+            return (weight / (height * height));
         }
     }
 
@@ -64,15 +75,6 @@ namespace Formler_BMI_BMR
 
     class Program
     {
-        public static void Main(string[] args)
-        {
-
-
-
-            double bmr = bmrcalc();
-            Console.WriteLine("BMR is " + bmr);
-            int BMI = bmicalc;
-            Console.WriteLine(bmi);
-        }
+        
     }
 }
