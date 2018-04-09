@@ -49,6 +49,11 @@ namespace Login
             //Redirect button to registrationpage 
             MessageBox.Show("Under development");
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
