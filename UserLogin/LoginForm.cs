@@ -15,17 +15,10 @@ namespace Login
         public LoginForm()
         {
             InitializeComponent();
-            MessageBox.Show("test");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        //Enter code here for your version of username and userpassword 
+        //Temporary logincredentials, need database reference 
         Login login = new Login("admin123", "admin");
-
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
@@ -47,13 +40,13 @@ namespace Login
 
         private void Forgot_password_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //enter your code for forget password case 
+            //Redirect link to forgotten-password-page
             MessageBox.Show("Under development");
         }
 
-        private void Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void RegisterButton_Click(object sender, EventArgs e)
         {
-            //Enter your code for registration form of your choice 
+            //Redirect button to registrationpage 
             MessageBox.Show("Under development");
         }
     }
