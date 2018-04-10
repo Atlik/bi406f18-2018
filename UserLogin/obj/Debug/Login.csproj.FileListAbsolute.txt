@@ -8,3 +8,16 @@ F:\Skole\P4\Development of a Database System for a Specific Application\UserLogi
 F:\Skole\P4\Development of a Database System for a Specific Application\UserLogin\UserLogin\obj\Debug\UserLogin.pdb
 F:\Skole\P4\Development of a Database System for a Specific Application\UserLogin\UserLogin\obj\Debug\Login.LoginForm.resources
 F:\Skole\P4\Development of a Database System for a Specific Application\UserLogin\UserLogin\obj\Debug\Login.csprojResolveAssemblyReference.cache
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\UserLogin.exe.config
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\UserLogin.exe
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\UserLogin.pdb
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csprojResolveAssemblyReference.cache
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.LoginForm.resources
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\UserLogin.Properties.Resources.resources
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.GenerateResource.cache
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.CoreCompileInputs.cache
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\UserLogin.exe
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\UserLogin.pdb
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\MySql.Data.dll
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\MySql.Data.xml
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.CopyComplete

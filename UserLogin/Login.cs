@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 namespace Login
 {
     class Login
@@ -97,11 +99,11 @@ namespace Login
                     }
 
                     //check password is valid (This is related to being able to input tekst inside a password)
-                    /*else if (IntegerValidator(pass) == true)
+                    else if (StringValidator(pass) == true)
                     {
-                        MessageBox.Show("Enter only integer here");
+                        MessageBox.Show("You can't use special characters");
                         return false;
-                    }*/
+                    }
 
                     //Since a password was entered, we check if the password is correct 
                     else if (Userpassword != pass)
