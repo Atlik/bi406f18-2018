@@ -18,3 +18,6 @@ C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.Gener
 C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.CoreCompileInputs.cache
 C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\UserLogin.exe
 C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\UserLogin.pdb
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\MySql.Data.dll
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\bin\Debug\MySql.Data.xml
+C:\Users\Jonas\Source\Repos\bi406f18-2018\UserLogin\obj\Debug\Login.csproj.CopyComplete
