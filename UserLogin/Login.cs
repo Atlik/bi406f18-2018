@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+
 namespace Login
 {
     class Login
@@ -117,36 +118,6 @@ namespace Login
                     }
                 }
             }
-        }
-    }
-    class DBConnect
-    {
-        private SqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string username;
-        private string password;
-
-        //Constructor
-        public DBConnect()
-        {
-            Initialize();
-        }
-
-        //Initialize values
-        private void Initialize()
-        {
-            server = "localhost";
-            database = "diettracker";
-            uid = "UserID";
-            username = "Username";
-            password = "Password";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UserID=" + uid + ";" + "Username" + username + ";" + "Password=" + password + ";";
-
-            connection = new SqlConnection(connectionString);
         }
     }
 }
