@@ -83,6 +83,7 @@
             this.Forgot_password.TabIndex = 5;
             this.Forgot_password.TabStop = true;
             this.Forgot_password.Text = "Forgot Password?";
+            this.Forgot_password.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Forgot_password_LinkClicked);
             // 
             // LoginPage
             // 
@@ -160,8 +161,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(613, 460);
+            this.ClientSize = new System.Drawing.Size(613, 461);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.RegisterDescription);
             this.Controls.Add(this.LoginDescription);
@@ -175,6 +177,7 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diet Tracker v.0.1";

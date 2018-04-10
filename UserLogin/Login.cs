@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Login
 {
@@ -99,11 +99,11 @@ namespace Login
                     }
 
                     //check password is valid (This is related to being able to input tekst inside a password)
-                    /*else if (IntegerValidator(pass) == true)
+                    else if (StringValidator(pass) == true)
                     {
-                        MessageBox.Show("Enter only integer here");
+                        MessageBox.Show("You can't use special characters");
                         return false;
-                    }*/
+                    }
 
                     //Since a password was entered, we check if the password is correct 
                     else if (Userpassword != pass)
@@ -120,34 +120,4 @@ namespace Login
             }
         }
     }
-    /*class DBConnect
-    {
-        private SqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string username;
-        private string password;
-
-        //Constructor
-        public DBConnect()
-        {
-            Initialize();
-        }
-
-        //Initialize values
-        private void Initialize()
-        {
-            server = "localhost";
-            database = "diettracker";
-            uid = "UserID";
-            username = "Username";
-            password = "Password";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UserID=" + uid + ";" + "Username" + username + ";" + "Password=" + password + ";";
-
-            connection = new SqlConnection(connectionString);
-        }
-    }*/
 }
