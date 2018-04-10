@@ -19,7 +19,6 @@ namespace Login
 
         //Temporary logincredentials, need database reference 
         Login login = new Login("admin123", "admin");
-        Login login1 = new Login("Jonas", "1234");
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
