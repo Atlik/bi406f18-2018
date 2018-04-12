@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Login
 {
@@ -17,8 +18,9 @@ namespace Login
             InitializeComponent();
         }
 
-        //Temporary logincredentials, need database reference 
-        Login login = new Login("admin123", "admin");
+        //Temporary logincredentials, need database reference
+        //try(MySql)
+        Login login = new Login("", "");
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
