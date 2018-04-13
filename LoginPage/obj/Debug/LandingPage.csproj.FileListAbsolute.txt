@@ -1,9 +1,0 @@
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\bin\Debug\LoginPage.exe.config
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\bin\Debug\LoginPage.exe
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\bin\Debug\LoginPage.pdb
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LandingPage.csprojResolveAssemblyReference.cache
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LoginPage.Properties.Resources.resources
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LandingPage.csproj.GenerateResource.cache
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LandingPage.csproj.CoreCompileInputs.cache
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LoginPage.exe
-C:\Users\Jonas\Source\Repos\bi406f18-2018\LoginPage\obj\Debug\LoginPage.pdb
