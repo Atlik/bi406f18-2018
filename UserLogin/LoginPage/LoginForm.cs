@@ -59,8 +59,13 @@ namespace Login
         {
             //Redirect button to LandingPage
             var Landingpage = (LandingPage.LandingPageForm)Tag;
-            Close();
+            Hide();
             Landingpage.Show();
+        }
+
+        private void LoginForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
