@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UserLogin.Properties {
+namespace LandingPage.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace UserLogin.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UserLogin.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LandingPage.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,16 +57,6 @@ namespace UserLogin.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_back_arrow_50 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-back-arrow-50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
