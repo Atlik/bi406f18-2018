@@ -1,7 +1,0 @@
-c:\users\jakob\documents\visual studio 2015\Projects\Users\Users\bin\Debug\Users.exe.config
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\bin\Debug\Users.exe
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\bin\Debug\Users.pdb
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\bin\Debug\MySql.Data.dll
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\obj\Debug\Users.csprojResolveAssemblyReference.cache
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\obj\Debug\Users.exe
-C:\Users\Jakob\documents\visual studio 2015\Projects\Users\Users\obj\Debug\Users.pdb
