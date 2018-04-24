@@ -25,3 +25,4 @@ C:\Users\Jonas\source\repos\bi406f18-2018\DietTracker\bin\Debug\DietTracker.pdb
 C:\Users\Jonas\source\repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.Properties.Resources.resources
 C:\Users\Jonas\source\repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.exe
 C:\Users\Jonas\source\repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.pdb
+C:\Users\Jonas\Source\Repos\bi406f18-2018\DietTracker\bin\Debug\DietTracker.xml
