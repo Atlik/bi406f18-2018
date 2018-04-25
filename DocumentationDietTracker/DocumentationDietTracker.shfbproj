@@ -29,6 +29,9 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="..\DietTracker\DietTracker.csproj" />
     </DocumentationSources>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="LandingPage" isDocumented="True" xmlns="" />
+<NamespaceSummaryItem name="Login" isDocumented="True" xmlns="" /></NamespaceSummaries>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
