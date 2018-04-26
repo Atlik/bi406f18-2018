@@ -34,7 +34,10 @@ namespace Login
             //check if eligible to be logged in 
             if (login.IsLoggedIn(user, pass))
             {
-                MessageBox.Show("You are logged in successfully");
+                MessageBox.Show("You are logged in successfully, you will now be redirected back to the LandingPage");
+                var Landingpage = (LandingPage.LandingPageForm)Tag;
+                Hide();
+                Landingpage.Show();
             }
             else
             {
