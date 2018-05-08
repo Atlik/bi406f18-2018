@@ -6,17 +6,17 @@ using System.Windows.Forms;
 
 namespace Login
 {
-    static class Program
+    /*static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main1()
+        /*static void Main1()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
-    }
+    }*/
 }
