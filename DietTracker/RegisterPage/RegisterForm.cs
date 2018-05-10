@@ -72,6 +72,16 @@ namespace Register
 
                     MessageBox.Show("User Successfully created!");
                 }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 0:
+                            MessageBox.Show("Cannot connect to server.");
+                            break;
+                    }
+                }
+
                 catch (Exception)
                 {
                     MessageBox.Show("That Username is already in use");

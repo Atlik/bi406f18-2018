@@ -180,6 +180,16 @@ namespace Login
                     myUserConnection.Close();
                 }
             }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cant connect to server.");
+                        break;
+                }
+                return false;
+            }
             catch
             {
                 MessageBox.Show("Please write your Username and/or Password");
