@@ -74,6 +74,7 @@
             this.pwdtxtbox.PasswordChar = '*';
             this.pwdtxtbox.Size = new System.Drawing.Size(400, 20);
             this.pwdtxtbox.TabIndex = 4;
+            this.pwdtxtbox.UseSystemPasswordChar = true;
             // 
             // Forgot_password
             // 
@@ -168,11 +169,11 @@
             this.LoginPageBack.ForeColor = System.Drawing.Color.Transparent;
             this.LoginPageBack.Location = new System.Drawing.Point(12, 12);
             this.LoginPageBack.Name = "LoginPageBack";
-            this.LoginPageBack.Size = new System.Drawing.Size(42, 23);
+            this.LoginPageBack.Size = new System.Drawing.Size(45, 23);
             this.LoginPageBack.TabIndex = 13;
-            this.LoginPageBack.Text = "Back";
+            this.LoginPageBack.Text = "Home";
             this.LoginPageBack.UseVisualStyleBackColor = false;
-            this.LoginPageBack.Click += new System.EventHandler(this.LoginPageBack_Click);
+            this.LoginPageBack.Click += new System.EventHandler(this.Home_Click);
             // 
             // LoginForm
             // 

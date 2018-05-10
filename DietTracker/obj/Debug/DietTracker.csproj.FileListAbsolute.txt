@@ -42,3 +42,4 @@ C:\Users\Jonas\source\repos\NewRepo\bi406f18-2018\DietTracker\bin\Debug\MySql.Da
 C:\Users\Jonas\source\repos\NewRepo\bi406f18-2018\DietTracker\bin\Debug\MySql.Data.xml
 C:\Users\Jonas\source\repos\NewRepo\bi406f18-2018\DietTracker\obj\Debug\DietTracker.csproj.CopyComplete
 C:\Users\Jonas\source\repos\NewRepo\bi406f18-2018\DietTracker\obj\Debug\DietTracker.User.UserForm.resources
+C:\Users\Jonas\Source\Repos\bi406f18-2018\DietTracker\obj\Debug\Register.RegisterForm.resources

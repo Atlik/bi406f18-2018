@@ -15,11 +15,11 @@ namespace Login
     class Login
     {
         //We declare properties 
-        public string Username { get; set; }
-        public string Userpassword { get; set; }
+        internal string Username { get; set; }
+        internal string Userpassword { get; set; }
 
         //intialise  
-        public Login(string user, string pass)
+        internal Login(string user, string pass)
         {
             this.Username = user;
             this.Userpassword = pass;
