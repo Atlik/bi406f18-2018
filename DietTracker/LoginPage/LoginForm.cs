@@ -42,7 +42,7 @@ namespace Login
             else
             {
                 //show default login error message 
-                // MessageBox.Show("Login Error!"); (ikke nødvendigt med alle de andre errors men godt at have med!)
+                //MessageBox.Show("Login Error!"); //(ikke nødvendigt med alle de andre errors men godt at have med!)
             }
         }
 
@@ -54,21 +54,27 @@ namespace Login
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            //Redirect button to registrationpage 
-            MessageBox.Show("Under development");
-        }
-
-        private void LoginPageBack_Click(object sender, EventArgs e)
-        {
-            //Redirect button to LandingPage
-            var Landingpage = (LandingPage.LandingPageForm)Tag;
+            Register.RegisterForm RegisterForm  = new Register.RegisterForm();
+            RegisterForm.Tag = this;
             Hide();
-            Landingpage.Show();
+            RegisterForm.Show(this);
         }
 
         private void LoginForm_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Home_Click(object sender, EventArgs e)
+        {
+            //Redirect button to LandingPage
+            /*var Landingpage = (LandingPage.LandingPageForm)Tag;
+            Hide();
+            Landingpage.Show();*/
+            LandingPage.LandingPageForm landingPageForm = new LandingPage.LandingPageForm();
+            landingPageForm.Tag = this;
+            Hide();
+            landingPageForm.Show(this);
         }
     }
 }

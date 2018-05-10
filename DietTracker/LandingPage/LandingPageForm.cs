@@ -24,8 +24,10 @@ namespace LandingPage
 
         private void LandingPageRegister_Click(object sender, EventArgs e)
         {
-            //Redirect button to registrationpage 
-            MessageBox.Show("Under development");
+            Register.RegisterForm RegisterForm = new Register.RegisterForm();
+            RegisterForm.Tag = this;
+            Hide();
+            RegisterForm.Show(this);
         }
 
         private void LandingPageLogin_Click(object sender, EventArgs e)
@@ -36,6 +38,11 @@ namespace LandingPage
             LoginForm.Tag = this;
             Hide();
             LoginForm.Show(this);
+        }
+
+        private void LandingPage_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

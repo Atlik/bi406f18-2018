@@ -120,6 +120,7 @@
             this.Name = "LandingPageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diet Tracker v.0.1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LandingPage_Closed);
             this.Load += new System.EventHandler(this.LandingPageForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

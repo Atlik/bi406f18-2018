@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DietTracker.Properties {
+namespace Register.Properties {
     using System;
     
     
