@@ -45,6 +45,7 @@
             this.RegisterLabelWeight = new System.Windows.Forms.Label();
             this.RegisterPageActivity = new System.Windows.Forms.NumericUpDown();
             this.RegisterLabelActivity = new System.Windows.Forms.Label();
+            this.RegisterPageActivityButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.RegisterPageActivity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +81,8 @@
             this.RegisterPageWeight.Size = new System.Drawing.Size(200, 24);
             this.RegisterPageWeight.TabIndex = 6;
             this.RegisterPageWeight.Tag = "kg";
+            this.RegisterPageWeight.Text = "in kg";
+            this.RegisterPageWeight.Enter += new System.EventHandler(this.RegisterTextWeight_Remove);
             // 
             // RegisterPageUsername
             // 
@@ -144,11 +147,11 @@
             // 
             this.RegisterLabelName.AutoSize = true;
             this.RegisterLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelName.Location = new System.Drawing.Point(108, 207);
+            this.RegisterLabelName.Location = new System.Drawing.Point(79, 207);
             this.RegisterLabelName.Name = "RegisterLabelName";
-            this.RegisterLabelName.Size = new System.Drawing.Size(84, 18);
+            this.RegisterLabelName.Size = new System.Drawing.Size(113, 18);
             this.RegisterLabelName.TabIndex = 18;
-            this.RegisterLabelName.Text = "Your name:";
+            this.RegisterLabelName.Text = "Your Firstname:";
             // 
             // RegisterPageHeight
             // 
@@ -159,6 +162,8 @@
             this.RegisterPageHeight.Size = new System.Drawing.Size(200, 24);
             this.RegisterPageHeight.TabIndex = 5;
             this.RegisterPageHeight.Tag = "cm";
+            this.RegisterPageHeight.Text = "in cm";
+            this.RegisterPageHeight.Enter += new System.EventHandler(this.RegisterTextHeight_Remove);
             // 
             // RegisterPageName
             // 
@@ -245,8 +250,19 @@
             this.RegisterLabelActivity.TabIndex = 26;
             this.RegisterLabelActivity.Text = "Your Daily Activity:";
             // 
+            // RegisterPageActivityButton
+            // 
+            this.RegisterPageActivityButton.Location = new System.Drawing.Point(249, 358);
+            this.RegisterPageActivityButton.Name = "RegisterPageActivityButton";
+            this.RegisterPageActivityButton.Size = new System.Drawing.Size(94, 23);
+            this.RegisterPageActivityButton.TabIndex = 27;
+            this.RegisterPageActivityButton.Text = "What is activity?";
+            this.RegisterPageActivityButton.UseVisualStyleBackColor = true;
+            this.RegisterPageActivityButton.Click += new System.EventHandler(this.RegisterPageActivityButton_Click);
+            // 
             // RegisterForm
             // 
+            this.AcceptButton = this.RegisterButton;
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -254,6 +270,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.RegisterPageActivityButton);
             this.Controls.Add(this.RegisterLabelActivity);
             this.Controls.Add(this.RegisterPageActivity);
             this.Controls.Add(this.RegisterLabelWeight);
@@ -305,5 +322,6 @@
         private System.Windows.Forms.Label RegisterLabelWeight;
         private System.Windows.Forms.NumericUpDown RegisterPageActivity;
         private System.Windows.Forms.Label RegisterLabelActivity;
+        private System.Windows.Forms.Button RegisterPageActivityButton;
     }
 }

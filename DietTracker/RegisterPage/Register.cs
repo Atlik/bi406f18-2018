@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Register
 {
@@ -109,7 +110,29 @@ namespace Register
                 }
                 else
                 {
-                    return true;
+                    MySqlConnection myUserConnection = new MySqlConnection();
+                    myUserConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
+
+                    MySqlCommand UserCommand = new MySqlCommand();
+                    UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
+                    UserCommand.Connection = myUserConnection;
+                    myUserConnection.Open();
+                    MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
+
+                    try
+                    {
+                        UsernameRead.Read();
+                        string Username = UsernameRead.GetString(0);
+                        var UserDatabase = String.Format("{0}", Username);
+                        Username = UserDatabase;
+                        MessageBox.Show("That username already exists");
+                        return false;
+                    }
+                    catch
+                    {
+                        myUserConnection.Close();
+                        return true;
+                    }
                 }
             }
             catch (Exception e)

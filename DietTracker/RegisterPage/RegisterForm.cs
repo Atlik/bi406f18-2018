@@ -58,19 +58,40 @@ namespace Register
                     MySqlConnection myRegisterConnection = new MySqlConnection();
                     myRegisterConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
 
-                    MySqlCommand RegisterCommand = new MySqlCommand();
-                    RegisterCommand.CommandText = "INSERT INTO username (Username)" +
-                        "VALUES ('" + user + "');" +
-                        "INSERT INTO password (Password)" +
-                        "VALUES ('" + pass + "');" +
-                        "INSERT INTO users (Name, DoB, Height, Weight, Activity)" +
-                        "VALUES ('" + n + "', '" + dob + "', '" + h + "', '" + w + "', '" + a + "');";
 
+                    //First it writes to the user table
+                    MySqlCommand RegisterCommand = new MySqlCommand();
+                    RegisterCommand.CommandText =
+                    "INSERT INTO diettracker.users (Username, Name, DoB, Height, Weight, Activity)" +
+                    "VALUES ('" + user + "', '" + n + "', '" + dob + "', '" + h + "', '" + w + "', '" + a + "');";
                     RegisterCommand.Connection = myRegisterConnection;
                     myRegisterConnection.Open();
                     RegisterCommand.ExecuteNonQuery();
+                    myRegisterConnection.Close();
+
+                    //It then takes the ID from the user table to use it
+                    MySqlCommand IDCommand = new MySqlCommand();
+                    IDCommand.CommandText = "SELECT ID FROM users WHERE Username = '" + user + "';";
+                    IDCommand.Connection = myRegisterConnection;
+                    myRegisterConnection.Open();
+                    MySqlDataReader IDRead = IDCommand.ExecuteReader();
+                    IDRead.Read();
+                    string UserID = IDRead.GetString(0);
+                    var ID = String.Format("{0}", UserID);
+                    UserID = ID;
+                    myRegisterConnection.Close();
+
+                    //It inserts into the password table the password and the ID that corresponded to the user table
+                    MySqlCommand PasswordCommand = new MySqlCommand();
+                    PasswordCommand.CommandText = "INSERT INTO diettracker.password (Password, ForeignID) " +
+                        "VALUES ('" + pass + "', '" + UserID + "');";
+                    PasswordCommand.Connection = myRegisterConnection;
+                    myRegisterConnection.Open();
+                    PasswordCommand.ExecuteNonQuery();
+                    myRegisterConnection.Close();
 
                     MessageBox.Show("User Successfully created!");
+
                 }
                 catch (MySqlException ex)
                 {
@@ -78,6 +99,9 @@ namespace Register
                     {
                         case 0:
                             MessageBox.Show("Cannot connect to server.");
+                            break;
+                        case 1062:
+                            MessageBox.Show("That Username is already in use");
                             break;
                     }
                 }
@@ -88,8 +112,25 @@ namespace Register
                 }
             else
             {
-
+                
             }
+        }
+
+        private void RegisterTextHeight_Remove(object sender, EventArgs e)
+        {
+            RegisterPageHeight.Text = "";
+        }
+
+        private void RegisterTextWeight_Remove(object sender, EventArgs e)
+        {
+            RegisterPageWeight.Text = "";
+        }
+
+        private void RegisterPageActivityButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1 = Very little to no exercise at all\n" +
+                "2 = Moderate exercise\n" +
+                "3 = Exercise every day");
         }
     }
 }

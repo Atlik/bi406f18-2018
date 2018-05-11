@@ -71,7 +71,7 @@ namespace Login
                 myUserConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
 
                 MySqlCommand UserCommand = new MySqlCommand();
-                UserCommand.CommandText = "SELECT Username FROM username WHERE Username = '" + user + "';";
+                UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
                 UserCommand.Connection = myUserConnection;
                 myUserConnection.Open();
                 MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
@@ -128,7 +128,7 @@ namespace Login
                         myPasswordConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
 
                         MySqlCommand PasswordCommand = new MySqlCommand();
-                        PasswordCommand.CommandText = "SELECT Password FROM username, password WHERE password.ID = username.ID AND username = '" + user + "';";
+                        PasswordCommand.CommandText = "SELECT Password FROM users, password WHERE password.ForeignID = users.ID AND username = '" + user + "';";
                         PasswordCommand.Connection = myPasswordConnection;
                         myPasswordConnection.Open();
                         MySqlDataReader PasswordRead = PasswordCommand.ExecuteReader();
