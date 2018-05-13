@@ -8,13 +8,13 @@ namespace MainPageGraphs
 {
     class UpdateCaloriesGraph
     {
-        internal int Calories { get; set; }
-        internal int Goal { get; set; }
+        internal int maxCalories { get; set; }
+        internal int CaloriesEaten { get; set; }
 
-        internal UpdateCaloriesGraph(int goal, int calories)
+        public UpdateCaloriesGraph(int maxCal, int calEaten)
         {
-            this.Calories = calories;
-            this.Goal = goal;
+            this.maxCalories = maxCal;
+            this.CaloriesEaten = calEaten;
         }
     }
 }

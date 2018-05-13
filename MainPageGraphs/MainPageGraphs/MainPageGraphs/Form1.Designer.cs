@@ -57,7 +57,7 @@
             this.weightOverTimeChart.Size = new System.Drawing.Size(599, 270);
             this.weightOverTimeChart.TabIndex = 0;
             this.weightOverTimeChart.Text = "Weight over time";
-            this.weightOverTimeChart.Click += new System.EventHandler(this.chart1_Click);
+            this.weightOverTimeChart.Validating += new System.ComponentModel.CancelEventHandler(this.weightOverTimeChart_Validating);
             // 
             // caloriesChart
             // 
@@ -76,7 +76,6 @@
             this.caloriesChart.Size = new System.Drawing.Size(301, 231);
             this.caloriesChart.TabIndex = 1;
             this.caloriesChart.Text = "chart2";
-            this.caloriesChart.Click += new System.EventHandler(this.caloriesChart_Click);
             // 
             // btnLoadGraph
             // 
@@ -86,7 +85,7 @@
             this.btnLoadGraph.TabIndex = 2;
             this.btnLoadGraph.Text = "LoadGraphs";
             this.btnLoadGraph.UseVisualStyleBackColor = true;
-            this.btnLoadGraph.Click += new System.EventHandler(this.button1_Click);
+            this.btnLoadGraph.Click += new System.EventHandler(this.ClickToLoadGraph);
             // 
             // Form1
             // 
