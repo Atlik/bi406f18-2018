@@ -25,14 +25,15 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `Username` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
+  `Gender` varchar(255) NOT NULL,
   `DoB` date NOT NULL,
-  `Height` int(11) NOT NULL,
+  `Height` tinyint(255) unsigned NOT NULL,
   `Weight` int(11) NOT NULL,
   `Activity` tinyint(4) NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Christian','Christian','2018-05-10',1456,1235,1,1),('Maria','Christian','2018-05-10',1456,1235,1,2),('Maren','Maren','2018-05-10',456,456,1,3),('Christine','er','2018-05-10',600,2,3,4),('RAWR','RAWR','2018-05-10',123,123,1,5);
+INSERT INTO `users` VALUES ('Rawr5','RAWR','Female','2018-05-10',3,300,1,10),('Rawr6','RAWR','Female','2018-05-10',50,300,1,11),('Rawr7','RAWR','Female','2018-05-10',120,300,1,12),('Rawr8','RAWR','Female','2018-05-10',127,300,1,13),('Rawr9','RAWR','Female','2018-05-10',255,300,1,14);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-11 15:27:29
+-- Dump completed on 2018-05-14 13:04:46
