@@ -1,5 +1,8 @@
 ﻿namespace LandingPage
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class LandingPageForm
     {
         /// <summary>

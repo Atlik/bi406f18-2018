@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DietTracker", "DietTracker\
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "DocumentationDietTracker", "DocumentationDietTracker\DocumentationDietTracker.shfbproj", "{E9080E54-BB20-4542-9732-4636F2025E4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formler BMI BMR", "Formler BMI BMR\Formler BMI BMR\Formler BMI BMR.csproj", "{398CF954-4744-4C94-90CE-DE1BD01645ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E9080E54-BB20-4542-9732-4636F2025E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9080E54-BB20-4542-9732-4636F2025E4C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9080E54-BB20-4542-9732-4636F2025E4C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{398CF954-4744-4C94-90CE-DE1BD01645ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{398CF954-4744-4C94-90CE-DE1BD01645ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{398CF954-4744-4C94-90CE-DE1BD01645ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{398CF954-4744-4C94-90CE-DE1BD01645ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

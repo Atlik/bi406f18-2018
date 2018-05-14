@@ -12,6 +12,9 @@ namespace LandingPage
 {
     public partial class LandingPageForm : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public LandingPageForm()
         {
             InitializeComponent();

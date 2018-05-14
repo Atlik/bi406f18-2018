@@ -75,3 +75,4 @@ C:\Users\Christian(Atlik)\Source\Repos\bi406f18-2018\DietTracker\obj\Debug\DietT
 C:\Users\Christian(Atlik)\Source\Repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.csproj.CopyComplete
 C:\Users\Christian(Atlik)\Source\Repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.exe
 C:\Users\Christian(Atlik)\Source\Repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.pdb
+C:\Users\Christian(Atlik)\source\repos\bi406f18-2018\DietTracker\obj\Debug\MainPageGraphs.MainPageForm.resources

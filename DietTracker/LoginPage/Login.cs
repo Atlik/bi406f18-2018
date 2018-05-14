@@ -68,7 +68,7 @@ namespace Login
             try
             {
                 MySqlConnection myUserConnection = new MySqlConnection();
-                myUserConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
+                myUserConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
 
                 MySqlCommand UserCommand = new MySqlCommand();
                 UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
@@ -125,7 +125,7 @@ namespace Login
                         myUserConnection.Close();
                         ClearTexts(user, pass);
                         MySqlConnection myPasswordConnection = new MySqlConnection();
-                        myPasswordConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
+                        myPasswordConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
 
                         MySqlCommand PasswordCommand = new MySqlCommand();
                         PasswordCommand.CommandText = "SELECT Password FROM users, password WHERE password.ForeignID = users.ID AND username = '" + user + "';";

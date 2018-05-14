@@ -1,5 +1,8 @@
 ﻿namespace Login
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class LoginForm
     {
         /// <summary>

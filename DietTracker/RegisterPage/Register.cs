@@ -111,7 +111,7 @@ namespace Register
                 else
                 {
                     MySqlConnection myUserConnection = new MySqlConnection();
-                    myUserConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
+                    myUserConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
 
                     MySqlCommand UserCommand = new MySqlCommand();
                     UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";

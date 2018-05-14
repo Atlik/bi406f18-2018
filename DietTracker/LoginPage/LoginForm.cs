@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MainPageGraphs;
 using MySql.Data.MySqlClient;
 
 namespace Login
 {
     public partial class LoginForm : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public LoginForm()
         {
             InitializeComponent();
@@ -35,9 +39,12 @@ namespace Login
             if (login.IsLoggedIn(user, pass))
             {
                 MessageBox.Show("You are logged in successfully, you will now be redirected back to the LandingPage");
-                var Landingpage = (LandingPage.LandingPageForm)Tag;
+               /* var Landingpage = (LandingPage.LandingPageForm)Tag;
                 Hide();
-                Landingpage.Show();
+                Landingpage.Show();*/
+                var MainPage = (MainPageGraphs.MainPageForm) Tag;
+                Hide();
+                MainPage.Show();
             }
             else
             {
