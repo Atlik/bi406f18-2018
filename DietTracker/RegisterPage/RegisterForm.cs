@@ -11,8 +11,14 @@ using MySql.Data.MySqlClient;
 
 namespace Register
 {
+    /// <summary>
+    /// I WRITE STUFF IN HERE! :D
+    /// </summary>
     public partial class RegisterForm : Form
     {
+        /// <summary>
+        /// HAHAHAHAHA
+        /// </summary>
         public RegisterForm()
         {
             InitializeComponent();
@@ -49,9 +55,24 @@ namespace Register
             string h = RegisterPageHeight.Text;
             string w = RegisterPageWeight.Text;
             decimal a = RegisterPageActivity.Value;
+            string g = "";
+
+            while (true)
+            {
+                if (RegisterPageRadioButtonMale.Checked == true)
+                {
+                    g = RegisterPageRadioButtonMale.Text;
+                    break;
+                }
+                else
+                {
+                    g = RegisterPageRadioButtonFemale.Text;
+                    break;
+                }
+            }
 
             if (register.IsRegisterInfoInput(user, pass, dob, n, h, w))
-
+            {
                 try
                 {
                     //DateTime dob = Convert.ToDateTime("yyyy-MM-dd");
@@ -62,8 +83,8 @@ namespace Register
                     //First it writes to the user table
                     MySqlCommand RegisterCommand = new MySqlCommand();
                     RegisterCommand.CommandText =
-                    "INSERT INTO diettracker.users (Username, Name, DoB, Height, Weight, Activity)" +
-                    "VALUES ('" + user + "', '" + n + "', '" + dob + "', '" + h + "', '" + w + "', '" + a + "');";
+                    "INSERT INTO diettracker.users (Username, Name, Gender, DoB, Height, Weight, Activity)" +
+                    "VALUES ('" + user + "', '" + n + "', '" + g + "', '" + dob + "', '" + h + "', '" + w + "', '" + a + "');";
                     RegisterCommand.Connection = myRegisterConnection;
                     myRegisterConnection.Open();
                     RegisterCommand.ExecuteNonQuery();
@@ -95,6 +116,7 @@ namespace Register
                 }
                 catch (MySqlException ex)
                 {
+                    //MessageBox.Show("Something happened" + ex);
                     switch (ex.Number)
                     {
                         case 0:
@@ -103,34 +125,49 @@ namespace Register
                         case 1062:
                             MessageBox.Show("That Username is already in use");
                             break;
+                        case 1264:
+                            MessageBox.Show("You can't be higher than 255 cm (Come on, you're not that tall)");
+                            break;
                     }
                 }
 
                 catch (Exception)
                 {
-                    MessageBox.Show("That Username is already in use");
+                    MessageBox.Show("Something unexpected happened");
                 }
-            else
-            {
-                
             }
         }
 
         private void RegisterTextHeight_Remove(object sender, EventArgs e)
         {
-            RegisterPageHeight.Text = "";
+            if (RegisterPageHeight.Text == "in cm")
+                RegisterPageHeight.Text = "";
+        }
+        private void RegisterTextHeight_Add(object sender, EventArgs e)
+        {
+            if (RegisterPageHeight.Text == "")
+                RegisterPageHeight.Text = "in cm";
+
         }
 
         private void RegisterTextWeight_Remove(object sender, EventArgs e)
         {
-            RegisterPageWeight.Text = "";
+            if (RegisterPageWeight.Text == "in kg")
+                RegisterPageWeight.Text = "";
         }
+        private void RegisterTextWeight_Add(object sender, EventArgs e)
+        {
+            if (RegisterPageWeight.Text == "")
+                RegisterPageWeight.Text = "in kg";
+        }
+
 
         private void RegisterPageActivityButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1 = Very little to no exercise at all\n" +
                 "2 = Moderate exercise\n" +
                 "3 = Exercise every day");
+
         }
     }
 }
