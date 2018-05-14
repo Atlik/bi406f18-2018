@@ -8,7 +8,6 @@ namespace Formler_BMI_BMR
 {
     class Formler
     {
-
         public void Formula()
         {
             double bmr = BMRCalc(190, 21, 100, 2, true);
@@ -24,7 +23,7 @@ namespace Formler_BMI_BMR
         bool sex = true;
 
         //BMR Calc for both genders
-        public static double BMRCalc(double height, double age, double weight, double activity, bool sex)//Height, age, weight, activity niveau, gender
+        public double BMRCalc(double height, double age, double weight, double activity, bool sex)//Height, age, weight, activity niveau, gender
         {
 
             if (sex == true) //gender check for male
@@ -60,7 +59,7 @@ namespace Formler_BMI_BMR
             };
         }
 
-        public static double BMICalc(double weight, double height)
+        public double BMICalc(double weight, double height)
         {
             return (weight / (height * height));
         }

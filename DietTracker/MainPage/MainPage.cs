@@ -267,7 +267,7 @@ namespace MainPageGraphs
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Formler_BMI_BMR.Formler.BMICalc(75, 175);
+           // Formler_BMI_BMR.Formler.BMICalc(75, 175);
         }
     }
 }
