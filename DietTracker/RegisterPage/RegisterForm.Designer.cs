@@ -46,6 +46,8 @@
             this.RegisterPageActivity = new System.Windows.Forms.NumericUpDown();
             this.RegisterLabelActivity = new System.Windows.Forms.Label();
             this.RegisterPageActivityButton = new System.Windows.Forms.Button();
+            this.RegisterPageRadioButtonMale = new System.Windows.Forms.RadioButton();
+            this.RegisterPageRadioButtonFemale = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.RegisterPageActivity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this.RegisterButton.Location = new System.Drawing.Point(136, 410);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(223, 29);
-            this.RegisterButton.TabIndex = 8;
+            this.RegisterButton.TabIndex = 11;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
@@ -79,7 +81,7 @@
             this.RegisterPageWeight.Location = new System.Drawing.Point(199, 318);
             this.RegisterPageWeight.Name = "RegisterPageWeight";
             this.RegisterPageWeight.Size = new System.Drawing.Size(200, 24);
-            this.RegisterPageWeight.TabIndex = 6;
+            this.RegisterPageWeight.TabIndex = 8;
             this.RegisterPageWeight.Tag = "kg";
             this.RegisterPageWeight.Text = "in kg";
             this.RegisterPageWeight.Enter += new System.EventHandler(this.RegisterTextWeight_Remove);
@@ -113,7 +115,7 @@
             this.RegisterPageDoB.Location = new System.Drawing.Point(199, 243);
             this.RegisterPageDoB.Name = "RegisterPageDoB";
             this.RegisterPageDoB.Size = new System.Drawing.Size(200, 24);
-            this.RegisterPageDoB.TabIndex = 4;
+            this.RegisterPageDoB.TabIndex = 6;
             this.RegisterPageDoB.Value = new System.DateTime(2018, 5, 10, 0, 0, 0, 0);
             // 
             // RegisterLabelUsername
@@ -138,7 +140,7 @@
             this.LoginPageBack.Location = new System.Drawing.Point(12, 18);
             this.LoginPageBack.Name = "LoginPageBack";
             this.LoginPageBack.Size = new System.Drawing.Size(45, 23);
-            this.LoginPageBack.TabIndex = 14;
+            this.LoginPageBack.TabIndex = 12;
             this.LoginPageBack.Text = "Home";
             this.LoginPageBack.UseVisualStyleBackColor = false;
             this.LoginPageBack.Click += new System.EventHandler(this.Home_Click);
@@ -147,7 +149,7 @@
             // 
             this.RegisterLabelName.AutoSize = true;
             this.RegisterLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelName.Location = new System.Drawing.Point(79, 207);
+            this.RegisterLabelName.Location = new System.Drawing.Point(79, 192);
             this.RegisterLabelName.Name = "RegisterLabelName";
             this.RegisterLabelName.Size = new System.Drawing.Size(113, 18);
             this.RegisterLabelName.TabIndex = 18;
@@ -160,16 +162,17 @@
             this.RegisterPageHeight.Location = new System.Drawing.Point(199, 281);
             this.RegisterPageHeight.Name = "RegisterPageHeight";
             this.RegisterPageHeight.Size = new System.Drawing.Size(200, 24);
-            this.RegisterPageHeight.TabIndex = 5;
+            this.RegisterPageHeight.TabIndex = 7;
             this.RegisterPageHeight.Tag = "cm";
             this.RegisterPageHeight.Text = "in cm";
             this.RegisterPageHeight.Enter += new System.EventHandler(this.RegisterTextHeight_Remove);
+            this.RegisterPageHeight.Leave += new System.EventHandler(this.RegisterTextHeight_Add);
             // 
             // RegisterPageName
             // 
             this.RegisterPageName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageName.Location = new System.Drawing.Point(199, 204);
+            this.RegisterPageName.Location = new System.Drawing.Point(199, 189);
             this.RegisterPageName.Name = "RegisterPageName";
             this.RegisterPageName.Size = new System.Drawing.Size(200, 24);
             this.RegisterPageName.TabIndex = 3;
@@ -232,7 +235,7 @@
             0});
             this.RegisterPageActivity.Name = "RegisterPageActivity";
             this.RegisterPageActivity.Size = new System.Drawing.Size(44, 24);
-            this.RegisterPageActivity.TabIndex = 7;
+            this.RegisterPageActivity.TabIndex = 9;
             this.RegisterPageActivity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RegisterPageActivity.Value = new decimal(new int[] {
             1,
@@ -255,10 +258,34 @@
             this.RegisterPageActivityButton.Location = new System.Drawing.Point(249, 358);
             this.RegisterPageActivityButton.Name = "RegisterPageActivityButton";
             this.RegisterPageActivityButton.Size = new System.Drawing.Size(94, 23);
-            this.RegisterPageActivityButton.TabIndex = 27;
+            this.RegisterPageActivityButton.TabIndex = 10;
             this.RegisterPageActivityButton.Text = "What is activity?";
             this.RegisterPageActivityButton.UseVisualStyleBackColor = true;
             this.RegisterPageActivityButton.Click += new System.EventHandler(this.RegisterPageActivityButton_Click);
+            // 
+            // RegisterPageRadioButtonMale
+            // 
+            this.RegisterPageRadioButtonMale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RegisterPageRadioButtonMale.AutoSize = true;
+            this.RegisterPageRadioButtonMale.Location = new System.Drawing.Point(199, 219);
+            this.RegisterPageRadioButtonMale.Name = "RegisterPageRadioButtonMale";
+            this.RegisterPageRadioButtonMale.Size = new System.Drawing.Size(48, 17);
+            this.RegisterPageRadioButtonMale.TabIndex = 4;
+            this.RegisterPageRadioButtonMale.TabStop = true;
+            this.RegisterPageRadioButtonMale.Text = "Male";
+            this.RegisterPageRadioButtonMale.UseVisualStyleBackColor = true;
+            // 
+            // RegisterPageRadioButtonFemale
+            // 
+            this.RegisterPageRadioButtonFemale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RegisterPageRadioButtonFemale.AutoSize = true;
+            this.RegisterPageRadioButtonFemale.Location = new System.Drawing.Point(256, 219);
+            this.RegisterPageRadioButtonFemale.Name = "RegisterPageRadioButtonFemale";
+            this.RegisterPageRadioButtonFemale.Size = new System.Drawing.Size(59, 17);
+            this.RegisterPageRadioButtonFemale.TabIndex = 5;
+            this.RegisterPageRadioButtonFemale.TabStop = true;
+            this.RegisterPageRadioButtonFemale.Text = "Female";
+            this.RegisterPageRadioButtonFemale.UseVisualStyleBackColor = true;
             // 
             // RegisterForm
             // 
@@ -270,6 +297,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.RegisterPageRadioButtonFemale);
+            this.Controls.Add(this.RegisterPageRadioButtonMale);
             this.Controls.Add(this.RegisterPageActivityButton);
             this.Controls.Add(this.RegisterLabelActivity);
             this.Controls.Add(this.RegisterPageActivity);
@@ -323,5 +352,7 @@
         private System.Windows.Forms.NumericUpDown RegisterPageActivity;
         private System.Windows.Forms.Label RegisterLabelActivity;
         private System.Windows.Forms.Button RegisterPageActivityButton;
+        private System.Windows.Forms.RadioButton RegisterPageRadioButtonMale;
+        private System.Windows.Forms.RadioButton RegisterPageRadioButtonFemale;
     }
 }
