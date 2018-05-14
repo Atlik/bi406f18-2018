@@ -77,7 +77,7 @@ namespace Register
                 {
                     //DateTime dob = Convert.ToDateTime("yyyy-MM-dd");
                     MySqlConnection myRegisterConnection = new MySqlConnection();
-                    myRegisterConnection.ConnectionString = "database=diettracker;server=localhost;user id=ApplicationAccess;";
+                    myRegisterConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
 
 
                     //First it writes to the user table

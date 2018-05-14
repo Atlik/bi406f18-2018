@@ -41,10 +41,16 @@ namespace Login
                 MessageBox.Show("You are logged in successfully, you will now be redirected back to the LandingPage");
                /* var Landingpage = (LandingPage.LandingPageForm)Tag;
                 Hide();
-                Landingpage.Show();*/
+                Landingpage.Show();
                 var MainPage = (MainPageGraphs.MainPageForm) Tag;
                 Hide();
-                MainPage.Show();
+                MainPage.Show();*/
+
+                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm();
+                mainPage.Tag = this;
+                Hide();
+                mainPage.Show(this);
+
             }
             else
             {

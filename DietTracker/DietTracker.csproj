@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formula\Program.cs" />
     <Compile Include="LandingPage\LandingPageForm.cs">
       <SubType>Form</SubType>
     </Compile>

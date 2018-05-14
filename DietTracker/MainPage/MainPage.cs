@@ -21,6 +21,7 @@ namespace MainPageGraphs
     {
         private Chart WeightChart;
         private Chart CalorieChart;
+        private TextBox textBox1;
         private Button button1;
         /// <summary>
         /// 
@@ -36,7 +37,7 @@ namespace MainPageGraphs
             string connectionsString = null;
 
             MySqlConnection cnn;
-            connectionsString = "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
+            connectionsString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
             cnn = new MySqlConnection(connectionsString);
 
             try
@@ -72,7 +73,7 @@ namespace MainPageGraphs
             {
                 MySqlConnection getWeightSqlConnection = new MySqlConnection();
                 getWeightSqlConnection.ConnectionString =
-                    "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
+                    "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
 
                 MySqlCommand weightCommand = new MySqlCommand();
                 weightCommand.CommandText = "SELECT Weight FROM day";
@@ -82,10 +83,10 @@ namespace MainPageGraphs
                 {
                     MySqlConnection getDateSqlConnection = new MySqlConnection();
                     getDateSqlConnection.ConnectionString =
-                        "server=localhost;user id=root;pwd=atlik91502.sql;database=db_diettracker;SslMode=none";
+                        "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
 
                     MySqlCommand dateCommand = new MySqlCommand();
-                    dateCommand.CommandText = "SELECT Date FROM db_diettracker.day";
+                    dateCommand.CommandText = "SELECT Date FROM diettracker.day";
                     dateCommand.Connection = getDateSqlConnection;
 
                     MessageBox.Show("Opens connection");
@@ -176,22 +177,24 @@ namespace MainPageGraphs
             this.WeightChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CalorieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.WeightChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CalorieChart)).BeginInit();
             this.SuspendLayout();
             // 
             // WeightChart
             // 
+            this.WeightChart.Anchor = System.Windows.Forms.AnchorStyles.None;
             chartArea1.Name = "ChartArea1";
             this.WeightChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.WeightChart.Legends.Add(legend1);
-            this.WeightChart.Location = new System.Drawing.Point(12, 204);
+            this.WeightChart.Location = new System.Drawing.Point(54, 236);
             this.WeightChart.Name = "WeightChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Weight";
             this.WeightChart.Series.Add(series1);
             this.WeightChart.Size = new System.Drawing.Size(361, 181);
             this.WeightChart.TabIndex = 0;
@@ -209,9 +212,9 @@ namespace MainPageGraphs
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series2.Legend = "Legend1";
-            series2.Name = "Series1";
+            series2.Name = "CalorieIntake";
             this.CalorieChart.Series.Add(series2);
-            this.CalorieChart.Size = new System.Drawing.Size(138, 157);
+            this.CalorieChart.Size = new System.Drawing.Size(165, 114);
             this.CalorieChart.TabIndex = 1;
             this.CalorieChart.Text = "CalorieChart";
             // 
@@ -225,23 +228,46 @@ namespace MainPageGraphs
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ClickToLoadGraph);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(273, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // MainPageForm
             // 
-            this.ClientSize = new System.Drawing.Size(400, 397);
+            this.AllowDrop = true;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CalorieChart);
             this.Controls.Add(this.WeightChart);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainPageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.WeightChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CalorieChart)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Formler_BMI_BMR.Formler.BMICalc(75, 175);
         }
     }
 }
