@@ -8,10 +8,10 @@ namespace MainPageGraphs
 {
     class UpdateCaloriesGraph
     {
-        internal int maxCalories { get; set; }
-        internal int CaloriesEaten { get; set; }
+        internal double maxCalories { get; set; }
+        internal double CaloriesEaten { get; set; }
 
-        public UpdateCaloriesGraph(int maxCal, int calEaten)
+        public UpdateCaloriesGraph(double maxCal, double calEaten)
         {
             this.maxCalories = maxCal;
             this.CaloriesEaten = calEaten;

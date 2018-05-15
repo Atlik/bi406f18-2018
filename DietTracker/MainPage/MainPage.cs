@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Formler_BMI_BMR;
 using MySql.Data.MySqlClient;
+using Login = Login.Login;
 
 namespace MainPageGraphs
 {
@@ -40,7 +41,7 @@ namespace MainPageGraphs
         {
             Initialize_weightOverTimeChart();
             InitializeText();
-            Initialize_CalorieChart();
+           // Initialize_CalorieChart();
         }
 
         private void Initialize_weightOverTimeChart()
@@ -261,25 +262,106 @@ namespace MainPageGraphs
 
         }
 
+        private void Initialize_CalorieChart()
+        {
+            try
+            {
+                double height, age = 21, weight, activity;
+                string gender;
+                string userName = "Jesper";
+                bool sex = true;
+                MySqlConnection BMRConnection = new MySqlConnection();
+                BMRConnection.ConnectionString =
+                    "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+
+                //  double height, double age, double weight, double activity, bool sex;
+
+
+                MySqlCommand heightCommand = new MySqlCommand();
+                heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
+                heightCommand.Connection = BMRConnection;
+
+                MySqlCommand weightCommand = new MySqlCommand();
+                weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
+                weightCommand.Connection = BMRConnection;
+
+                MySqlCommand activityCommand = new MySqlCommand();
+                activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
+                activityCommand.Connection = BMRConnection;
+
+                BMRConnection.Open();
+                MySqlDataReader userHeightRead = heightCommand.ExecuteReader();
+                userHeightRead.Read();
+                height = userHeightRead.GetInt32(0);
+                userHeightRead.Close();
+                BMRConnection.Close();
+
+                BMRConnection.Open();
+                MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
+                userWeightRead.Read();
+                weight = userWeightRead.GetInt32(0);
+                userWeightRead.Close();
+                BMRConnection.Close();
+
+                BMRConnection.Open();
+                MySqlDataReader userActivityRead = activityCommand.ExecuteReader();
+                userActivityRead.Read();
+                activity = userActivityRead.GetInt32(0);
+                userActivityRead.Close();
+                BMRConnection.Close();
+
+                MySqlCommand genderCommand = new MySqlCommand();
+                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
+                genderCommand.Connection = BMRConnection;
+
+                BMRConnection.Open();
+                MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
+                userGenderRead.Read();
+                gender = userGenderRead.GetString(0);
+                userGenderRead.Close();
+                BMRConnection.Close();
+
+                if (gender == "Male")
+                {
+                    sex = true;
+                }
+                else if (gender == "Female")
+                {
+                    sex = false;
+                }
+
+                //Inserts BMR value in text field
+                Formler bmrValue = new Formler();
+                double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
+
+                //Constucts graph
+                var info = new UpdateCaloriesGraph(show, 1500);
+                double caloriesLeft = info.maxCalories - info.CaloriesEaten;
+                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
+                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calorie left", caloriesLeft);
+
+                //Inserts text for the BMI value
+                double showBMI = bmrValue.BMICalc(75, 175);
+                double newShow = showBMI * 10000;
+                string visible = "BMR value (Calories): " + Environment.NewLine + show + Environment.NewLine +
+                                 "BMI Value" + Environment.NewLine + newShow;
+
+                displayMaxCalorie.Text = visible;
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Error happened in Connection:" + Environment.NewLine + e);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something unexpected happened");
+            }
+        }
 
         private void InitializeText()
         {
-            Formler maxCalorie = new Formler();
-            double show = maxCalorie.BMICalc(75, 175);
-            double newShow = show * 10000;
-            string visible = "BMI Value:" + Environment.NewLine + newShow;
-            displayMaxCalorie.Text = visible;
-        }
-
-        private void Initialize_CalorieChart()
-        {
-            // Alt efter hvad og hvordan BMI udregning giver max antal calorier skal dette indsættes i points på denne måde
-            var info = new UpdateCaloriesGraph(2600, 1500);
-
-            int caloriesLeft = info.maxCalories - info.CaloriesEaten;
-
-            CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
-            CalorieChart.Series["CalorieIntake"].Points.AddXY("Calorie left", caloriesLeft);
+            Initialize_CalorieChart();
         }
 
         private void EditUserData(object sender, EventArgs e)
