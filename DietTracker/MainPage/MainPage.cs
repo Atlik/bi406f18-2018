@@ -36,12 +36,11 @@ namespace MainPageGraphs
             InitializeComponent();
         }
 
-        //tænker på at tilføje denne således at MySQL bliver indlæst herfra istedet for fra en separat metode
+        //Initializes methods used to load forms
         private void ClickToLoadGraph(object sender, EventArgs e)
         {
             Initialize_weightOverTimeChart();
-            InitializeText();
-           // Initialize_CalorieChart();
+            Initialize_CalorieChart();
         }
 
         private void Initialize_weightOverTimeChart()
@@ -274,9 +273,6 @@ namespace MainPageGraphs
                 BMRConnection.ConnectionString =
                     "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
 
-                //  double height, double age, double weight, double activity, bool sex;
-
-
                 MySqlCommand heightCommand = new MySqlCommand();
                 heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
                 heightCommand.Connection = BMRConnection;
@@ -357,11 +353,6 @@ namespace MainPageGraphs
             {
                 MessageBox.Show("Something unexpected happened");
             }
-        }
-
-        private void InitializeText()
-        {
-            Initialize_CalorieChart();
         }
 
         private void EditUserData(object sender, EventArgs e)
