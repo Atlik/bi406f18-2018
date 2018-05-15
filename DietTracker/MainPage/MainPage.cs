@@ -266,7 +266,8 @@ namespace MainPageGraphs
         {
             Formler maxCalorie = new Formler();
             double show = maxCalorie.BMICalc(75, 175);
-            string visible = "BMI Value:" + Environment.NewLine + show;
+            double newShow = show * 10000;
+            string visible = "BMI Value:" + Environment.NewLine + newShow;
             displayMaxCalorie.Text = visible;
         }
 
