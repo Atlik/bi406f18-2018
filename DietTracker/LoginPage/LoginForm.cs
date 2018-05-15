@@ -38,13 +38,10 @@ namespace Login
             //check if eligible to be logged in 
             if (login.IsLoggedIn(user, pass))
             {
-                MessageBox.Show("You are logged in successfully, you will now be redirected back to the LandingPage");
+                MessageBox.Show("You are logged in successfully, you will now be redirected to the MainPage");
                /* var Landingpage = (LandingPage.LandingPageForm)Tag;
                 Hide();
-                Landingpage.Show();
-                var MainPage = (MainPageGraphs.MainPageForm) Tag;
-                Hide();
-                MainPage.Show();*/
+                Landingpage.Show();*/
 
                 MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm();
                 mainPage.Tag = this;
@@ -81,9 +78,6 @@ namespace Login
         private void Home_Click(object sender, EventArgs e)
         {
             //Redirect button to LandingPage
-            /*var Landingpage = (LandingPage.LandingPageForm)Tag;
-            Hide();
-            Landingpage.Show();*/
             LandingPage.LandingPageForm landingPageForm = new LandingPage.LandingPageForm();
             landingPageForm.Tag = this;
             Hide();
