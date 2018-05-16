@@ -104,7 +104,7 @@ namespace Users
 
         public static void AddUsers(string userid, string pwd, bool gender, double height, double weight, string dateOfBirth, int lifeStyle, double targetWeight)
         {
-            var con = User.OpenDefaultDBConnection();
+            var con = Connection.OpenDefaultDBConnection();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = con;
             cmd.CommandText = "insert into Users values (@userID, @pwd, @gender, @height, @currentweight, @dateOfBirth, @lifeStyle, @targetWeight)";

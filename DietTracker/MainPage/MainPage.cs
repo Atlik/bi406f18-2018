@@ -47,29 +47,34 @@ namespace MainPageGraphs
         {
             try
             {
-                MySqlConnection getWeightSqlConnection = new MySqlConnection();
-                getWeightSqlConnection.ConnectionString =
-                    "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                /*MySqlConnection conW = new MySqlConnection();
+                conW.ConnectionString =
+                    "server=localhost;user id=ApplicationAccess;database=diettracker;";
+                    */
+
+                MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+                MySqlConnection conD = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand weightCommand = new MySqlCommand();
                 weightCommand.CommandText = "SELECT Weight FROM day";
-                weightCommand.Connection = getWeightSqlConnection;
+                weightCommand.Connection = conW;
 
                 try
                 {
-                    MySqlConnection getDateSqlConnection = new MySqlConnection();
-                    getDateSqlConnection.ConnectionString =
-                        "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                    /*MySqlConnection conD = new MySqlConnection();
+                    conD.ConnectionString =
+                        "server=localhost;user id=ApplicationAccess;database=diettracker;";
+                        */
 
                     MySqlCommand dateCommand = new MySqlCommand();
                     dateCommand.CommandText = "SELECT Date FROM diettracker.day";
-                    dateCommand.Connection = getDateSqlConnection;
+                    dateCommand.Connection = conD;
 
                     MessageBox.Show("Opens connection");
-                    getDateSqlConnection.Open();
+                    conD.Open();
                     MessageBox.Show("Connected to table (date)");
                     MessageBox.Show("Opens connection");
-                    getWeightSqlConnection.Open();
+                    conW.Open();
                     MessageBox.Show("Connected to table (weight)");
 
                     MySqlDataReader readWeight = weightCommand.ExecuteReader();
@@ -108,18 +113,18 @@ namespace MainPageGraphs
                     readWeight.Close();
                     read.Close();
 
-                    getDateSqlConnection.Close();
-                    getWeightSqlConnection.Close();
+                    conD.Close();
+                    conW.Close();
                 }
                 catch
                 {
                     MessageBox.Show("Something went wrong");
-                    getWeightSqlConnection.Close();
+                    conW.Close();
 
                 }
                 finally
                 {
-                    getWeightSqlConnection.Close();
+                    conW.Close();
                 }
             }
             catch (MySqlException ex)
@@ -254,6 +259,7 @@ namespace MainPageGraphs
             this.Name = "MainPageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainPage_Closed);
             ((System.ComponentModel.ISupportInitialize)(this.WeightChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CalorieChart)).EndInit();
             this.ResumeLayout(false);
@@ -269,53 +275,56 @@ namespace MainPageGraphs
                 string gender;
                 string userName = "Jesper";
                 bool sex = true;
-                MySqlConnection BMRConnection = new MySqlConnection();
-                BMRConnection.ConnectionString =
-                    "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                /*MySqlConnection conM = new MySqlConnection();
+                conM.ConnectionString =
+                    "server=localhost;user id=ApplicationAccess;database=diettracker;";
+                */
+
+                MySqlConnection conM = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand heightCommand = new MySqlCommand();
                 heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
-                heightCommand.Connection = BMRConnection;
+                heightCommand.Connection = conM;
 
                 MySqlCommand weightCommand = new MySqlCommand();
                 weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
-                weightCommand.Connection = BMRConnection;
+                weightCommand.Connection = conM;
 
                 MySqlCommand activityCommand = new MySqlCommand();
                 activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
-                activityCommand.Connection = BMRConnection;
+                activityCommand.Connection = conM;
 
-                BMRConnection.Open();
+                conM.Open();
                 MySqlDataReader userHeightRead = heightCommand.ExecuteReader();
                 userHeightRead.Read();
                 height = userHeightRead.GetInt32(0);
                 userHeightRead.Close();
-                BMRConnection.Close();
+                conM.Close();
 
-                BMRConnection.Open();
+                conM.Open();
                 MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
                 userWeightRead.Read();
                 weight = userWeightRead.GetInt32(0);
                 userWeightRead.Close();
-                BMRConnection.Close();
+                conM.Close();
 
-                BMRConnection.Open();
+                conM.Open();
                 MySqlDataReader userActivityRead = activityCommand.ExecuteReader();
                 userActivityRead.Read();
                 activity = userActivityRead.GetInt32(0);
                 userActivityRead.Close();
-                BMRConnection.Close();
+                conM.Close();
 
                 MySqlCommand genderCommand = new MySqlCommand();
                 genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
-                genderCommand.Connection = BMRConnection;
+                genderCommand.Connection = conM;
 
-                BMRConnection.Open();
+                conM.Open();
                 MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
                 userGenderRead.Read();
                 gender = userGenderRead.GetString(0);
                 userGenderRead.Close();
-                BMRConnection.Close();
+                conM.Close();
 
                 if (gender == "Male")
                 {
@@ -366,6 +375,11 @@ namespace MainPageGraphs
             landingPageForm.Tag = this;
             Hide();
             landingPageForm.Show(this);
+        }
+
+        private void MainPage_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

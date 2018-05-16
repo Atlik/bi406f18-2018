@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `diettracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `diettracker`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: diettracker
@@ -36,7 +38,7 @@ CREATE TABLE `password` (
 
 LOCK TABLES `password` WRITE;
 /*!40000 ALTER TABLE `password` DISABLE KEYS */;
-INSERT INTO `password` VALUES ('RAWR',10),('RAWR',11),('RAWR',12),('RAWR',13),('RAWR',14);
+INSERT INTO `password` VALUES ('RAWR',10),('RAWR',11),('RAWR',12),('RAWR',13),('RAWR',14),('1234',15),('1234',16);
 /*!40000 ALTER TABLE `password` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-14 21:05:46
+-- Dump completed on 2018-05-16 13:45:21
