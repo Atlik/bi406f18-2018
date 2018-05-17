@@ -110,13 +110,16 @@ namespace Register
                 }
                 else
                 {
-                    MySqlConnection myUserConnection = new MySqlConnection();
-                    myUserConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                    /*MySqlConnection conR = new MySqlConnection();
+                    conR.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                    */
+
+                    MySqlConnection conR = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                     MySqlCommand UserCommand = new MySqlCommand();
                     UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
-                    UserCommand.Connection = myUserConnection;
-                    myUserConnection.Open();
+                    UserCommand.Connection = conR;
+                    conR.Open();
                     MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
 
                     try
@@ -130,7 +133,7 @@ namespace Register
                     }
                     catch
                     {
-                        myUserConnection.Close();
+                        conR.Close();
                         return true;
                     }
                 }

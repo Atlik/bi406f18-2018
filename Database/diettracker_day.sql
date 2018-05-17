@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `db_diettracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `db_diettracker`;
+CREATE DATABASE  IF NOT EXISTS `diettracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `diettracker`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_diettracker
+-- Host: localhost    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -28,7 +28,10 @@ CREATE TABLE `day` (
   `Date` date NOT NULL,
   `Weight` int(11) NOT NULL,
   `Calories` int(11) NOT NULL,
-  PRIMARY KEY (`Date`)
+  `UserID` varchar(45) NOT NULL,
+  PRIMARY KEY (`Date`),
+  KEY `Username_idx` (`UserID`),
+  CONSTRAINT `Username` FOREIGN KEY (`UserID`) REFERENCES `users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,17 +41,9 @@ CREATE TABLE `day` (
 
 LOCK TABLES `day` WRITE;
 /*!40000 ALTER TABLE `day` DISABLE KEYS */;
-INSERT INTO `day` VALUES ('2018-04-08',75,2500),('2018-04-10',74,2550),('2018-05-01',75,2600);
+INSERT INTO `day` VALUES ('2018-05-12',80,2400,'Jesper'),('2018-05-14',90,3000,'Jesper');
 /*!40000 ALTER TABLE `day` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'db_diettracker'
---
-
---
--- Dumping routines for database 'db_diettracker'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -59,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-14 17:47:17
+-- Dump completed on 2018-05-16 13:45:22

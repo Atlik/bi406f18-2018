@@ -76,40 +76,42 @@ namespace Register
                 try
                 {
                     //DateTime dob = Convert.ToDateTime("yyyy-MM-dd");
-                    MySqlConnection myRegisterConnection = new MySqlConnection();
-                    myRegisterConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                    /*MySqlConnection conR = new MySqlConnection();
+                    conR.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                    */
 
+                    MySqlConnection conR = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                     //First it writes to the user table
                     MySqlCommand RegisterCommand = new MySqlCommand();
                     RegisterCommand.CommandText =
                     "INSERT INTO diettracker.users (Username, Name, Gender, DoB, Height, Weight, Activity)" +
                     "VALUES ('" + user + "', '" + n + "', '" + g + "', '" + dob + "', '" + h + "', '" + w + "', '" + a + "');";
-                    RegisterCommand.Connection = myRegisterConnection;
-                    myRegisterConnection.Open();
+                    RegisterCommand.Connection = conR;
+                    conR.Open();
                     RegisterCommand.ExecuteNonQuery();
-                    myRegisterConnection.Close();
+                    conR.Close();
 
                     //It then takes the ID from the user table to use it
                     MySqlCommand IDCommand = new MySqlCommand();
                     IDCommand.CommandText = "SELECT ID FROM users WHERE Username = '" + user + "';";
-                    IDCommand.Connection = myRegisterConnection;
-                    myRegisterConnection.Open();
+                    IDCommand.Connection = conR;
+                    conR.Open();
                     MySqlDataReader IDRead = IDCommand.ExecuteReader();
                     IDRead.Read();
                     string UserID = IDRead.GetString(0);
                     var ID = String.Format("{0}", UserID);
                     UserID = ID;
-                    myRegisterConnection.Close();
+                    conR.Close();
 
                     //It inserts into the password table the password and the ID that corresponded to the user table
                     MySqlCommand PasswordCommand = new MySqlCommand();
                     PasswordCommand.CommandText = "INSERT INTO diettracker.password (Password, ForeignID) " +
                         "VALUES ('" + pass + "', '" + UserID + "');";
-                    PasswordCommand.Connection = myRegisterConnection;
-                    myRegisterConnection.Open();
+                    PasswordCommand.Connection = conR;
+                    conR.Open();
                     PasswordCommand.ExecuteNonQuery();
-                    myRegisterConnection.Close();
+                    conR.Close();
 
                     MessageBox.Show("User Successfully created!");
 

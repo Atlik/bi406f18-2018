@@ -67,13 +67,16 @@ namespace Login
             // MYSQL CODE to receive Usernames from the database
             try
             {
-                MySqlConnection myUserConnection = new MySqlConnection();
-                myUserConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+                /*MySqlConnection myUserConnection = new MySqlConnection();
+                myUserConnection.ConnectionString = "server=localhost;user id=ApplicationAccess;database=diettracker;";
+                */
+
+                MySqlConnection conU = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand UserCommand = new MySqlCommand();
                 UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
-                UserCommand.Connection = myUserConnection;
-                myUserConnection.Open();
+                UserCommand.Connection = conU;
+                conU.Open();
                 MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
 
                 /* C# CODE to assign the username equal to the data in the database
@@ -122,15 +125,19 @@ namespace Login
                         // MYSQL CODE: SELECT password FROM password, username WHERE password.ID = username.ID AND username.Username = 'User';
                         // C# code til at sætte password; pass = password received from MySql 
 
-                        myUserConnection.Close();
+                        conU.Close();
                         ClearTexts(user, pass);
-                        MySqlConnection myPasswordConnection = new MySqlConnection();
-                        myPasswordConnection.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
+
+                        /*MySqlConnection myPasswordConnection = new MySqlConnection();
+                        myPasswordConnection.ConnectionString = "server=localhost;user id=ApplicationAccess;database=diettracker;";
+                        */
+
+                        MySqlConnection conP = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                         MySqlCommand PasswordCommand = new MySqlCommand();
                         PasswordCommand.CommandText = "SELECT Password FROM users, password WHERE password.ForeignID = users.ID AND username = '" + user + "';";
-                        PasswordCommand.Connection = myPasswordConnection;
-                        myPasswordConnection.Open();
+                        PasswordCommand.Connection = conP;
+                        conP.Open();
                         MySqlDataReader PasswordRead = PasswordCommand.ExecuteReader();
 
                         //Even though, for some reason, the system doesn't crash if you input a non-existing password, i still use a try just to be sure nothing goes wrong
@@ -147,20 +154,20 @@ namespace Login
                             {
                                 MessageBox.Show("Incorrect Username and/or Password");
                                 ClearTexts(user, pass);
-                                myPasswordConnection.Close();
+                                conP.Close();
                                 return false;
                             }
                             else
                             {
                                 //Once we managed to get to this part of the code, we know both the Username and the Password was correct
-                                myPasswordConnection.Close();
+                                conP.Close();
                                 return true;
                             }
                         }
                         catch
                         {
                             MessageBox.Show("Unusual error occured, please try again or restart the application");
-                            myPasswordConnection.Close();
+                            conP.Close();
                             return false;
                         }
                     }
@@ -171,13 +178,13 @@ namespace Login
                 {
                     MessageBox.Show("Incorrect Username and/or Password");
                     ClearTexts(user, pass);
-                    myUserConnection.Close();
+                    conU.Close();
                     return false;
 
                 }
                 finally
                 {
-                    myUserConnection.Close();
+                    conU.Close();
                 }
             }
             catch (MySqlException ex)
