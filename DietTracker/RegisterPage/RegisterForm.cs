@@ -115,6 +115,10 @@ namespace Register
 
                     MessageBox.Show("User Successfully created!");
 
+                    Login.LoginForm LoginForm = new Login.LoginForm();
+                    LoginForm.Tag = this;
+                    Hide();
+                    LoginForm.Show(this);
                 }
                 catch (MySqlException ex)
                 {
