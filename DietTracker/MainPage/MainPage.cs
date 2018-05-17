@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Formler_BMI_BMR;
 using MySql.Data.MySqlClient;
-using Login = Login.Login;
+using Login;
 
 namespace MainPageGraphs
 {
@@ -47,40 +47,29 @@ namespace MainPageGraphs
         {
             try
             {
-                /*MySqlConnection conW = new MySqlConnection();
-                conW.ConnectionString =
-                    "server=localhost;user id=ApplicationAccess;database=diettracker;";
-                    */
-
                 MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
-                MySqlConnection conD = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand weightCommand = new MySqlCommand();
-                weightCommand.CommandText = "SELECT Weight FROM day";
+                weightCommand.CommandText = "SELECT Weight, Date FROM day";
                 weightCommand.Connection = conW;
 
                 try
                 {
-                    /*MySqlConnection conD = new MySqlConnection();
-                    conD.ConnectionString =
-                        "server=localhost;user id=ApplicationAccess;database=diettracker;";
-                        */
-
-                    MySqlCommand dateCommand = new MySqlCommand();
-                    dateCommand.CommandText = "SELECT Date FROM diettracker.day";
-                    dateCommand.Connection = conD;
-
-                    MessageBox.Show("Opens connection");
-                    conD.Open();
-                    MessageBox.Show("Connected to table (date)");
                     MessageBox.Show("Opens connection");
                     conW.Open();
-                    MessageBox.Show("Connected to table (weight)");
+                    MessageBox.Show("Connected to table (day)");
 
                     MySqlDataReader readWeight = weightCommand.ExecuteReader();
-                    MySqlDataReader read = dateCommand.ExecuteReader();
 
                     #region Skrald
+
+                    /* MySqlCommand dateCommand = new MySqlCommand();
+                    dateCommand.CommandText = "SELECT Date FROM diettracker.day";
+                    dateCommand.Connection = conW;*/
+                    /*
+                    MessageBox.Show("Opens connection");
+                    conW.Open();
+                    MessageBox.Show("Connected to table (date)");*/
 
                     /*  while (read.Read())
                       {
@@ -101,19 +90,17 @@ namespace MainPageGraphs
 
                     MessageBox.Show("Will now insert data into graph");
 
-                    while (read.Read() && readWeight.Read())
+                    while (readWeight.Read())
                     {
                         int newWeight = readWeight.GetInt32(0);
-                        string newDayInput = read.GetDateTime(0).ToShortDateString();
+                        string newDayInput = readWeight.GetDateTime(1).ToShortDateString();
 
                         WeightChart.Series["Weight"].Points.AddXY(newDayInput, newWeight);
                         WeightChart.ChartAreas[0].RecalculateAxesScale();
                     }
 
                     readWeight.Close();
-                    read.Close();
 
-                    conD.Close();
                     conW.Close();
                 }
                 catch
@@ -121,10 +108,6 @@ namespace MainPageGraphs
                     MessageBox.Show("Something went wrong");
                     conW.Close();
 
-                }
-                finally
-                {
-                    conW.Close();
                 }
             }
             catch (MySqlException ex)
@@ -145,6 +128,117 @@ namespace MainPageGraphs
             {
                 MessageBox.Show("Press again to load next graph");
             }
+        }
+
+        private void Initialize_CalorieChart()
+        {
+            try
+            {
+                double height, age = 21, weight, activity;
+                string gender;
+                string userName = "Jesper";
+                bool sex = true;
+
+                MySqlConnection conM = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                MySqlCommand heightCommand = new MySqlCommand();
+                heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
+                heightCommand.Connection = conM;
+
+                MySqlCommand weightCommand = new MySqlCommand();
+                weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
+                weightCommand.Connection = conM;
+
+                MySqlCommand activityCommand = new MySqlCommand();
+                activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
+                activityCommand.Connection = conM;
+
+                conM.Open();
+                MySqlDataReader userHeightRead = heightCommand.ExecuteReader();
+                userHeightRead.Read();
+                height = userHeightRead.GetInt32(0);
+                userHeightRead.Close();
+                conM.Close();
+
+                conM.Open();
+                MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
+                userWeightRead.Read();
+                weight = userWeightRead.GetInt32(0);
+                userWeightRead.Close();
+                conM.Close();
+
+                conM.Open();
+                MySqlDataReader userActivityRead = activityCommand.ExecuteReader();
+                userActivityRead.Read();
+                activity = userActivityRead.GetInt32(0);
+                userActivityRead.Close();
+                conM.Close();
+
+                MySqlCommand genderCommand = new MySqlCommand();
+                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
+                genderCommand.Connection = conM;
+
+                conM.Open();
+                MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
+                userGenderRead.Read();
+                gender = userGenderRead.GetString(0);
+                userGenderRead.Close();
+                conM.Close();
+
+                if (gender == "Male")
+                {
+                    sex = true;
+                }
+                else if (gender == "Female")
+                {
+                    sex = false;
+                }
+
+                //Inserts BMR value in text field
+                Formler bmrValue = new Formler();
+                double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
+
+                //Constucts graph
+                var info = new UpdateCaloriesGraph(show, 1500);
+                double caloriesLeft = info.maxCalories - info.CaloriesEaten;
+                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
+                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calorie left", caloriesLeft);
+
+                //Inserts text for the BMI value
+                double showBMI = bmrValue.BMICalc(75, 175);
+                double newShow = showBMI * 10000;
+                string visible = "BMR value (Calories): " + Environment.NewLine + show + Environment.NewLine +
+                                 "BMI Value" + Environment.NewLine + newShow;
+
+                displayMaxCalorie.Text = visible;
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("Error happened in Connection:" + Environment.NewLine + e);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something unexpected happened");
+            }
+        }
+
+        private void EditUserData(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogOffToHome(object sender, EventArgs e)
+        {
+            LandingPage.LandingPageForm landingPageForm = new LandingPage.LandingPageForm();
+            landingPageForm.Tag = this;
+            Hide();
+            landingPageForm.Show(this);
+        }
+
+        private void MainPage_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void InitializeComponent()
@@ -264,122 +358,6 @@ namespace MainPageGraphs
             ((System.ComponentModel.ISupportInitialize)(this.CalorieChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
-        }
-
-        private void Initialize_CalorieChart()
-        {
-            try
-            {
-                double height, age = 21, weight, activity;
-                string gender;
-                string userName = "Jesper";
-                bool sex = true;
-                /*MySqlConnection conM = new MySqlConnection();
-                conM.ConnectionString =
-                    "server=localhost;user id=ApplicationAccess;database=diettracker;";
-                */
-
-                MySqlConnection conM = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
-
-                MySqlCommand heightCommand = new MySqlCommand();
-                heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
-                heightCommand.Connection = conM;
-
-                MySqlCommand weightCommand = new MySqlCommand();
-                weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
-                weightCommand.Connection = conM;
-
-                MySqlCommand activityCommand = new MySqlCommand();
-                activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
-                activityCommand.Connection = conM;
-
-                conM.Open();
-                MySqlDataReader userHeightRead = heightCommand.ExecuteReader();
-                userHeightRead.Read();
-                height = userHeightRead.GetInt32(0);
-                userHeightRead.Close();
-                conM.Close();
-
-                conM.Open();
-                MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
-                userWeightRead.Read();
-                weight = userWeightRead.GetInt32(0);
-                userWeightRead.Close();
-                conM.Close();
-
-                conM.Open();
-                MySqlDataReader userActivityRead = activityCommand.ExecuteReader();
-                userActivityRead.Read();
-                activity = userActivityRead.GetInt32(0);
-                userActivityRead.Close();
-                conM.Close();
-
-                MySqlCommand genderCommand = new MySqlCommand();
-                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
-                genderCommand.Connection = conM;
-
-                conM.Open();
-                MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
-                userGenderRead.Read();
-                gender = userGenderRead.GetString(0);
-                userGenderRead.Close();
-                conM.Close();
-
-                if (gender == "Male")
-                {
-                    sex = true;
-                }
-                else if (gender == "Female")
-                {
-                    sex = false;
-                }
-
-                //Inserts BMR value in text field
-                Formler bmrValue = new Formler();
-                double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
-
-                //Constucts graph
-                var info = new UpdateCaloriesGraph(show, 1500);
-                double caloriesLeft = info.maxCalories - info.CaloriesEaten;
-                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
-                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calorie left", caloriesLeft);
-
-                //Inserts text for the BMI value
-                double showBMI = bmrValue.BMICalc(75, 175);
-                double newShow = showBMI * 10000;
-                string visible = "BMR value (Calories): " + Environment.NewLine + show + Environment.NewLine +
-                                 "BMI Value" + Environment.NewLine + newShow;
-
-                displayMaxCalorie.Text = visible;
-
-            }
-            catch (MySqlException e)
-            {
-                MessageBox.Show("Error happened in Connection:" + Environment.NewLine + e);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something unexpected happened");
-            }
-        }
-
-        private void EditUserData(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LogOffToHome(object sender, EventArgs e)
-        {
-            LandingPage.LandingPageForm landingPageForm = new LandingPage.LandingPageForm();
-            landingPageForm.Tag = this;
-            Hide();
-            landingPageForm.Show(this);
-        }
-
-        private void MainPage_Closed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Login
             //check if eligible to be logged in 
             if (login.IsLoggedIn(user, pass))
             {
-                MessageBox.Show("You are logged in successfully, you will now be redirected to the MainPage");
+                MessageBox.Show("You are logged in successfully!");
                /* var Landingpage = (LandingPage.LandingPageForm)Tag;
                 Hide();
                 Landingpage.Show();*/
