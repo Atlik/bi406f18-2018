@@ -217,12 +217,13 @@ namespace MainPageGraphs
                 var info = new UpdateCaloriesGraph(show, 1500);
                 double caloriesLeft = info.maxCalories - info.CaloriesEaten;
                 CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
-                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calorie left", caloriesLeft);
+                CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories left", caloriesLeft);
 
                 //Inserts text for the BMI value
                 double showBMI = bmrValue.BMICalc(75, 175);
                 double newShow = showBMI * 10000;
-                string visible = "Calories eaten: " + info.CaloriesEaten + Environment.NewLine + Environment.NewLine +
+                string visible = "Calories eaten: " + info.CaloriesEaten + Environment.NewLine +
+                                 "Calories left for today: " + caloriesLeft + Environment.NewLine + Environment.NewLine +
                                  "BMR value (Basal Metabolic Rate)" + Environment.NewLine +
                                  "Calories: " + show + Environment.NewLine + Environment.NewLine +
                                  "BMI Value (Body Mass Index): " + Environment.NewLine + newShow;
