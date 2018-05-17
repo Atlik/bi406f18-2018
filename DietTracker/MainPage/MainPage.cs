@@ -48,7 +48,6 @@ namespace MainPageGraphs
         {
             Initialize_weightOverTimeChart();
             Initialize_CalorieChart();
-            MessageBox.Show("Click ENTER to watch user data");
             GetUserData();
 
         }
@@ -98,7 +97,7 @@ namespace MainPageGraphs
 
                     #endregion
 
-                    MessageBox.Show("Will now insert data into graph");
+                    MessageBox.Show("Will now insert data into fields");
 
                     while (readWeight.Read())
                     {
@@ -133,66 +132,74 @@ namespace MainPageGraphs
             {
                 MessageBox.Show("Something went wrong while updating the graph");
             }
-            finally
-            {
-                MessageBox.Show("Press again to load next graph");
-            }
         }
 
         private void Initialize_CalorieChart()
         {
             try
             {
-                double height, age = 21, weight, activity;
+                double height, age, weight, activity;
                 string gender;
                 bool sex = true;
 
-                MySqlConnection conM = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+                MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand heightCommand = new MySqlCommand();
                 heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
-                heightCommand.Connection = conM;
+                heightCommand.Connection = conCal;
 
                 MySqlCommand weightCommand = new MySqlCommand();
                 weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
-                weightCommand.Connection = conM;
+                weightCommand.Connection = conCal;
 
                 MySqlCommand activityCommand = new MySqlCommand();
                 activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
-                activityCommand.Connection = conM;
+                activityCommand.Connection = conCal;
 
-                conM.Open();
+                MySqlCommand ageCommand = new MySqlCommand();
+                ageCommand.CommandText = "SELECT DoB FROM users WHERE Username = '" + userName + "';";
+                ageCommand.Connection = conCal;
+
+                MySqlCommand genderCommand = new MySqlCommand();
+                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
+                genderCommand.Connection = conCal;
+
+                conCal.Open();
                 MySqlDataReader userHeightRead = heightCommand.ExecuteReader();
                 userHeightRead.Read();
                 height = userHeightRead.GetInt32(0);
                 userHeightRead.Close();
-                conM.Close();
+                conCal.Close();
 
-                conM.Open();
+                conCal.Open();
                 MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
                 userWeightRead.Read();
                 weight = userWeightRead.GetInt32(0);
                 userWeightRead.Close();
-                conM.Close();
+                conCal.Close();
 
-                conM.Open();
+                conCal.Open();
                 MySqlDataReader userActivityRead = activityCommand.ExecuteReader();
                 userActivityRead.Read();
                 activity = userActivityRead.GetInt32(0);
                 userActivityRead.Close();
-                conM.Close();
+                conCal.Close();
 
-                MySqlCommand genderCommand = new MySqlCommand();
-                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
-                genderCommand.Connection = conM;
+                conCal.Open();
+                MySqlDataReader userDoBRead = ageCommand.ExecuteReader();
+                userDoBRead.Read();
+                string DoB = userDoBRead.GetDateTime(0).ToShortDateString();
+                DateTime parsedDoB = DateTime.Parse(DoB);
+                var dateTimeToday = DateTime.Today;
+                age = dateTimeToday.Year - parsedDoB.Year;
+                userDoBRead.Close();
+                conCal.Close();
 
-                conM.Open();
+
+                conCal.Open();
                 MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
                 userGenderRead.Read();
                 gender = userGenderRead.GetString(0);
-                userGenderRead.Close();
-                conM.Close();
-
                 if (gender == "Male")
                 {
                     sex = true;
@@ -201,6 +208,8 @@ namespace MainPageGraphs
                 {
                     sex = false;
                 }
+                userGenderRead.Close();
+                conCal.Close();
 
                 //Inserts BMR value in text field
                 Formler bmrValue = new Formler();
@@ -253,10 +262,15 @@ namespace MainPageGraphs
                     int weightOfUser = userReader.GetInt32(5);
                     int activityLevelOfUser = userReader.GetInt32(6);
 
+                    DateTime parsedDoB_User = DateTime.Parse(DoB_User);
+                    var dateTimeToday = DateTime.Today;
+                    int age = dateTimeToday.Year - parsedDoB_User.Year;
+
                     string text = "Username: " + usernameOfUser + Environment.NewLine +
                                   "Name: " + nameOfUser + Environment.NewLine +
                                   "Gender: " + genderOfUser + Environment.NewLine +
                                   "Your birthday: " + DoB_User + Environment.NewLine +
+                                  "Your age: " + age + Environment.NewLine +
                                   "Your current weight: " + weightOfUser + Environment.NewLine +
                                   "Your current height: " + heightOfUser + Environment.NewLine +
                                   "Your current Activity Level: " + activityLevelOfUser;
@@ -266,15 +280,24 @@ namespace MainPageGraphs
                 userReader.Close();
                 conUser.Close();
             }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Can't connect to the server");
+                        break;
+                }
+            }
             catch (Exception e)
             {
-                MessageBox.Show("An exception has been captured" + e);
+                MessageBox.Show("Something went wrong while loading data: \r\n" + e);
             }
         }
 
         private void EditUserData(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Under development");
         }
 
         private void LogOffToHome(object sender, EventArgs e)
