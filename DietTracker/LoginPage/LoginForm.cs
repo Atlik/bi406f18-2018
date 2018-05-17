@@ -43,7 +43,7 @@ namespace Login
                 Hide();
                 Landingpage.Show();*/
 
-                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm();
+                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(user);
                 mainPage.Tag = this;
                 Hide();
                 mainPage.Show(this);

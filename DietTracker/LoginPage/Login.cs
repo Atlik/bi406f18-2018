@@ -63,7 +63,6 @@ namespace Login
         //method to check if eligible to be logged in 
         internal bool IsLoggedIn(string user, string pass)
         {
-
             // MYSQL CODE to receive Usernames from the database
             try
             {
@@ -106,7 +105,6 @@ namespace Login
                     Username = UserDatabase;
 
                     //Now that we know Username is correct, we begin checking the password and if its empty 
-
                     {
                         if (string.IsNullOrEmpty(pass))
                         {

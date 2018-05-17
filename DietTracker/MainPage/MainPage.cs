@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -30,11 +31,15 @@ namespace MainPageGraphs
         private Button Log_off;
         private TextBox UserData;
         private Button LoadGraphs;
+
+        internal string userName { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public MainPageForm()
+        public MainPageForm(string user)
         {
+            this.userName = user;
             InitializeComponent();
         }
 
@@ -140,7 +145,6 @@ namespace MainPageGraphs
             {
                 double height, age = 21, weight, activity;
                 string gender;
-                string userName = "Jesper";
                 bool sex = true;
 
                 MySqlConnection conM = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
@@ -229,8 +233,43 @@ namespace MainPageGraphs
 
         private void GetUserData()
         {
-            //Dette er hvad du skal bruge for at udskrive teksten til tekstboxen
-            //UserData.Text = visible;
+            try
+            {
+                MySqlConnection conUser = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                MySqlCommand userCommand = new MySqlCommand();
+                userCommand.CommandText = "SELECT Username, Name, Gender, DoB, Height, Weight, Activity FROM users WHERE Username = '" + userName + "';";
+                userCommand.Connection = conUser;
+
+                conUser.Open();
+                MySqlDataReader userReader = userCommand.ExecuteReader();
+                while (userReader.Read())
+                {
+                    string usernameOfUser = userReader.GetString(0);
+                    string nameOfUser = userReader.GetString(1);
+                    string genderOfUser = userReader.GetString(2);
+                    string DoB_User = userReader.GetDateTime(3).ToShortDateString();
+                    int heightOfUser = userReader.GetInt32(4);
+                    int weightOfUser = userReader.GetInt32(5);
+                    int activityLevelOfUser = userReader.GetInt32(6);
+
+                    string text = "Username: " + usernameOfUser + Environment.NewLine +
+                                  "Name: " + nameOfUser + Environment.NewLine +
+                                  "Gender: " + genderOfUser + Environment.NewLine +
+                                  "Your birthday: " + DoB_User + Environment.NewLine +
+                                  "Your current weight: " + weightOfUser + Environment.NewLine +
+                                  "Your current height: " + heightOfUser + Environment.NewLine +
+                                  "Your current Activity Level: " + activityLevelOfUser;
+
+                    UserData.Text = text;
+                }
+                userReader.Close();
+                conUser.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("An exception has been captured" + e);
+            }
         }
 
         private void EditUserData(object sender, EventArgs e)
