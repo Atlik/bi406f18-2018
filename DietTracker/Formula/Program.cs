@@ -10,22 +10,11 @@ namespace Formler_BMI_BMR
     {
         public void Formula()
         {
-            double bmr = BMRCalc(190, 21, 100, 2, true);
-            Console.WriteLine("BMR is " + bmr);
-            double BMI = BMICalc(100, 1.90);
-            Console.WriteLine("BMI is " + BMI);
         }
-
-        int height = 19;
-        int age = 1;
-        int weight = 1;
-        int activity = 1;
-        bool sex = true;
 
         //BMR Calc for both genders
         public double BMRCalc(double height, double age, double weight, double activity, bool sex)//Height, age, weight, activity niveau, gender
         {
-
             if (sex == true) //gender check for male
             {
 

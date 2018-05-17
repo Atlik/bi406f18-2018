@@ -27,12 +27,11 @@ namespace MainPageGraphs
         private Chart CalorieChart;
         private TextBox displayMaxCalorie;
         private Button Edit_User;
-        private Button LogOff;
         private Button Log_off;
         private TextBox UserData;
         private Button LoadGraphs;
 
-        internal string userName { get; set; }
+        internal string userName { get; }
 
         /// <summary>
         /// 
