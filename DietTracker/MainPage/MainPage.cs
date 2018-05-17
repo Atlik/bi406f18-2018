@@ -194,7 +194,6 @@ namespace MainPageGraphs
                 userDoBRead.Close();
                 conCal.Close();
 
-
                 conCal.Open();
                 MySqlDataReader userGenderRead = genderCommand.ExecuteReader();
                 userGenderRead.Read();
@@ -223,8 +222,10 @@ namespace MainPageGraphs
                 //Inserts text for the BMI value
                 double showBMI = bmrValue.BMICalc(75, 175);
                 double newShow = showBMI * 10000;
-                string visible = "BMR value (Calories): " + Environment.NewLine + show + Environment.NewLine +
-                                 "BMI Value" + Environment.NewLine + newShow;
+                string visible = "Calories eaten: " + info.CaloriesEaten + Environment.NewLine + Environment.NewLine +
+                                 "BMR value (Basal Metabolic Rate)" + Environment.NewLine +
+                                 "Calories: " + show + Environment.NewLine + Environment.NewLine +
+                                 "BMI Value (Body Mass Index): " + Environment.NewLine + newShow;
 
                 displayMaxCalorie.Text = visible;
 
