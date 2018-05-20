@@ -102,6 +102,13 @@
     <Compile Include="RegisterPage\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdataPage\UpdatePageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdataPage\UpdatePageForm.Designer.cs">
+      <DependentUpon>UpdatePageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdataPage\User.cs" />
     <EmbeddedResource Include="LandingPage\LandingPageForm.resx">
       <DependentUpon>LandingPageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +130,9 @@
     </Compile>
     <EmbeddedResource Include="RegisterPage\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdataPage\UpdatePageForm.resx">
+      <DependentUpon>UpdatePageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

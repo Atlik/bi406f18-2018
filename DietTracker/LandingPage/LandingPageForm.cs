@@ -31,6 +31,7 @@ namespace LandingPage
             RegisterForm.Tag = this;
             Hide();
             RegisterForm.Show(this);
+
         }
 
         private void LandingPageLogin_Click(object sender, EventArgs e)

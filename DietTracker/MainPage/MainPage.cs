@@ -133,12 +133,13 @@ namespace MainPageGraphs
             }
         }
 
-        private void Initialize_CalorieChart()
+        public void Initialize_CalorieChart()
         {
             try
             {
-                double height, age, weight, activity;
-                string gender;
+                int height, age, activity;
+                double weight;
+                string gender, name;
                 bool sex = true;
 
                 MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
@@ -173,7 +174,7 @@ namespace MainPageGraphs
                 conCal.Open();
                 MySqlDataReader userWeightRead = weightCommand.ExecuteReader();
                 userWeightRead.Read();
-                weight = userWeightRead.GetInt32(0);
+                weight = userWeightRead.GetDouble(0);
                 userWeightRead.Close();
                 conCal.Close();
 
@@ -279,6 +280,7 @@ namespace MainPageGraphs
 
                     UserData.Text = text;
                 }
+
                 userReader.Close();
                 conUser.Close();
             }
@@ -350,7 +352,10 @@ namespace MainPageGraphs
 
         private void EditUserData(object sender, EventArgs e)
         {
-            MessageBox.Show("Under development");
+            DietTracker.UpdataPage.UpdatePageForm UpdateForm = new DietTracker.UpdataPage.UpdatePageForm(userName);
+            UpdateForm.Tag = this;
+            Hide();
+            UpdateForm.Show(this);
         }
 
         private void LogOffToHome(object sender, EventArgs e)
@@ -368,12 +373,12 @@ namespace MainPageGraphs
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.WeightChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CalorieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.LoadGraphs = new System.Windows.Forms.Button();
@@ -389,17 +394,17 @@ namespace MainPageGraphs
             // WeightChart
             // 
             this.WeightChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea9.Name = "ChartArea1";
-            this.WeightChart.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.WeightChart.Legends.Add(legend9);
+            chartArea1.Name = "ChartArea1";
+            this.WeightChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.WeightChart.Legends.Add(legend1);
             this.WeightChart.Location = new System.Drawing.Point(12, 268);
             this.WeightChart.Name = "WeightChart";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Legend = "Legend1";
-            series9.Name = "Weight";
-            this.WeightChart.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Weight";
+            this.WeightChart.Series.Add(series1);
             this.WeightChart.Size = new System.Drawing.Size(459, 181);
             this.WeightChart.TabIndex = 0;
             this.WeightChart.Text = "WeightChart";
@@ -407,17 +412,17 @@ namespace MainPageGraphs
             // CalorieChart
             // 
             this.CalorieChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea10.Name = "ChartArea1";
-            this.CalorieChart.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.CalorieChart.Legends.Add(legend10);
+            chartArea2.Name = "ChartArea1";
+            this.CalorieChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CalorieChart.Legends.Add(legend2);
             this.CalorieChart.Location = new System.Drawing.Point(11, 38);
             this.CalorieChart.Name = "CalorieChart";
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series10.Legend = "Legend1";
-            series10.Name = "CalorieIntake";
-            this.CalorieChart.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "CalorieIntake";
+            this.CalorieChart.Series.Add(series2);
             this.CalorieChart.Size = new System.Drawing.Size(238, 114);
             this.CalorieChart.TabIndex = 1;
             this.CalorieChart.Text = "CalorieChart";
@@ -478,6 +483,7 @@ namespace MainPageGraphs
             this.UserData.ReadOnly = true;
             this.UserData.Size = new System.Drawing.Size(215, 143);
             this.UserData.TabIndex = 5;
+            this.UserData.TextChanged += new System.EventHandler(this.UserData_TextChanged);
             // 
             // weightInfo
             // 
@@ -516,5 +522,11 @@ namespace MainPageGraphs
             this.PerformLayout();
 
         }
+
+        private void UserData_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        
     }
 }

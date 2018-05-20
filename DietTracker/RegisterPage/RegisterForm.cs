@@ -175,5 +175,15 @@ namespace Register
                 "3 = Exercise every day");
 
         }
+
+        private void RegisterPageHeight_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegisterPageDoB_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

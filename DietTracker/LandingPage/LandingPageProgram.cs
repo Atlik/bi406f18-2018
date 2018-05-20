@@ -17,6 +17,7 @@ namespace LandingPage
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LandingPageForm());
+
         }
     }
 }
