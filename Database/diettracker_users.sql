@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `diettracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `diettracker`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: diettracker
+-- Host: 127.0.0.1    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -35,7 +33,7 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Rawr5','RAWR','Female','2018-05-10',3,300,1,10),('Rawr6','RAWR','Female','2018-05-10',50,300,1,11),('Rawr7','RAWR','Female','2018-05-10',120,300,1,12),('Rawr8','RAWR','Female','2018-05-10',127,300,1,13),('Rawr9','RAWR','Female','2018-05-10',255,300,1,14),('Jesper','Jesper','Male','2000-05-10',200,120,2,15),('Jonas','Jonas','Male','1994-03-09',190,80,1,16);
+INSERT INTO `users` VALUES ('Jonas','Jonas','Male','1994-03-09',180,80,2,1),('User1','User','Male','2018-05-10',190,300,1,2),('User2','User','Female','2018-05-10',150,50,2,3),('User3','User','Female','2018-05-10',170,75,3,4);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16 13:45:22
+-- Dump completed on 2018-05-20 21:18:57

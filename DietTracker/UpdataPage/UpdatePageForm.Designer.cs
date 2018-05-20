@@ -1,5 +1,8 @@
 ﻿namespace DietTracker.UpdataPage
 {
+    /// <summary>
+    /// This is all the necessary design code for the updatepage form
+    /// </summary>
     partial class UpdatePageForm
     {
         /// <summary>
@@ -52,10 +55,9 @@
             // UpdateButton
             // 
             this.UpdateButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UpdateButton.Location = new System.Drawing.Point(181, 505);
-            this.UpdateButton.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdateButton.Location = new System.Drawing.Point(136, 410);
             this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(297, 36);
+            this.UpdateButton.Size = new System.Drawing.Size(223, 29);
             this.UpdateButton.TabIndex = 0;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = true;
@@ -68,10 +70,9 @@
             this.MainPageBack.BackColor = System.Drawing.Color.Transparent;
             this.MainPageBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.MainPageBack.ForeColor = System.Drawing.Color.Transparent;
-            this.MainPageBack.Location = new System.Drawing.Point(16, 22);
-            this.MainPageBack.Margin = new System.Windows.Forms.Padding(4);
+            this.MainPageBack.Location = new System.Drawing.Point(12, 18);
             this.MainPageBack.Name = "MainPageBack";
-            this.MainPageBack.Size = new System.Drawing.Size(60, 28);
+            this.MainPageBack.Size = new System.Drawing.Size(45, 23);
             this.MainPageBack.TabIndex = 12;
             this.MainPageBack.Text = "Home";
             this.MainPageBack.UseVisualStyleBackColor = false;
@@ -84,10 +85,9 @@
             this.UpdatePageLabel.BackColor = System.Drawing.Color.White;
             this.UpdatePageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageLabel.Location = new System.Drawing.Point(159, 22);
-            this.UpdatePageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdatePageLabel.Location = new System.Drawing.Point(119, 18);
             this.UpdatePageLabel.Name = "UpdatePageLabel";
-            this.UpdatePageLabel.Size = new System.Drawing.Size(313, 39);
+            this.UpdatePageLabel.Size = new System.Drawing.Size(250, 31);
             this.UpdatePageLabel.TabIndex = 1;
             this.UpdatePageLabel.Text = "Update Your Profile";
             // 
@@ -95,40 +95,36 @@
             // 
             this.UpdatePageUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageUsername.Location = new System.Drawing.Point(269, 112);
-            this.UpdatePageUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageUsername.Location = new System.Drawing.Point(202, 91);
             this.UpdatePageUsername.Name = "UpdatePageUsername";
-            this.UpdatePageUsername.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePageUsername.Size = new System.Drawing.Size(200, 24);
             this.UpdatePageUsername.TabIndex = 13;
             // 
             // UpdatePagePassword
             // 
             this.UpdatePagePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePagePassword.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePagePassword.Location = new System.Drawing.Point(269, 166);
-            this.UpdatePagePassword.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePagePassword.Location = new System.Drawing.Point(202, 135);
             this.UpdatePagePassword.Name = "UpdatePagePassword";
-            this.UpdatePagePassword.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePagePassword.Size = new System.Drawing.Size(200, 24);
             this.UpdatePagePassword.TabIndex = 14;
             // 
             // UpdatePageName
             // 
             this.UpdatePageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageName.Location = new System.Drawing.Point(269, 236);
-            this.UpdatePageName.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageName.Location = new System.Drawing.Point(202, 192);
             this.UpdatePageName.Name = "UpdatePageName";
-            this.UpdatePageName.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePageName.Size = new System.Drawing.Size(200, 24);
             this.UpdatePageName.TabIndex = 15;
             // 
             // UpdatePageWeight
             // 
             this.UpdatePageWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageWeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageWeight.Location = new System.Drawing.Point(269, 395);
-            this.UpdatePageWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageWeight.Location = new System.Drawing.Point(202, 321);
             this.UpdatePageWeight.Name = "UpdatePageWeight";
-            this.UpdatePageWeight.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePageWeight.Size = new System.Drawing.Size(200, 24);
             this.UpdatePageWeight.TabIndex = 16;
             this.UpdatePageWeight.Tag = "kg";
             // 
@@ -136,10 +132,9 @@
             // 
             this.UpdatePageHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageHeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageHeight.Location = new System.Drawing.Point(269, 350);
-            this.UpdatePageHeight.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageHeight.Location = new System.Drawing.Point(202, 284);
             this.UpdatePageHeight.Name = "UpdatePageHeight";
-            this.UpdatePageHeight.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePageHeight.Size = new System.Drawing.Size(200, 24);
             this.UpdatePageHeight.TabIndex = 17;
             this.UpdatePageHeight.Tag = "cm";
             // 
@@ -148,10 +143,9 @@
             this.UpdateLabelUsername.AutoSize = true;
             this.UpdateLabelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelUsername.Location = new System.Drawing.Point(89, 112);
-            this.UpdateLabelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelUsername.Location = new System.Drawing.Point(67, 91);
             this.UpdateLabelUsername.Name = "UpdateLabelUsername";
-            this.UpdateLabelUsername.Size = new System.Drawing.Size(165, 24);
+            this.UpdateLabelUsername.Size = new System.Drawing.Size(129, 18);
             this.UpdateLabelUsername.TabIndex = 18;
             this.UpdateLabelUsername.Text = "Update username:";
             // 
@@ -160,10 +154,9 @@
             this.UpdateLabelPassword.AutoSize = true;
             this.UpdateLabelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelPassword.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelPassword.Location = new System.Drawing.Point(91, 166);
-            this.UpdateLabelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelPassword.Location = new System.Drawing.Point(68, 135);
             this.UpdateLabelPassword.Name = "UpdateLabelPassword";
-            this.UpdateLabelPassword.Size = new System.Drawing.Size(161, 24);
+            this.UpdateLabelPassword.Size = new System.Drawing.Size(128, 18);
             this.UpdateLabelPassword.TabIndex = 19;
             this.UpdateLabelPassword.Text = "Update password:";
             // 
@@ -172,10 +165,9 @@
             this.UpdateLabelName.AutoSize = true;
             this.UpdateLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelName.Location = new System.Drawing.Point(96, 236);
-            this.UpdateLabelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelName.Location = new System.Drawing.Point(72, 192);
             this.UpdateLabelName.Name = "UpdateLabelName";
-            this.UpdateLabelName.Size = new System.Drawing.Size(155, 24);
+            this.UpdateLabelName.Size = new System.Drawing.Size(124, 18);
             this.UpdateLabelName.TabIndex = 20;
             this.UpdateLabelName.Text = "Update firstname:";
             // 
@@ -184,10 +176,9 @@
             this.UpdateLabelDoB.AutoSize = true;
             this.UpdateLabelDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelDoB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelDoB.Location = new System.Drawing.Point(75, 305);
-            this.UpdateLabelDoB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelDoB.Location = new System.Drawing.Point(56, 248);
             this.UpdateLabelDoB.Name = "UpdateLabelDoB";
-            this.UpdateLabelDoB.Size = new System.Drawing.Size(177, 24);
+            this.UpdateLabelDoB.Size = new System.Drawing.Size(140, 18);
             this.UpdateLabelDoB.TabIndex = 21;
             this.UpdateLabelDoB.Text = "Update date of birth:";
             // 
@@ -196,10 +187,9 @@
             this.UpdateLabelHeight.AutoSize = true;
             this.UpdateLabelHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelHeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelHeight.Location = new System.Drawing.Point(125, 350);
-            this.UpdateLabelHeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelHeight.Location = new System.Drawing.Point(94, 284);
             this.UpdateLabelHeight.Name = "UpdateLabelHeight";
-            this.UpdateLabelHeight.Size = new System.Drawing.Size(132, 24);
+            this.UpdateLabelHeight.Size = new System.Drawing.Size(102, 18);
             this.UpdateLabelHeight.TabIndex = 22;
             this.UpdateLabelHeight.Text = "Update height:";
             // 
@@ -208,10 +198,9 @@
             this.UpdateLabelWeight.AutoSize = true;
             this.UpdateLabelWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelWeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelWeight.Location = new System.Drawing.Point(121, 395);
-            this.UpdateLabelWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelWeight.Location = new System.Drawing.Point(91, 321);
             this.UpdateLabelWeight.Name = "UpdateLabelWeight";
-            this.UpdateLabelWeight.Size = new System.Drawing.Size(135, 24);
+            this.UpdateLabelWeight.Size = new System.Drawing.Size(105, 18);
             this.UpdateLabelWeight.TabIndex = 23;
             this.UpdateLabelWeight.Text = "Update weight:";
             // 
@@ -220,10 +209,9 @@
             this.UpdateLabelActivity.AutoSize = true;
             this.UpdateLabelActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelActivity.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelActivity.Location = new System.Drawing.Point(75, 443);
-            this.UpdateLabelActivity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UpdateLabelActivity.Location = new System.Drawing.Point(56, 360);
             this.UpdateLabelActivity.Name = "UpdateLabelActivity";
-            this.UpdateLabelActivity.Size = new System.Drawing.Size(177, 24);
+            this.UpdateLabelActivity.Size = new System.Drawing.Size(140, 18);
             this.UpdateLabelActivity.TabIndex = 24;
             this.UpdateLabelActivity.Text = "Update daily activity:";
             // 
@@ -232,34 +220,31 @@
             this.UpdatePageDoB.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdatePageDoB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.UpdatePageDoB.Location = new System.Drawing.Point(269, 305);
-            this.UpdatePageDoB.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageDoB.Location = new System.Drawing.Point(202, 248);
             this.UpdatePageDoB.Name = "UpdatePageDoB";
-            this.UpdatePageDoB.Size = new System.Drawing.Size(265, 28);
+            this.UpdatePageDoB.Size = new System.Drawing.Size(200, 24);
             this.UpdatePageDoB.TabIndex = 25;
             // 
             // UpdatePageActivity
             // 
             this.UpdatePageActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdatePageActivity.Location = new System.Drawing.Point(269, 443);
-            this.UpdatePageActivity.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageActivity.Location = new System.Drawing.Point(202, 360);
             this.UpdatePageActivity.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.UpdatePageActivity.Name = "UpdatePageActivity";
-            this.UpdatePageActivity.Size = new System.Drawing.Size(59, 28);
+            this.UpdatePageActivity.Size = new System.Drawing.Size(44, 24);
             this.UpdatePageActivity.TabIndex = 26;
             this.UpdatePageActivity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // UpdatePageActivityButton
             // 
             this.UpdatePageActivityButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdatePageActivityButton.Location = new System.Drawing.Point(337, 443);
-            this.UpdatePageActivityButton.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdatePageActivityButton.Location = new System.Drawing.Point(253, 360);
             this.UpdatePageActivityButton.Name = "UpdatePageActivityButton";
-            this.UpdatePageActivityButton.Size = new System.Drawing.Size(125, 28);
+            this.UpdatePageActivityButton.Size = new System.Drawing.Size(94, 23);
             this.UpdatePageActivityButton.TabIndex = 27;
             this.UpdatePageActivityButton.Text = "What is activity?";
             this.UpdatePageActivityButton.UseVisualStyleBackColor = true;
@@ -267,10 +252,10 @@
             // 
             // UpdatePageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(645, 567);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.UpdatePageActivityButton);
             this.Controls.Add(this.UpdatePageActivity);
             this.Controls.Add(this.UpdatePageDoB);
@@ -289,10 +274,12 @@
             this.Controls.Add(this.UpdatePageLabel);
             this.Controls.Add(this.MainPageBack);
             this.Controls.Add(this.UpdateButton);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "UpdatePageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateUser";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RegisterPage_Closed);
+            this.Load += new System.EventHandler(this.UpdatePageForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UpdatePageActivity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

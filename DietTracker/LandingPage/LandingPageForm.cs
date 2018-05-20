@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Overal Namespace for LandingPage
+/// </summary>
+/// 
 namespace LandingPage
 {
     public partial class LandingPageForm : Form
     {
         /// <summary>
-        /// 
+        /// This is the Form any user will first interact with, when launching the application
         /// </summary>
         public LandingPageForm()
         {

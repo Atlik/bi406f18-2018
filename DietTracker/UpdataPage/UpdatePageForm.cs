@@ -9,10 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// This is the UpdatePage
+/// </summary>
+
 namespace DietTracker.UpdataPage
 {
+    /// <summary>
+    /// General Update of user
+    /// </summary>
     public partial class UpdatePageForm : Form
     {
+
         internal string userName { get; }
         internal string user { get; set; }
         internal string pass { get; set; }
@@ -21,6 +29,11 @@ namespace DietTracker.UpdataPage
         internal string height { get; set; }
         internal string weight { get; set; }
         internal int activity { get; set; }
+
+        /// <summary>
+        /// The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
+        /// The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
+        /// </summary>
 
         public UpdatePageForm(string user)
         {
@@ -110,6 +123,11 @@ namespace DietTracker.UpdataPage
         private void RegisterPage_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UpdatePageForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

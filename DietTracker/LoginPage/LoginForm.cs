@@ -10,12 +10,18 @@ using System.Windows.Forms;
 using MainPageGraphs;
 using MySql.Data.MySqlClient;
 
+
 namespace Login
 {
+    /// <summary>
+    /// This is the form a user uses to log in with
+    /// </summary>
     public partial class LoginForm : Form
     {
         /// <summary>
-        /// 
+        /// The LoginForm is exactly what it sounds like, you log in using the form. 
+        /// The form does varius checks to make sure data is written inside the textboxes on it, and if they're correct
+        /// If all is good and validated, and the user already exists, you'll be redirected to the approriate Form for your username
         /// </summary>
         public LoginForm()
         {

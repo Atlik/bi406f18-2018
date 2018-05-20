@@ -30,9 +30,12 @@
       <DocumentationSource sourceFile="..\DietTracker\DietTracker.csproj" />
     </DocumentationSources>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="(global)" isDocumented="True" />
-<NamespaceSummaryItem name="LandingPage" isDocumented="True" />
-<NamespaceSummaryItem name="Login" isDocumented="True" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="True">Global namespace summary</NamespaceSummaryItem>
+<NamespaceSummaryItem name="LandingPage" isDocumented="True">This is the landing page, as in the first form a user will interact with when starting the application</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Login" isDocumented="True">This is the login form for all registered users. Non registered users can't get further</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DietTracker.UpdataPage" isDocumented="True">This is the Form to Update a logged in User</NamespaceSummaryItem>
+<NamespaceSummaryItem name="MainPageGraphs" isDocumented="True">This is the visualisation of data of a logged in user</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Register" isDocumented="True">This is how a potential user can register</NamespaceSummaryItem></NamespaceSummaries>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>None</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>

@@ -60,6 +60,7 @@
             // nametxtbox
             // 
             this.nametxtbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.nametxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nametxtbox.Location = new System.Drawing.Point(32, 148);
             this.nametxtbox.MaximumSize = new System.Drawing.Size(500, 20);
             this.nametxtbox.MinimumSize = new System.Drawing.Size(100, 20);
@@ -70,6 +71,7 @@
             // pwdtxtbox
             // 
             this.pwdtxtbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pwdtxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pwdtxtbox.Location = new System.Drawing.Point(32, 206);
             this.pwdtxtbox.MaximumSize = new System.Drawing.Size(500, 20);
             this.pwdtxtbox.MinimumSize = new System.Drawing.Size(100, 20);

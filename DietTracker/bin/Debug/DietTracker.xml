@@ -4,6 +4,20 @@
         <name>DietTracker</name>
     </assembly>
     <members>
+        <member name="T:DietTracker.UpdataPage.UpdatePageForm">
+            <summary>
+            General Update of user
+            </summary>
+            <summary>
+            This is all the necessary design code for the updatepage form
+            </summary>
+        </member>
+        <member name="M:DietTracker.UpdataPage.UpdatePageForm.#ctor(System.String)">
+            <summary>
+            The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
+            The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
+            </summary>
+        </member>
         <member name="F:DietTracker.UpdataPage.UpdatePageForm.components">
             <summary>
             Required designer variable.
@@ -28,7 +42,7 @@
         </member>
         <member name="M:LandingPage.LandingPageForm.#ctor">
             <summary>
-            
+            This is the Form any user will first interact with, when launching the application
             </summary>
         </member>
         <member name="F:LandingPage.LandingPageForm.components">
@@ -55,12 +69,17 @@
         </member>
         <member name="T:Login.LoginForm">
             <summary>
+            This is the form a user uses to log in with
+            </summary>
+            <summary>
             
             </summary>
         </member>
         <member name="M:Login.LoginForm.#ctor">
             <summary>
-            
+            The LoginForm is exactly what it sounds like, you log in using the form. 
+            The form does varius checks to make sure data is written inside the textboxes on it, and if they're correct
+            If all is good and validated, and the user already exists, you'll be redirected to the approriate Form for your username
             </summary>
         </member>
         <member name="F:Login.LoginForm.components">
@@ -82,22 +101,25 @@
         </member>
         <member name="T:MainPageGraphs.MainPageForm">
             <summary>
-            
+            This is the "MAIN" page users will be using to keep in check their dietary goals.
+            It shows various information through graphs and makes sure a user will know, visually if they're improving or not.
             </summary>
         </member>
         <member name="M:MainPageGraphs.MainPageForm.#ctor(System.String)">
             <summary>
-            
+            Grabs the necessary information for the form to know which user is logged in
             </summary>
         </member>
         <member name="T:Register.RegisterForm">
             <summary>
-            I WRITE STUFF IN HERE! :D
+            This is all the necessary design code for the register form
             </summary>
         </member>
         <member name="M:Register.RegisterForm.#ctor">
             <summary>
-            HAHAHAHAHA
+            The registerform does a lot of database based saving. It saves to all 3 tables in the database using either default data or data input by a potential user.
+            The default data is necessary to use the tables dynamicly at a later time.
+            One example could be the day table, that creates a new row per new date. If a user consumes more valories during that same day, the data for that data will just be updated with a new, higher value.
             </summary>
         </member>
         <member name="F:Register.RegisterForm.components">

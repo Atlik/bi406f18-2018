@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `diettracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `diettracker`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: diettracker
+-- Host: 127.0.0.1    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -26,13 +24,14 @@ DROP TABLE IF EXISTS `day`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `day` (
   `Date` date NOT NULL,
-  `Weight` int(11) NOT NULL,
+  `Weight` double unsigned NOT NULL,
   `Calories` int(11) NOT NULL,
   `UserID` varchar(45) NOT NULL,
-  PRIMARY KEY (`Date`),
+  `Key` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Key`),
   KEY `Username_idx` (`UserID`),
   CONSTRAINT `Username` FOREIGN KEY (`UserID`) REFERENCES `users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +40,7 @@ CREATE TABLE `day` (
 
 LOCK TABLES `day` WRITE;
 /*!40000 ALTER TABLE `day` DISABLE KEYS */;
-INSERT INTO `day` VALUES ('2018-05-12',80,2400,'Jesper'),('2018-05-14',90,3000,'Jesper');
+INSERT INTO `day` VALUES ('2018-05-20',80,0,'Jonas',1),('2018-05-20',300,0,'User1',2),('2018-05-20',50,0,'User2',3),('2018-05-20',75,0,'User3',4);
 /*!40000 ALTER TABLE `day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16 13:45:22
+-- Dump completed on 2018-05-20 21:18:57

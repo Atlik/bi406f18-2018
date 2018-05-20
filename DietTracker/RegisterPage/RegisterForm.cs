@@ -11,14 +11,14 @@ using MySql.Data.MySqlClient;
 
 namespace Register
 {
-    /// <summary>
-    /// I WRITE STUFF IN HERE! :D
-    /// </summary>
     public partial class RegisterForm : Form
     {
         /// <summary>
-        /// HAHAHAHAHA
+        /// The registerform does a lot of database based saving. It saves to all 3 tables in the database using either default data or data input by a potential user.
+        /// The default data is necessary to use the tables dynamicly at a later time.
+        /// One example could be the day table, that creates a new row per new date. If a user consumes more valories during that same day, the data for that data will just be updated with a new, higher value.
         /// </summary>
+
         public RegisterForm()
         {
             InitializeComponent();
@@ -113,6 +113,15 @@ namespace Register
                     PasswordCommand.ExecuteNonQuery();
                     conR.Close();
 
+                    var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+                    MySqlCommand DayCommand = new MySqlCommand();
+                    DayCommand.CommandText = "INSERT INTO diettracker.day (Date, Weight, Calories, UserID)" +
+                        "VALUES ('" + dateTimeToday + "', '" + w + "', '0', '" + user + "');";
+                    DayCommand.Connection = conR;
+                    conR.Open();
+                    DayCommand.ExecuteNonQuery();
+                    conR.Close();
+
                     MessageBox.Show("User Successfully created!");
 
                     Login.LoginForm LoginForm = new Login.LoginForm();
@@ -173,16 +182,6 @@ namespace Register
             MessageBox.Show("1 = Very little to no exercise at all\n" +
                 "2 = Moderate exercise\n" +
                 "3 = Exercise every day");
-
-        }
-
-        private void RegisterPageHeight_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RegisterPageDoB_ValueChanged(object sender, EventArgs e)
-        {
 
         }
     }
