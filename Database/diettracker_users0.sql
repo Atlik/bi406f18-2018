@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: diettracker
+-- Host: localhost    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -16,28 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `password`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `password`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `password` (
-  `Password` varchar(255) NOT NULL,
-  `ForeignID` int(11) NOT NULL,
-  UNIQUE KEY `ForeignID_UNIQUE` (`ForeignID`),
-  CONSTRAINT `ID` FOREIGN KEY (`ForeignID`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `users` (
+  `Username` varchar(255) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Gender` varchar(255) NOT NULL,
+  `DoB` date NOT NULL,
+  `Height` tinyint(255) unsigned NOT NULL,
+  `Weight` double NOT NULL,
+  `Activity` tinyint(4) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Username_UNIQUE` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `password`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `password` WRITE;
-/*!40000 ALTER TABLE `password` DISABLE KEYS */;
-INSERT INTO `password` VALUES ('1234',1),('1234',2),('1234',3),('1234',4);
-/*!40000 ALTER TABLE `password` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('Jonas','Jonas','Male','1994-03-09',180,80,2,1),('User1','User','Male','2018-05-10',190,300,1,2),('User2','User','Female','2018-05-10',150,50,2,3),('User3','User','Female','2018-05-10',170,75,3,4),('Jakob','test','Male','2018-05-21',181,80,1,5);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:18:57
+-- Dump completed on 2018-05-21 12:31:48

@@ -36,6 +36,8 @@ namespace MainPageGraphs
         private TextBox UserData;
         private TextBox weightInfo;
         private TextBox MainPageCalorieText;
+        private Button UpdateWeight;
+        private TextBox MainPageWeightText;
         private Button UpdateCalories;
 
         internal string userName { get; }
@@ -432,7 +434,7 @@ namespace MainPageGraphs
 
         private void EditUserData(object sender, EventArgs e)
         {
-            DietTracker.UpdataPage.UpdatePageForm UpdateForm = new DietTracker.UpdataPage.UpdatePageForm(userName);
+            DietTracker.UpdatePage.UpdatePageForm UpdateForm = new DietTracker.UpdatePage.UpdatePageForm(userName);
             UpdateForm.Tag = this;
             Hide();
             UpdateForm.Show(this);
@@ -477,10 +479,6 @@ namespace MainPageGraphs
                     conCCal.Close();
 
                     int CaloriesVal = Int32.Parse(calories);
-
-                    MessageBox.Show(CaloriesVal.ToString());
-                    MessageBox.Show(CaloriesRead.ToString());
-
                     CaloriesRead += CaloriesVal;
 
                     MySqlCommand UpdateCaloriesCommand = new MySqlCommand();
@@ -491,7 +489,11 @@ namespace MainPageGraphs
                     conCal.Close();
 
                     MessageBox.Show("Updated calories succesfully to: " + CaloriesRead);
-                    
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                    mainPage.Tag = this;
+                    Hide();
+                    mainPage.Show(this);
+
                 }
                 catch
                 {
@@ -499,15 +501,48 @@ namespace MainPageGraphs
                 }
             }
         }
+        private void ClickToLoadWeight(object sender, EventArgs e)
+        {
+            string weight = MainPageWeightText.Text;
+
+            if (Calories.IsCaloriesInputCorrect(weight))
+            {
+                try
+                {
+                    var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+                    MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                    double WeightVal = double.Parse(weight);
+
+                    MySqlCommand UpdateCaloriesCommand = new MySqlCommand();
+                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Weight = '" + WeightVal + "' WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                    UpdateCaloriesCommand.Connection = conW;
+                    conW.Open();
+                    UpdateCaloriesCommand.ExecuteNonQuery();
+                    conW.Close();
+
+                    MessageBox.Show("Updated weight succesfully to: " + WeightVal);
+
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                    mainPage.Tag = this;
+                    Hide();
+                    mainPage.Show(this);
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong, whops3");
+                }
+            }
+        }
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.WeightChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CalorieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.UpdateCalories = new System.Windows.Forms.Button();
@@ -517,6 +552,8 @@ namespace MainPageGraphs
             this.UserData = new System.Windows.Forms.TextBox();
             this.weightInfo = new System.Windows.Forms.TextBox();
             this.MainPageCalorieText = new System.Windows.Forms.TextBox();
+            this.UpdateWeight = new System.Windows.Forms.Button();
+            this.MainPageWeightText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.WeightChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CalorieChart)).BeginInit();
             this.SuspendLayout();
@@ -524,17 +561,17 @@ namespace MainPageGraphs
             // WeightChart
             // 
             this.WeightChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea7.Name = "ChartArea1";
-            this.WeightChart.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.WeightChart.Legends.Add(legend7);
+            chartArea3.Name = "ChartArea1";
+            this.WeightChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.WeightChart.Legends.Add(legend3);
             this.WeightChart.Location = new System.Drawing.Point(12, 268);
             this.WeightChart.Name = "WeightChart";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "Weight";
-            this.WeightChart.Series.Add(series7);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Weight";
+            this.WeightChart.Series.Add(series3);
             this.WeightChart.Size = new System.Drawing.Size(459, 181);
             this.WeightChart.TabIndex = 0;
             this.WeightChart.TabStop = false;
@@ -543,19 +580,23 @@ namespace MainPageGraphs
             // CalorieChart
             // 
             this.CalorieChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea8.Name = "ChartArea1";
-            this.CalorieChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.CalorieChart.Legends.Add(legend8);
+            chartArea4.AxisX.IsLabelAutoFit = false;
+            chartArea4.AxisX2.IsLabelAutoFit = false;
+            chartArea4.AxisY.IsLabelAutoFit = false;
+            chartArea4.AxisY2.IsLabelAutoFit = false;
+            chartArea4.Name = "ChartArea1";
+            this.CalorieChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.CalorieChart.Legends.Add(legend4);
             this.CalorieChart.Location = new System.Drawing.Point(11, 38);
             this.CalorieChart.Name = "CalorieChart";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series8.Legend = "Legend1";
-            series8.Name = "CalorieIntake";
-            this.CalorieChart.Series.Add(series8);
-            this.CalorieChart.Size = new System.Drawing.Size(238, 114);
-            this.CalorieChart.TabIndex = 1;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "CalorieIntake";
+            this.CalorieChart.Series.Add(series4);
+            this.CalorieChart.Size = new System.Drawing.Size(238, 82);
+            this.CalorieChart.TabIndex = 0;
             this.CalorieChart.TabStop = false;
             this.CalorieChart.Text = "CalorieChart";
             // 
@@ -563,10 +604,10 @@ namespace MainPageGraphs
             // 
             this.UpdateCalories.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.UpdateCalories.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UpdateCalories.Location = new System.Drawing.Point(350, 239);
+            this.UpdateCalories.Location = new System.Drawing.Point(113, 239);
             this.UpdateCalories.Name = "UpdateCalories";
             this.UpdateCalories.Size = new System.Drawing.Size(106, 23);
-            this.UpdateCalories.TabIndex = 2;
+            this.UpdateCalories.TabIndex = 1;
             this.UpdateCalories.Text = "Update Calories";
             this.UpdateCalories.UseVisualStyleBackColor = true;
             this.UpdateCalories.Click += new System.EventHandler(this.ClickToLoadCalories);
@@ -576,12 +617,12 @@ namespace MainPageGraphs
             this.displayMaxCalorie.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.displayMaxCalorie.BackColor = System.Drawing.SystemColors.Window;
             this.displayMaxCalorie.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.displayMaxCalorie.Location = new System.Drawing.Point(12, 158);
+            this.displayMaxCalorie.Location = new System.Drawing.Point(12, 126);
             this.displayMaxCalorie.Multiline = true;
             this.displayMaxCalorie.Name = "displayMaxCalorie";
             this.displayMaxCalorie.ReadOnly = true;
-            this.displayMaxCalorie.Size = new System.Drawing.Size(237, 104);
-            this.displayMaxCalorie.TabIndex = 3;
+            this.displayMaxCalorie.Size = new System.Drawing.Size(237, 107);
+            this.displayMaxCalorie.TabIndex = 0;
             this.displayMaxCalorie.TabStop = false;
             // 
             // Edit_User
@@ -618,7 +659,7 @@ namespace MainPageGraphs
             this.UserData.Name = "UserData";
             this.UserData.ReadOnly = true;
             this.UserData.Size = new System.Drawing.Size(215, 143);
-            this.UserData.TabIndex = 5;
+            this.UserData.TabIndex = 0;
             this.UserData.TabStop = false;
             // 
             // weightInfo
@@ -629,26 +670,49 @@ namespace MainPageGraphs
             this.weightInfo.Name = "weightInfo";
             this.weightInfo.ReadOnly = true;
             this.weightInfo.Size = new System.Drawing.Size(215, 74);
-            this.weightInfo.TabIndex = 6;
+            this.weightInfo.TabIndex = 0;
             this.weightInfo.TabStop = false;
             // 
             // MainPageCalorieText
             // 
             this.MainPageCalorieText.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MainPageCalorieText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainPageCalorieText.Location = new System.Drawing.Point(268, 239);
+            this.MainPageCalorieText.Location = new System.Drawing.Point(31, 239);
             this.MainPageCalorieText.MaxLength = 9999;
             this.MainPageCalorieText.Name = "MainPageCalorieText";
             this.MainPageCalorieText.Size = new System.Drawing.Size(76, 23);
             this.MainPageCalorieText.TabIndex = 7;
             // 
+            // UpdateWeight
+            // 
+            this.UpdateWeight.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UpdateWeight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UpdateWeight.Location = new System.Drawing.Point(352, 239);
+            this.UpdateWeight.Name = "UpdateWeight";
+            this.UpdateWeight.Size = new System.Drawing.Size(106, 23);
+            this.UpdateWeight.TabIndex = 2;
+            this.UpdateWeight.Text = "Update Weight";
+            this.UpdateWeight.UseVisualStyleBackColor = true;
+            this.UpdateWeight.Click += new System.EventHandler(this.ClickToLoadWeight);
+            // 
+            // MainPageWeightText
+            // 
+            this.MainPageWeightText.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.MainPageWeightText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainPageWeightText.Location = new System.Drawing.Point(270, 239);
+            this.MainPageWeightText.MaxLength = 9999;
+            this.MainPageWeightText.Name = "MainPageWeightText";
+            this.MainPageWeightText.Size = new System.Drawing.Size(76, 23);
+            this.MainPageWeightText.TabIndex = 9;
+            // 
             // MainPageForm
             // 
-            this.AcceptButton = this.UpdateCalories;
             this.AllowDrop = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.MainPageWeightText);
+            this.Controls.Add(this.UpdateWeight);
             this.Controls.Add(this.UpdateCalories);
             this.Controls.Add(this.MainPageCalorieText);
             this.Controls.Add(this.weightInfo);

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: diettracker
+-- Host: localhost    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `password`
+-- Table structure for table `day`
 --
 
-DROP TABLE IF EXISTS `password`;
+DROP TABLE IF EXISTS `day`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `password` (
-  `Password` varchar(255) NOT NULL,
-  `ForeignID` int(11) NOT NULL,
-  UNIQUE KEY `ForeignID_UNIQUE` (`ForeignID`),
-  CONSTRAINT `ID` FOREIGN KEY (`ForeignID`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `day` (
+  `Date` date NOT NULL,
+  `Weight` double unsigned NOT NULL,
+  `Calories` int(11) NOT NULL,
+  `UserID` varchar(45) NOT NULL,
+  `Key` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Key`),
+  KEY `Username_idx` (`UserID`),
+  CONSTRAINT `Username` FOREIGN KEY (`UserID`) REFERENCES `users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `password`
+-- Dumping data for table `day`
 --
 
-LOCK TABLES `password` WRITE;
-/*!40000 ALTER TABLE `password` DISABLE KEYS */;
-INSERT INTO `password` VALUES ('1234',1),('1234',2),('1234',3),('1234',4);
-/*!40000 ALTER TABLE `password` ENABLE KEYS */;
+LOCK TABLES `day` WRITE;
+/*!40000 ALTER TABLE `day` DISABLE KEYS */;
+INSERT INTO `day` VALUES ('2018-05-20',80,0,'Jonas',1),('2018-05-20',300,0,'User1',2),('2018-05-20',50,0,'User2',3),('2018-05-20',75,0,'User3',4),('2018-05-21',82,3000,'Jakob',5);
+/*!40000 ALTER TABLE `day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:18:57
+-- Dump completed on 2018-05-21 12:31:47

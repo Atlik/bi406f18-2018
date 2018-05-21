@@ -58,9 +58,10 @@
             // 
             this.RegisterButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RegisterButton.Location = new System.Drawing.Point(136, 410);
+            this.RegisterButton.Location = new System.Drawing.Point(181, 505);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(223, 29);
+            this.RegisterButton.Size = new System.Drawing.Size(297, 36);
             this.RegisterButton.TabIndex = 11;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
@@ -71,9 +72,10 @@
             this.RegisterPageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageLabel.AutoSize = true;
             this.RegisterPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageLabel.Location = new System.Drawing.Point(160, 18);
+            this.RegisterPageLabel.Location = new System.Drawing.Point(213, 22);
+            this.RegisterPageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterPageLabel.Name = "RegisterPageLabel";
-            this.RegisterPageLabel.Size = new System.Drawing.Size(155, 31);
+            this.RegisterPageLabel.Size = new System.Drawing.Size(194, 39);
             this.RegisterPageLabel.TabIndex = 1;
             this.RegisterPageLabel.Text = "Your Profile";
             // 
@@ -81,9 +83,10 @@
             // 
             this.RegisterPageWeight.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageWeight.Location = new System.Drawing.Point(199, 318);
+            this.RegisterPageWeight.Location = new System.Drawing.Point(265, 391);
+            this.RegisterPageWeight.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageWeight.Name = "RegisterPageWeight";
-            this.RegisterPageWeight.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPageWeight.Size = new System.Drawing.Size(265, 28);
             this.RegisterPageWeight.TabIndex = 8;
             this.RegisterPageWeight.Tag = "kg";
             this.RegisterPageWeight.Text = "in kg";
@@ -94,19 +97,21 @@
             // 
             this.RegisterPageUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageUsername.Location = new System.Drawing.Point(199, 88);
+            this.RegisterPageUsername.Location = new System.Drawing.Point(265, 108);
+            this.RegisterPageUsername.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageUsername.Name = "RegisterPageUsername";
-            this.RegisterPageUsername.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPageUsername.Size = new System.Drawing.Size(265, 28);
             this.RegisterPageUsername.TabIndex = 1;
             // 
             // RegisterPagePassword
             // 
             this.RegisterPagePassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPagePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPagePassword.Location = new System.Drawing.Point(198, 132);
+            this.RegisterPagePassword.Location = new System.Drawing.Point(264, 162);
+            this.RegisterPagePassword.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPagePassword.Name = "RegisterPagePassword";
             this.RegisterPagePassword.PasswordChar = '*';
-            this.RegisterPagePassword.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPagePassword.Size = new System.Drawing.Size(265, 28);
             this.RegisterPagePassword.TabIndex = 2;
             this.RegisterPagePassword.UseSystemPasswordChar = true;
             // 
@@ -116,9 +121,10 @@
             this.RegisterPageDoB.CustomFormat = "";
             this.RegisterPageDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterPageDoB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.RegisterPageDoB.Location = new System.Drawing.Point(199, 243);
+            this.RegisterPageDoB.Location = new System.Drawing.Point(265, 299);
+            this.RegisterPageDoB.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageDoB.Name = "RegisterPageDoB";
-            this.RegisterPageDoB.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPageDoB.Size = new System.Drawing.Size(265, 28);
             this.RegisterPageDoB.TabIndex = 6;
             this.RegisterPageDoB.Value = new System.DateTime(2018, 5, 10, 0, 0, 0, 0);
             // 
@@ -126,9 +132,10 @@
             // 
             this.RegisterLabelUsername.AutoSize = true;
             this.RegisterLabelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelUsername.Location = new System.Drawing.Point(46, 91);
+            this.RegisterLabelUsername.Location = new System.Drawing.Point(61, 112);
+            this.RegisterLabelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelUsername.Name = "RegisterLabelUsername";
-            this.RegisterLabelUsername.Size = new System.Drawing.Size(147, 18);
+            this.RegisterLabelUsername.Size = new System.Drawing.Size(186, 24);
             this.RegisterLabelUsername.TabIndex = 8;
             this.RegisterLabelUsername.Text = "Choose a username:";
             // 
@@ -141,9 +148,10 @@
             this.LoginPageBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LoginPageBack.FlatAppearance.BorderSize = 0;
             this.LoginPageBack.ForeColor = System.Drawing.Color.Transparent;
-            this.LoginPageBack.Location = new System.Drawing.Point(12, 18);
+            this.LoginPageBack.Location = new System.Drawing.Point(16, 22);
+            this.LoginPageBack.Margin = new System.Windows.Forms.Padding(4);
             this.LoginPageBack.Name = "LoginPageBack";
-            this.LoginPageBack.Size = new System.Drawing.Size(45, 23);
+            this.LoginPageBack.Size = new System.Drawing.Size(60, 28);
             this.LoginPageBack.TabIndex = 12;
             this.LoginPageBack.Text = "Home";
             this.LoginPageBack.UseVisualStyleBackColor = false;
@@ -153,9 +161,10 @@
             // 
             this.RegisterLabelName.AutoSize = true;
             this.RegisterLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelName.Location = new System.Drawing.Point(79, 192);
+            this.RegisterLabelName.Location = new System.Drawing.Point(105, 236);
+            this.RegisterLabelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelName.Name = "RegisterLabelName";
-            this.RegisterLabelName.Size = new System.Drawing.Size(113, 18);
+            this.RegisterLabelName.Size = new System.Drawing.Size(143, 24);
             this.RegisterLabelName.TabIndex = 18;
             this.RegisterLabelName.Text = "Your Firstname:";
             // 
@@ -163,9 +172,10 @@
             // 
             this.RegisterPageHeight.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageHeight.Location = new System.Drawing.Point(199, 281);
+            this.RegisterPageHeight.Location = new System.Drawing.Point(265, 346);
+            this.RegisterPageHeight.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageHeight.Name = "RegisterPageHeight";
-            this.RegisterPageHeight.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPageHeight.Size = new System.Drawing.Size(265, 28);
             this.RegisterPageHeight.TabIndex = 7;
             this.RegisterPageHeight.Tag = "cm";
             this.RegisterPageHeight.Text = "in cm";
@@ -176,18 +186,20 @@
             // 
             this.RegisterPageName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageName.Location = new System.Drawing.Point(199, 189);
+            this.RegisterPageName.Location = new System.Drawing.Point(265, 233);
+            this.RegisterPageName.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageName.Name = "RegisterPageName";
-            this.RegisterPageName.Size = new System.Drawing.Size(200, 24);
+            this.RegisterPageName.Size = new System.Drawing.Size(265, 28);
             this.RegisterPageName.TabIndex = 3;
             // 
             // RegisterLabelPassword
             // 
             this.RegisterLabelPassword.AutoSize = true;
             this.RegisterLabelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelPassword.Location = new System.Drawing.Point(46, 135);
+            this.RegisterLabelPassword.Location = new System.Drawing.Point(61, 166);
+            this.RegisterLabelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelPassword.Name = "RegisterLabelPassword";
-            this.RegisterLabelPassword.Size = new System.Drawing.Size(146, 18);
+            this.RegisterLabelPassword.Size = new System.Drawing.Size(182, 24);
             this.RegisterLabelPassword.TabIndex = 21;
             this.RegisterLabelPassword.Text = "Choose a password:";
             // 
@@ -195,9 +207,10 @@
             // 
             this.RegsterLabelDoB.AutoSize = true;
             this.RegsterLabelDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegsterLabelDoB.Location = new System.Drawing.Point(63, 248);
+            this.RegsterLabelDoB.Location = new System.Drawing.Point(84, 305);
+            this.RegsterLabelDoB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegsterLabelDoB.Name = "RegsterLabelDoB";
-            this.RegsterLabelDoB.Size = new System.Drawing.Size(129, 18);
+            this.RegsterLabelDoB.Size = new System.Drawing.Size(160, 24);
             this.RegsterLabelDoB.TabIndex = 22;
             this.RegsterLabelDoB.Text = "Your Date of Birth:";
             // 
@@ -205,9 +218,10 @@
             // 
             this.RegisterLabelHeight.AutoSize = true;
             this.RegisterLabelHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelHeight.Location = new System.Drawing.Point(103, 284);
+            this.RegisterLabelHeight.Location = new System.Drawing.Point(137, 350);
+            this.RegisterLabelHeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelHeight.Name = "RegisterLabelHeight";
-            this.RegisterLabelHeight.Size = new System.Drawing.Size(89, 18);
+            this.RegisterLabelHeight.Size = new System.Drawing.Size(115, 24);
             this.RegisterLabelHeight.TabIndex = 23;
             this.RegisterLabelHeight.Text = "Your Height:";
             // 
@@ -215,9 +229,10 @@
             // 
             this.RegisterLabelWeight.AutoSize = true;
             this.RegisterLabelWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelWeight.Location = new System.Drawing.Point(99, 321);
+            this.RegisterLabelWeight.Location = new System.Drawing.Point(132, 395);
+            this.RegisterLabelWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelWeight.Name = "RegisterLabelWeight";
-            this.RegisterLabelWeight.Size = new System.Drawing.Size(93, 18);
+            this.RegisterLabelWeight.Size = new System.Drawing.Size(119, 24);
             this.RegisterLabelWeight.TabIndex = 24;
             this.RegisterLabelWeight.Text = "Your Weight:";
             // 
@@ -226,7 +241,8 @@
             this.RegisterPageActivity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageActivity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RegisterPageActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageActivity.Location = new System.Drawing.Point(199, 358);
+            this.RegisterPageActivity.Location = new System.Drawing.Point(265, 441);
+            this.RegisterPageActivity.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageActivity.Maximum = new decimal(new int[] {
             3,
             0,
@@ -238,7 +254,7 @@
             0,
             0});
             this.RegisterPageActivity.Name = "RegisterPageActivity";
-            this.RegisterPageActivity.Size = new System.Drawing.Size(44, 24);
+            this.RegisterPageActivity.Size = new System.Drawing.Size(59, 28);
             this.RegisterPageActivity.TabIndex = 9;
             this.RegisterPageActivity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RegisterPageActivity.Value = new decimal(new int[] {
@@ -251,17 +267,19 @@
             // 
             this.RegisterLabelActivity.AutoSize = true;
             this.RegisterLabelActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabelActivity.Location = new System.Drawing.Point(64, 360);
+            this.RegisterLabelActivity.Location = new System.Drawing.Point(85, 443);
+            this.RegisterLabelActivity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RegisterLabelActivity.Name = "RegisterLabelActivity";
-            this.RegisterLabelActivity.Size = new System.Drawing.Size(128, 18);
+            this.RegisterLabelActivity.Size = new System.Drawing.Size(162, 24);
             this.RegisterLabelActivity.TabIndex = 26;
             this.RegisterLabelActivity.Text = "Your Daily Activity:";
             // 
             // RegisterPageActivityButton
             // 
-            this.RegisterPageActivityButton.Location = new System.Drawing.Point(249, 358);
+            this.RegisterPageActivityButton.Location = new System.Drawing.Point(332, 441);
+            this.RegisterPageActivityButton.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageActivityButton.Name = "RegisterPageActivityButton";
-            this.RegisterPageActivityButton.Size = new System.Drawing.Size(94, 23);
+            this.RegisterPageActivityButton.Size = new System.Drawing.Size(125, 28);
             this.RegisterPageActivityButton.TabIndex = 10;
             this.RegisterPageActivityButton.Text = "What is activity?";
             this.RegisterPageActivityButton.UseVisualStyleBackColor = true;
@@ -271,9 +289,10 @@
             // 
             this.RegisterPageRadioButtonMale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageRadioButtonMale.AutoSize = true;
-            this.RegisterPageRadioButtonMale.Location = new System.Drawing.Point(199, 219);
+            this.RegisterPageRadioButtonMale.Location = new System.Drawing.Point(265, 270);
+            this.RegisterPageRadioButtonMale.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageRadioButtonMale.Name = "RegisterPageRadioButtonMale";
-            this.RegisterPageRadioButtonMale.Size = new System.Drawing.Size(48, 17);
+            this.RegisterPageRadioButtonMale.Size = new System.Drawing.Size(59, 21);
             this.RegisterPageRadioButtonMale.TabIndex = 4;
             this.RegisterPageRadioButtonMale.TabStop = true;
             this.RegisterPageRadioButtonMale.Text = "Male";
@@ -283,9 +302,10 @@
             // 
             this.RegisterPageRadioButtonFemale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RegisterPageRadioButtonFemale.AutoSize = true;
-            this.RegisterPageRadioButtonFemale.Location = new System.Drawing.Point(256, 219);
+            this.RegisterPageRadioButtonFemale.Location = new System.Drawing.Point(341, 270);
+            this.RegisterPageRadioButtonFemale.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterPageRadioButtonFemale.Name = "RegisterPageRadioButtonFemale";
-            this.RegisterPageRadioButtonFemale.Size = new System.Drawing.Size(59, 17);
+            this.RegisterPageRadioButtonFemale.Size = new System.Drawing.Size(75, 21);
             this.RegisterPageRadioButtonFemale.TabIndex = 5;
             this.RegisterPageRadioButtonFemale.TabStop = true;
             this.RegisterPageRadioButtonFemale.Text = "Female";
@@ -295,12 +315,12 @@
             // 
             this.AcceptButton = this.RegisterButton;
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(645, 567);
             this.Controls.Add(this.RegisterPageRadioButtonFemale);
             this.Controls.Add(this.RegisterPageRadioButtonMale);
             this.Controls.Add(this.RegisterPageActivityButton);
@@ -322,9 +342,10 @@
             this.Controls.Add(this.RegisterPageLabel);
             this.Controls.Add(this.RegisterButton);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(500, 499);
+            this.MinimumSize = new System.Drawing.Size(661, 603);
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diet Tracker v.0.1";

@@ -4,7 +4,7 @@
         <name>DietTracker</name>
     </assembly>
     <members>
-        <member name="T:DietTracker.UpdataPage.UpdatePageForm">
+        <member name="T:DietTracker.UpdatePage.UpdatePageForm">
             <summary>
             General Update of user
             </summary>
@@ -12,24 +12,24 @@
             This is all the necessary design code for the updatepage form
             </summary>
         </member>
-        <member name="M:DietTracker.UpdataPage.UpdatePageForm.#ctor(System.String)">
+        <member name="M:DietTracker.UpdatePage.UpdatePageForm.#ctor(System.String)">
             <summary>
             The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
             The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
             </summary>
         </member>
-        <member name="F:DietTracker.UpdataPage.UpdatePageForm.components">
+        <member name="F:DietTracker.UpdatePage.UpdatePageForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:DietTracker.UpdataPage.UpdatePageForm.Dispose(System.Boolean)">
+        <member name="M:DietTracker.UpdatePage.UpdatePageForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:DietTracker.UpdataPage.UpdatePageForm.InitializeComponent">
+        <member name="M:DietTracker.UpdatePage.UpdatePageForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

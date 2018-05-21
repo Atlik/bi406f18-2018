@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: diettracker
+-- Host: localhost    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -36,7 +36,7 @@ CREATE TABLE `password` (
 
 LOCK TABLES `password` WRITE;
 /*!40000 ALTER TABLE `password` DISABLE KEYS */;
-INSERT INTO `password` VALUES ('1234',1),('1234',2),('1234',3),('1234',4);
+INSERT INTO `password` VALUES ('1234',1),('1234',2),('1234',3),('1234',4),('test',5);
 /*!40000 ALTER TABLE `password` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:18:57
+-- Dump completed on 2018-05-21 12:31:47
