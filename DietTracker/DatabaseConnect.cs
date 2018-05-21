@@ -19,7 +19,7 @@ namespace DietTracker
 
         public static MySqlConnection OpenDefaultDBConnection()
         {
-            return OpenDBConnection("localhost", "ApplicationAccess", "", "diettracker","none");
+            return OpenDBConnection("localhost", "root", "Smyrna_18", "diettracker","none");
         }
     }
 }

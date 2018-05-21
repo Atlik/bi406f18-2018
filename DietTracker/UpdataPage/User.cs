@@ -12,7 +12,7 @@ namespace DietTracker
     class User : ICloneable
     {
         public string userName { get; set; }
-        internal string userPassword { get; set; }
+        internal string password { get; set; }
 
         internal string name { get; set; }
         internal string gender { get; set; }
@@ -20,30 +20,50 @@ namespace DietTracker
         internal int height { get; set; }
         internal double weight { get; set; }
         internal int activity { get; set; }
+        internal int id { get; set; }
         internal User orgUser { get; set; }
+        internal User tempUser { get; set; }
 
-
-        public User(string user, string n, string gender, string dob, int h, double w, int a)
+        public User(string userName, string name, string gender, string dob, int height, double weight, int activity)
         {
-            this.userName = user;
-            this.name = n;
+            this.userName = userName;
+            this.name = name;
             this.gender = gender;
             this.doB = dob;
-            this.height = h;
-            this.weight = w;
-            this.activity = a;
+            this.height = height;
+            this.weight = weight;
+            this.activity = activity;
+        }
+
+        public User(string userName, string password, string name, string gender, string dob, int height, double weight, int activity)
+        {
+            this.userName = userName;
+            this.password = password;
+            this.name = name;
+            this.gender = gender;
+            this.doB = dob;
+            this.height = height;
+            this.weight = weight;
+            this.activity = activity;
+        }
+
+        public User(string userName, string name, string gender, string dob, int height, double weight, int activity, int id)
+        {
+            this.userName = userName;
+            this.name = name;
+            this.gender = gender;
+            this.doB = dob;
+            this.height = height;
+            this.weight = weight;
+            this.activity = activity;
+            this.id = id;
         }
 
         public User(string userName)
         {
             this.userName = userName;
         }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
+        
         public object Clone()
         {
             Console.WriteLine("Cloning object");
@@ -76,7 +96,7 @@ namespace DietTracker
 
         internal bool StringValidatorName(string input)
         {
-            string pattern = "[^a-zA-Z0-9]";
+            string pattern = "[^a-zA-Z]";
             if (Regex.IsMatch(input, pattern))
             {
                 return true;
@@ -100,91 +120,120 @@ namespace DietTracker
             }
         }
 
-        internal bool IsUpdateInfoCorrect(string userName, string name, string doB, int height, double weight, int activity)
+        internal bool IsUpdateInfoCorrect(string userName, string name, string doB, int height, double weight, int activity, User tempUser, User orgUser)
         {
-            try
+            if (!string.IsNullOrEmpty(password) && StringValidator(password) == true)
             {
-                if (!string.IsNullOrEmpty(userName) && StringValidator(userName) == true)
-                {
-                    MessageBox.Show("You cannot use special characters in your username.");
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(userPassword) && StringValidator(userPassword) == true)
-                {
-                    MessageBox.Show("You forgot to type your password");
-                    return false;
-                }
-                if (!string.IsNullOrEmpty(name) && StringValidatorName(name) == true)
-                {
-                    MessageBox.Show("You cannot have special characters in your name.");
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(Convert.ToString(height)) && IntValidator(Convert.ToString(height)) == true)
-                {
-                    MessageBox.Show("You cannot use letters or special characters in your height.");
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(Convert.ToString(weight)) && IntValidator(Convert.ToString(weight)) == true)
-                {
-                    MessageBox.Show("You cannot use letters or special characters in your weight.");
-                    return false;
-                }
-                else
-                {
-                    MySqlConnection conU = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
-
-                    MySqlCommand UserCommand = new MySqlCommand();
-                    UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + userName + "';";
-                    UserCommand.Connection = conU;
-                    conU.Open();
-                    MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
-
-                    try
-                    {
-                        UsernameRead.Read();
-                        string Username = UsernameRead.GetString(0);
-                        var UserDatabase = String.Format("{0}", Username);
-                        Username = UserDatabase;
-                        MessageBox.Show("That username already exists");
-                        return false;
-                    }
-                    catch
-                    {
-                        conU.Close();
-                        return true;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something happened: " + e);
+                MessageBox.Show("You forgot to type your password");
                 return false;
             }
+            if (!string.IsNullOrEmpty(name) && StringValidatorName(name) == true)
+            {
+                MessageBox.Show("You cannot have special characters in your name.");
+                return false;
+            }
+            if (!string.IsNullOrEmpty(Convert.ToString(height)) && IntValidator(Convert.ToString(height)) == true)
+            {
+                MessageBox.Show("You cannot use letters or special characters in your height.");
+                return false;
+            }
+            if (!string.IsNullOrEmpty(Convert.ToString(weight)) && IntValidator(Convert.ToString(weight)) == true)
+            {
+                MessageBox.Show("You cannot use letters or special characters in your weight.");
+                return false;
+            }
+
+            return true;
         }
-                
+
 
         public static User GetUser(string userName)
         {
-            MySqlConnection conU = DatabaseConnect.OpenDefaultDBConnection();
+            try
+            {
+                MySqlConnection conU = DatabaseConnect.OpenDefaultDBConnection();
 
-            MySqlCommand UserCommand = new MySqlCommand();
-            UserCommand.CommandText = "SELECT Name, Gender, DoB, Height, Weight, Activity, ID FROM users WHERE Username = '" + userName + "';";
-            UserCommand.Connection = conU;
+                MySqlCommand UserCommand = new MySqlCommand();
+                UserCommand.CommandText = "SELECT Name, Gender, DoB, Height, Weight, Activity, ID FROM users WHERE Username = '" + userName + "';";
+                UserCommand.Connection = conU;
 
-            conU.Open();
-            MySqlDataReader userReader = UserCommand.ExecuteReader();
-            userReader.Read();
-            string name = userReader.GetString(0);
-            string gender = userReader.GetString(1);
-            string dob = userReader.GetString(2);
-            int height = userReader.GetInt32(3);
-            double weight = userReader.GetDouble(4);
-            int activity = userReader.GetInt32(5);
-            int id = userReader.GetInt32(6);
+                conU.Open();
+                MySqlDataReader userReader = UserCommand.ExecuteReader();
+                userReader.Read();
+                string name = userReader.GetString(0);
+                string gender = userReader.GetString(1);
+                string dob = userReader.GetString(2);
+                int height = userReader.GetInt32(3);
+                double weight = userReader.GetDouble(4);
+                int activity = userReader.GetInt32(5);
+                int id = userReader.GetInt32(6);
 
-            User orgUser = new User(userName, name, gender, dob, height, weight, activity);
+                User orgUser = new User(userName, name, gender, dob, height, weight, activity, id);
+                conU.Close();
 
-            return orgUser;
+                return orgUser;
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.ToString());
+                User orgUser = new User(userName);
+                return orgUser;
+
+            }
+            catch
+            {
+                MessageBox.Show("Something went terribly worng you moron");
+                User orgUser = new User(userName);
+                return orgUser;
+            }
+        }
+
+        internal int GetUserID(string userName)
+        {
+            try
+            {
+                MySqlConnection conU = DatabaseConnect.OpenDefaultDBConnection();
+
+                MySqlCommand UserCommand = new MySqlCommand();
+                UserCommand.CommandText = "'SELECT ID FROM users WHERE Username = '" + userName + "';";
+                UserCommand.Connection = conU;
+
+                conU.Open();
+                MySqlDataReader userReader = UserCommand.ExecuteReader();
+                userReader.Read();
+                int id = userReader.GetInt32(0);
+                return id;
+            }
+            catch
+            {
+                MessageBox.Show("Dunno man.. You done goofed.");
+                int id = 0;
+                return id;
+            }
+        }
+
+        internal string GetUserPwd(int userID)
+        {
+            try
+            {
+                MySqlConnection conU = DatabaseConnect.OpenDefaultDBConnection();
+
+                MySqlCommand UserCommand = new MySqlCommand();
+                UserCommand.CommandText = "'SELECT Password FROM password WHERE ForeignID = '" + userID + "';";
+                UserCommand.Connection = conU;
+
+                conU.Open();
+                MySqlDataReader userReader = UserCommand.ExecuteReader();
+                userReader.Read();
+                string pwd = userReader.GetString(0);
+
+                return pwd;
+            }
+            catch
+            {
+                MessageBox.Show("Dunno man.. You done really goofed this time.");
+                return "";
+            }
         }
 
         static void Main1(string[] args)

@@ -20,24 +20,15 @@ namespace DietTracker.UpdataPage
     /// </summary>
     public partial class UpdatePageForm : Form
     {
-
-        internal string userName { get; }
-        internal string user { get; set; }
-        internal string pass { get; set; }
-        internal string name { get; set; }
-        internal string dob { get; set; }
-        internal string height { get; set; }
-        internal string weight { get; set; }
-        internal int activity { get; set; }
-
+        internal string userName;
         /// <summary>
         /// The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
         /// The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
         /// </summary>
 
-        public UpdatePageForm(string user)
+        public UpdatePageForm(string userName)
         {
-            this.userName = user;
+            this.userName = userName;
             InitializeComponent();
         }
 
@@ -54,64 +45,100 @@ namespace DietTracker.UpdataPage
             mainPageForm.Show(this);
         }
         
-        private void UpdateButton_Click(object sender, EventArgs e)
+        internal void UpdateButton_Click(object sender, EventArgs e)
         {
             var a = 0;
-            User orgpUser = User.GetUser(userName);
-            User tempUser = orgpUser.DoUserChange();
-            if (UpdatePageUsername.Text != "")
-            {
-                user = UpdatePageUsername.Text;
-                a++;
-            }
+            User orgUser = User.GetUser(userName);
+            User tempUser = orgUser.DoUserChange();
+            
             if (UpdatePagePassword.Text != "")
             {
-                pass = UpdatePagePassword.Text;
+                tempUser.password = UpdatePagePassword.Text;
                 a++;
             }
             if (UpdatePageName.Text != "")
             {
-                name = UpdatePageName.Text;
+                tempUser.name = UpdatePageName.Text;
                 a++;
             }
             if (UpdatePageDoB.Value.ToString("yyyy-MM-dd") != "2018-05-18")
             {
-                dob = UpdatePageDoB.Value.ToString("yyyy-MM-dd");
+                tempUser.doB = UpdatePageDoB.Value.ToString("yyyy-MM-dd");
                 a++;
             }
             if (UpdatePageHeight.Text != "")
             {
-                height = UpdatePageHeight.Text;
+                tempUser.height = Convert.ToInt32(UpdatePageHeight.Text);
                 a++;
             }
             if (UpdatePageWeight.Text != "")
             {
-                weight = UpdatePageWeight.Text;
+                tempUser.weight = Convert.ToDouble(UpdatePageWeight.Text);
                 a++;
             }
             if (UpdatePageActivity.Value != 0)
             {
-                activity = Convert.ToInt32(UpdatePageActivity.Value);
+                tempUser.activity = Convert.ToInt32(UpdatePageActivity.Value);
                 a++;
             }
 
-            if(a != 0)
+            if (tempUser != orgUser)
             {
-                tempUser.IsUpdateInfoCorrect(user, name, dob, Convert.ToInt32(height), Convert.ToInt32(weight), activity);
-                MySqlConnection ConU = DatabaseConnect.OpenDefaultDBConnection();
-                MySqlCommand UpdateCommand = new MySqlCommand();
-                UpdateCommand.CommandText = "UPDATE Diettracker.User (Username, Name, Gender, DoB, height, weight, activity)" +
-                    "VALUES ('" + user + "','" + name + "','" + dob + "','" + height + "','" + weight + "','" + activity + 
-                    "') WHERE Username = '" + orgpUser.userName + "';";
-                UpdateCommand.Connection = ConU;
-                ConU.Open();
-                UpdateCommand.ExecuteNonQuery();
-                ConU.Close();
-            }
-                
+                try
+                {
+                    if(!string.IsNullOrEmpty(tempUser.password) && tempUser.password != orgUser.password && 
+                        tempUser.IsUpdateInfoCorrect(tempUser.userName, tempUser.name, tempUser.doB,
+                        Convert.ToInt32(tempUser.height), Convert.ToInt32(tempUser.weight), tempUser.activity, tempUser, orgUser) != false)
+                    {
+                        MySqlConnection conUU = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlConnection conUP = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand UpdateUserCommand = new MySqlCommand();
+                        MySqlCommand UpdatePwdCommand = new MySqlCommand();
+                        UpdateUserCommand.CommandText = "UPDATE diettracker.users SET Name = '" + tempUser.name +
+                            "', DoB = '" + tempUser.doB + "', Height = '" + tempUser.height + "', Weight = '" + tempUser.weight +
+                            "', Activity = '" + tempUser.activity + "' WHERE Username = '" + orgUser.userName + "';";
+                        UpdatePwdCommand.CommandText = "UPDATE diettracker.password SET Password = '" + tempUser.password + 
+                            "' WHERE ForeignID = '" + orgUser.id + "';";
+                        UpdateUserCommand.Connection = conUU;
+                        conUU.Open();
+                        UpdateUserCommand.ExecuteNonQuery();
+                        conUU.Close();
+                        conUP.Open();
+                        UpdatePwdCommand.Connection = conUP;
+                        UpdatePwdCommand.ExecuteNonQuery();
+                        conUP.Close();
+
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                        mainPage.Tag = this;
+                        Hide();
+                        mainPage.Show(this);
+
+                    }
+                    else if (tempUser.IsUpdateInfoCorrect(tempUser.userName, tempUser.name, tempUser.doB,
+                        Convert.ToInt32(tempUser.height), Convert.ToInt32(tempUser.weight), tempUser.activity, tempUser, orgUser) != false)
+                    {
+                        MySqlConnection ConU = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand UpdateCommand = new MySqlCommand();
+                        UpdateCommand.CommandText = "UPDATE diettracker.users SET Name = '" + tempUser.name + 
+                            "', DoB = '" + tempUser.doB + "', Height = '" + tempUser.height + "', Weight = '" + tempUser.weight + 
+                            "', Activity = '" + tempUser.activity + "' WHERE Username = '" + orgUser.userName + "';";
+                        UpdateCommand.Connection = ConU;
+                        ConU.Open();
+                        UpdateCommand.ExecuteNonQuery();
+                        ConU.Close();
+
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                        mainPage.Tag = this;
+                        Hide();
+                        mainPage.Show(this);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }   
         }
-
-
 
         private void UpdatePageActivityButton_Click(object sender, EventArgs e)
         {
