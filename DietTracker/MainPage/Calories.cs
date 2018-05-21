@@ -19,7 +19,7 @@ namespace MainPageGraphs
         }
         private bool IntValidator(string input)
         {
-            string pattern = "[^0-9]";
+            string pattern = "[^0-9-]";
             if (Regex.IsMatch(input, pattern))
             {
                 return true;

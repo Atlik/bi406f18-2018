@@ -29,7 +29,7 @@ namespace MainPageGraphs
                 return false;
             }
         }
-        internal bool IsCaloriesInputCorrect(string w)
+        internal bool IsWeightInputCorrect(string w)
         {
             try
             {

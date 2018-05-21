@@ -28,7 +28,7 @@ CREATE TABLE `users` (
   `Gender` varchar(255) NOT NULL,
   `DoB` date NOT NULL,
   `Height` tinyint(255) unsigned NOT NULL,
-  `Weight` int(11) NOT NULL,
+  `Weight` double(45,2) unsigned NOT NULL,
   `Activity` tinyint(4) NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Jonas','Jonas','Male','1994-03-09',180,80,2,1),('User1','User','Male','2018-05-10',190,300,1,2),('User2','User','Female','2018-05-10',150,50,2,3),('User3','User','Female','2018-05-10',170,75,3,4);
+INSERT INTO `users` VALUES ('Jonas','Jonas','Male','1994-03-09',180,80.00,2,1),('User1','User','Male','2018-05-10',190,300.00,1,2),('User2','User','Female','2018-05-10',150,50.00,2,3),('User3','User','Female','2018-05-10',170,75.00,3,4);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:18:57
+-- Dump completed on 2018-05-21 20:48:21
