@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DietTracker", "DietTracker\DietTracker.csproj", "{1B28B781-7839-4DE6-A77F-C5BD1C15370D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E9080E54-BB20-4542-9732-4636F2025E4C} = {E9080E54-BB20-4542-9732-4636F2025E4C}
-	EndProjectSection
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "DocumentationDietTracker", "DocumentationDietTracker\DocumentationDietTracker.shfbproj", "{E9080E54-BB20-4542-9732-4636F2025E4C}"
 EndProject
