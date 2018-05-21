@@ -23,6 +23,7 @@ namespace DietTracker
         internal int id { get; set; }
         internal User orgUser { get; set; }
         internal User tempUser { get; set; }
+  
 
         public User(string userName, string name, string gender, string dob, int height, double weight, int activity)
         {
@@ -63,7 +64,7 @@ namespace DietTracker
         {
             this.userName = userName;
         }
-        
+
         public object Clone()
         {
             Console.WriteLine("Cloning object");
@@ -73,11 +74,6 @@ namespace DietTracker
         public User DoUserChange()
         {
             var ChangedObject = (User)this.Clone();
-            Console.WriteLine("It worked");
-            Console.WriteLine(ChangedObject.height);
-            //INDSÆT ALLE BOKSENE MED this.PROPERTY som default text. If new text != this.property then Changedobject.proterty = new value
-            ChangedObject.name = "Nørge";
-            Console.WriteLine(ChangedObject.name);
             return ChangedObject;
         }
 
@@ -120,6 +116,19 @@ namespace DietTracker
             }
         }
 
+        internal bool DoubleValidator(string input)
+        {
+            string pattern = "[^0-9.]";
+            if (Regex.IsMatch(input, pattern))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         internal bool IsUpdateInfoCorrect(string userName, string name, string doB, int height, double weight, int activity, User tempUser, User orgUser)
         {
             if (!string.IsNullOrEmpty(password) && StringValidator(password) == true)
@@ -137,7 +146,7 @@ namespace DietTracker
                 MessageBox.Show("You cannot use letters or special characters in your height.");
                 return false;
             }
-            if (!string.IsNullOrEmpty(Convert.ToString(weight)) && IntValidator(Convert.ToString(weight)) == true)
+            if (!string.IsNullOrEmpty(Convert.ToString(weight)) && DoubleValidator(Convert.ToString(weight)) == true)
             {
                 MessageBox.Show("You cannot use letters or special characters in your weight.");
                 return false;

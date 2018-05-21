@@ -13,7 +13,7 @@ using System.Windows.Forms;
 /// This is the UpdatePage
 /// </summary>
 
-namespace DietTracker.UpdataPage
+namespace DietTracker.UpdatePage
 {
     /// <summary>
     /// General Update of user
@@ -32,11 +32,6 @@ namespace DietTracker.UpdataPage
             InitializeComponent();
         }
 
-        private void UpdateUserForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void MainPageBack_Click(object sender, EventArgs e)
         {
             MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(userName);
@@ -47,9 +42,19 @@ namespace DietTracker.UpdataPage
         
         internal void UpdateButton_Click(object sender, EventArgs e)
         {
+            DateTime doB;
             var a = 0;
             User orgUser = User.GetUser(userName);
             User tempUser = orgUser.DoUserChange();
+            tempUser.password = orgUser.password;
+            tempUser.name = orgUser.name;
+            doB = Convert.ToDateTime(orgUser.doB);
+            tempUser.doB = doB.ToString("yyyy-MM-dd");
+            tempUser.doB = tempUser.doB.Substring(0, 10);
+            tempUser.height = orgUser.height;
+            tempUser.weight = orgUser.weight;
+            tempUser.activity = orgUser.activity;
+
             
             if (UpdatePagePassword.Text != "")
             {
@@ -61,9 +66,13 @@ namespace DietTracker.UpdataPage
                 tempUser.name = UpdatePageName.Text;
                 a++;
             }
-            if (UpdatePageDoB.Value.ToString("yyyy-MM-dd") != "2018-05-18")
+            if (UpdatePageDoB.Value.ToShortDateString() != "10-05-2018")
             {
                 tempUser.doB = UpdatePageDoB.Value.ToString("yyyy-MM-dd");
+                if(tempUser.doB == "2018-05-10")
+                {
+                    tempUser.doB = orgUser.doB;
+                }
                 a++;
             }
             if (UpdatePageHeight.Text != "")
@@ -100,11 +109,11 @@ namespace DietTracker.UpdataPage
                         UpdatePwdCommand.CommandText = "UPDATE diettracker.password SET Password = '" + tempUser.password + 
                             "' WHERE ForeignID = '" + orgUser.id + "';";
                         UpdateUserCommand.Connection = conUU;
+                        UpdatePwdCommand.Connection = conUP;
                         conUU.Open();
                         UpdateUserCommand.ExecuteNonQuery();
                         conUU.Close();
                         conUP.Open();
-                        UpdatePwdCommand.Connection = conUP;
                         UpdatePwdCommand.ExecuteNonQuery();
                         conUP.Close();
 

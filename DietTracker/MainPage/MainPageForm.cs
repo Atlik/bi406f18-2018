@@ -432,7 +432,7 @@ namespace MainPageGraphs
 
         private void EditUserData(object sender, EventArgs e)
         {
-            DietTracker.UpdataPage.UpdatePageForm UpdateForm = new DietTracker.UpdataPage.UpdatePageForm(userName);
+            DietTracker.UpdatePage.UpdatePageForm UpdateForm = new DietTracker.UpdatePage.UpdatePageForm(userName);
             UpdateForm.Tag = this;
             Hide();
             UpdateForm.Show(this);

@@ -1,4 +1,4 @@
-﻿namespace DietTracker.UpdataPage
+﻿namespace DietTracker.UpdatePage
 {
     /// <summary>
     /// This is all the necessary design code for the updatepage form
@@ -184,7 +184,7 @@
             this.UpdateLabelHeight.AutoSize = true;
             this.UpdateLabelHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelHeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelHeight.Location = new System.Drawing.Point(125, 350);
+            this.UpdateLabelHeight.Location = new System.Drawing.Point(120, 350);
             this.UpdateLabelHeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UpdateLabelHeight.Name = "UpdateLabelHeight";
             this.UpdateLabelHeight.Size = new System.Drawing.Size(132, 24);
@@ -197,12 +197,12 @@
             this.UpdateLabelWeight.AutoSize = true;
             this.UpdateLabelWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateLabelWeight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UpdateLabelWeight.Location = new System.Drawing.Point(121, 395);
+            this.UpdateLabelWeight.Location = new System.Drawing.Point(52, 395);
             this.UpdateLabelWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UpdateLabelWeight.Name = "UpdateLabelWeight";
-            this.UpdateLabelWeight.Size = new System.Drawing.Size(135, 24);
+            this.UpdateLabelWeight.Size = new System.Drawing.Size(199, 24);
             this.UpdateLabelWeight.TabIndex = 23;
-            this.UpdateLabelWeight.Text = "Update weight:";
+            this.UpdateLabelWeight.Text = "Update starting weight:";
             // 
             // UpdateLabelActivity
             // 
@@ -221,13 +221,15 @@
             // 
             this.UpdatePageDoB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.UpdatePageDoB.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdatePageDoB.CustomFormat = "dd-MM-yyyy";
             this.UpdatePageDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdatePageDoB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.UpdatePageDoB.Location = new System.Drawing.Point(269, 305);
+            this.UpdatePageDoB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.UpdatePageDoB.Location = new System.Drawing.Point(269, 303);
             this.UpdatePageDoB.Margin = new System.Windows.Forms.Padding(4);
             this.UpdatePageDoB.Name = "UpdatePageDoB";
             this.UpdatePageDoB.Size = new System.Drawing.Size(265, 28);
             this.UpdatePageDoB.TabIndex = 3;
+            this.UpdatePageDoB.Value = new System.DateTime(2018, 5, 10, 0, 0, 0, 0);
             // 
             // UpdatePageActivity
             // 
