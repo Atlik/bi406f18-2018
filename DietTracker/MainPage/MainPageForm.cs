@@ -51,15 +51,6 @@ namespace MainPageGraphs
             InitializeComponent();
         }
 
-        //Initializes methods used to load forms
-        /*private void ClickToLoadGraph(object sender, EventArgs e)
-        {
-            Initialize_weightOverTimeChart();
-            Initialize_CalorieChart();
-            GetUserData();
-            GetWeightData();
-
-        }*/
         private void MainPageForm_Load(object sender, EventArgs e)
         {
             CurrentDayData();
@@ -737,6 +728,18 @@ namespace MainPageGraphs
             this.PerformLayout();
 
         }
+
+        #region skrald
+        //Initializes methods used to load forms
+        /*private void ClickToLoadGraph(object sender, EventArgs e)
+        {
+            Initialize_weightOverTimeChart();
+            Initialize_CalorieChart();
+            GetUserData();
+            GetWeightData();
+
+        }*/
+        #endregion
 
     }
 }
