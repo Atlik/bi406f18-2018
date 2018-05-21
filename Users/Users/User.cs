@@ -42,6 +42,7 @@ namespace Users
             double newCurrentWeight;
             if (!double.TryParse(Console.ReadLine(), out newCurrentWeight));
 
+
             var con = OpenDefaultDBConnection();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = con;
@@ -99,7 +100,6 @@ namespace Users
         {
             return OpenDBConnection("127.0.0.1", "root", "root", "diettracker");
         }
-
 
     }
 }

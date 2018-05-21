@@ -12,3 +12,10 @@ C:\Users\Admin\Documents\Visual Studio 2015\Projects\bi406f18-2018-master\Users\
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\bi406f18-2018-master\Users\Users\bin\Debug\Users.pdb
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\bi406f18-2018-master\Users\Users\bin\Debug\MySql.Data.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\bi406f18-2018-master\Users\Users\obj\Debug\Users.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\bin\Debug\Users.exe.config
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\obj\Debug\Users.exe
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\obj\Debug\Users.pdb
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\bin\Debug\Users.exe
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\bin\Debug\Users.pdb
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\bin\Debug\MySql.Data.dll
+C:\Users\Admin\Source\Repos\bi406f18-20182\Users\Users\obj\Debug\Users.csprojResolveAssemblyReference.cache
