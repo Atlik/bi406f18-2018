@@ -212,3 +212,4 @@ C:\Users\Jonas\Source\Repos\dodie\bi406f18-2018\DietTracker\obj\Debug\DietTracke
 C:\Users\Jonas\Source\Repos\dodie\bi406f18-2018\DietTracker\obj\Debug\DietTracker.csproj.CopyComplete
 C:\Users\Jonas\Source\Repos\dodie\bi406f18-2018\DietTracker\obj\Debug\DietTracker.exe
 C:\Users\Jonas\Source\Repos\dodie\bi406f18-2018\DietTracker\obj\Debug\DietTracker.pdb
+C:\Users\Christian(Atlik)\source\repos\bi406f18-2018\DietTracker\obj\Debug\DietTracker.UpdatePage.UpdatePageForm.resources
