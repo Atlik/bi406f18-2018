@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `day`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `day` (
   `Date` date NOT NULL,
-  `Weight` double unsigned NOT NULL,
+  `Weight` double(45,2) unsigned NOT NULL,
   `Calories` int(11) NOT NULL,
   `UserID` varchar(45) NOT NULL,
   `Key` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Key`),
   KEY `Username_idx` (`UserID`),
   CONSTRAINT `Username` FOREIGN KEY (`UserID`) REFERENCES `users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `day` (
 
 LOCK TABLES `day` WRITE;
 /*!40000 ALTER TABLE `day` DISABLE KEYS */;
-INSERT INTO `day` VALUES ('2018-05-20',80,0,'Jonas',1),('2018-05-20',300,0,'User1',2),('2018-05-20',50,0,'User2',3),('2018-05-20',75,0,'User3',4);
+INSERT INTO `day` VALUES ('2018-05-20',80.00,0,'Jonas',1),('2018-05-20',300.00,0,'User1',2),('2018-05-20',50.00,0,'User2',3),('2018-05-20',75.00,0,'User3',4),('2018-05-21',90.87,9000,'Jonas',5);
 /*!40000 ALTER TABLE `day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:18:57
+-- Dump completed on 2018-05-21 20:48:21

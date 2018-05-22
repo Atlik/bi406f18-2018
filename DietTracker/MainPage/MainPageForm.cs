@@ -212,6 +212,18 @@ namespace MainPageGraphs
                 userGenderRead.Close();
                 conCal.Close();
 
+                MySqlConnection conW_User = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                var dateTimeToday1 = DateTime.Today.ToString("yyyy-MM-dd");
+                MySqlCommand dayWeightCommand = new MySqlCommand();
+                dayWeightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday1 + "';";
+                dayWeightCommand.Connection = conW_User;
+                conW_User.Open();
+                MySqlDataReader dayWeightReader = dayWeightCommand.ExecuteReader();
+                dayWeightReader.Read();
+                double currentWeight = dayWeightReader.GetDouble(0);
+                conW_User.Close();
+
                 //Inserts BMR value in text field
                 Formler bmrValue = new Formler();
                 double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
@@ -223,7 +235,7 @@ namespace MainPageGraphs
                 CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories left", caloriesLeft);
 
                 //Inserts text for the BMI value
-                double showBMI = bmrValue.BMICalc(75, 175);
+                double showBMI = bmrValue.BMICalc(currentWeight, height);
                 double newShow = showBMI * 10000;
                 string visible = "Calories eaten: " + info.CaloriesEaten + Environment.NewLine +
                                  "Calories left for today: " + caloriesLeft + Environment.NewLine + Environment.NewLine +
@@ -323,10 +335,10 @@ namespace MainPageGraphs
                 MySqlDataReader dayWeightReader = dayWeightCommand.ExecuteReader();
                 while (userWeightReader.Read() && dayWeightReader.Read())
                 {
-                    int startingWeight = userWeightReader.GetInt32(0);
-                    int currentWeight = dayWeightReader.GetInt32(0);
+                    double startingWeight = userWeightReader.GetDouble(0);
+                    double currentWeight = dayWeightReader.GetDouble(0);
                     //int currentWeight = 70;
-                    int GainOrLoss = startingWeight - currentWeight;
+                    double GainOrLoss = startingWeight - currentWeight;
 
                     string text = "Your Weight data" + Environment.NewLine + Environment.NewLine +
                                   "Your starting weight is: " + startingWeight + Environment.NewLine +
@@ -488,31 +500,32 @@ namespace MainPageGraphs
                 }
                 catch
                 {
-                    MessageBox.Show("Something went wrong, whops2");
+                    MessageBox.Show("Something with your input in calories was wrong, please try again");
                 }
             }
         }
+
+        Weightupdater Weights = new Weightupdater("");
+
         private void ClickToLoadWeight(object sender, EventArgs e)
         {
             string weight = MainPageWeightText.Text;
 
-            if (Calories.IsCaloriesInputCorrect(weight))
+            if (Weights.IsWeightInputCorrect(weight))
             {
                 try
                 {
                     var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                     MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
-                    double WeightVal = double.Parse(weight);
-
                     MySqlCommand UpdateCaloriesCommand = new MySqlCommand();
-                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Weight = '" + WeightVal + "' WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Weight = '" + weight + "' WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
                     UpdateCaloriesCommand.Connection = conW;
                     conW.Open();
                     UpdateCaloriesCommand.ExecuteNonQuery();
                     conW.Close();
 
-                    MessageBox.Show("Updated weight succesfully to: " + WeightVal);
+                    MessageBox.Show("Updated weight succesfully");
 
                     MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
                     mainPage.Tag = this;
@@ -521,7 +534,7 @@ namespace MainPageGraphs
                 }
                 catch
                 {
-                    MessageBox.Show("Something went wrong, whops3");
+                    MessageBox.Show("Something went wrong in your weight input, please try again");
                 }
             }
         }
