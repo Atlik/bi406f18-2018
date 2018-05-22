@@ -49,7 +49,8 @@ namespace Login
                 Hide();
                 Landingpage.Show();*/
 
-                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(user);
+                int cal = 0;
+                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(user, cal);
                 mainPage.Tag = this;
                 Hide();
                 mainPage.Show(this);

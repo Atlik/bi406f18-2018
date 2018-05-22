@@ -41,13 +41,15 @@ namespace MainPageGraphs
         private Button UpdateCalories;
 
         internal string userName { get; }
+        internal int CaloriesEaten { get; }
 
         /// <summary>
         /// Grabs the necessary information for the form to know which user is logged in
         /// </summary>
-        public MainPageForm(string user)
+        public MainPageForm(string user, int CalEaten)
         {
             this.userName = user;
+            this.CaloriesEaten = CalEaten;
             InitializeComponent();
         }
 
@@ -229,7 +231,7 @@ namespace MainPageGraphs
                 double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
 
                 //Constucts graph
-                var info = new UpdateCaloriesGraph(show, 1500);
+                var info = new UpdateCaloriesGraph(show, CaloriesEaten);
                 double caloriesLeft = info.maxCalories - info.CaloriesEaten;
                 CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
                 CalorieChart.Series["CalorieIntake"].Points.AddXY("Calories left", caloriesLeft);
@@ -492,7 +494,7 @@ namespace MainPageGraphs
                     conCal.Close();
 
                     MessageBox.Show("Updated calories succesfully to: " + CaloriesRead);
-                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
                     mainPage.Tag = this;
                     Hide();
                     mainPage.Show(this);
@@ -527,7 +529,7 @@ namespace MainPageGraphs
 
                     MessageBox.Show("Updated weight succesfully");
 
-                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesEaten);
                     mainPage.Tag = this;
                     Hide();
                     mainPage.Show(this);

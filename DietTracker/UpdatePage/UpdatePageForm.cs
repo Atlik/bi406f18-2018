@@ -34,7 +34,19 @@ namespace DietTracker.UpdatePage
 
         private void MainPageBack_Click(object sender, EventArgs e)
         {
-            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(userName);
+            MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+            var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+            MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
+            WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+            WhatIsCurrentCalorieCommand.Connection = conCal;
+            conCal.Open();
+            MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
+            ReadCalories.Read();
+            int CaloriesRead = ReadCalories.GetInt32(0);
+            conCal.Close();
+
+            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
             mainPageForm.Tag = this;
             Hide();
             mainPageForm.Show(this);
@@ -117,7 +129,19 @@ namespace DietTracker.UpdatePage
                         UpdatePwdCommand.ExecuteNonQuery();
                         conUP.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                        MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                        var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+                        MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.Connection = conCal;
+                        conCal.Open();
+                        MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
+                        ReadCalories.Read();
+                        int CaloriesRead = ReadCalories.GetInt32(0);
+                        conCal.Close();
+
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);
@@ -136,7 +160,19 @@ namespace DietTracker.UpdatePage
                         UpdateCommand.ExecuteNonQuery();
                         ConU.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName);
+                        MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                        var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+                        MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.Connection = conCal;
+                        conCal.Open();
+                        MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
+                        ReadCalories.Read();
+                        int CaloriesRead = ReadCalories.GetInt32(0);
+                        conCal.Close();
+
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);

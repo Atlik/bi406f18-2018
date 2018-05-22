@@ -105,7 +105,7 @@
             It shows various information through graphs and makes sure a user will know, visually if they're improving or not.
             </summary>
         </member>
-        <member name="M:MainPageGraphs.MainPageForm.#ctor(System.String)">
+        <member name="M:MainPageGraphs.MainPageForm.#ctor(System.String,System.Int32)">
             <summary>
             Grabs the necessary information for the form to know which user is logged in
             </summary>
