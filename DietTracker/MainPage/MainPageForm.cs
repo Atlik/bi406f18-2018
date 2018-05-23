@@ -1,20 +1,8 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Formler_BMI_BMR;
 using MySql.Data.MySqlClient;
-using Login;
 
 /// <summary>
 /// This is the Main Page Form
@@ -76,33 +64,6 @@ namespace MainPageGraphs
                 {
                     conW.Open();
                     MySqlDataReader readWeight = weightCommand.ExecuteReader();
-
-                    #region Skrald
-
-                    /* MySqlCommand dateCommand = new MySqlCommand();
-                    dateCommand.CommandText = "SELECT Date FROM diettracker.day";
-                    dateCommand.Connection = conW;*/
-                    /*
-                    MessageBox.Show("Opens connection");
-                    conW.Open();
-                    MessageBox.Show("Connected to table (date)");*/
-
-                    /*  while (read.Read())
-                      {
-
-                          dayInput = read.GetDateTime(0).ToShortDateString();
-                          MessageBox.Show("dette er repræsenteret: " + dayInput);
-
-                      }
-                      //MessageBox.Show(dayInput);
-
-                      while (readWeight.Read())
-                      {
-                          Weight = readWeight.GetInt32(0);
-                          MessageBox.Show("dette vises i weight: " + Weight);
-                      }*/
-
-                    #endregion
 
                     while (readWeight.Read())
                     {
@@ -743,18 +704,5 @@ namespace MainPageGraphs
             this.PerformLayout();
 
         }
-
-        #region skrald
-        //Initializes methods used to load forms
-        /*private void ClickToLoadGraph(object sender, EventArgs e)
-        {
-            Initialize_weightOverTimeChart();
-            Initialize_CalorieChart();
-            GetUserData();
-            GetWeightData();
-
-        }*/
-        #endregion
-
     }
 }
