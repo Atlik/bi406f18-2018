@@ -243,7 +243,7 @@ namespace MainPageGraphs
                                  "Calories left for today: " + caloriesLeft + Environment.NewLine + Environment.NewLine +
                                  "BMR value (Basal Metabolic Rate)" + Environment.NewLine +
                                  "Calories: " + show + Environment.NewLine + Environment.NewLine +
-                                 "BMI Value (Body Mass Index): " + Environment.NewLine + newShow;
+                                 "BMI Value (Body Mass Index): " + Environment.NewLine + Math.Round(newShow, 1);
 
                 displayMaxCalorie.Text = visible;
 
