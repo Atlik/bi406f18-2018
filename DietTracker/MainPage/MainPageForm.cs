@@ -3,10 +3,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Formler_BMI_BMR;
 using MySql.Data.MySqlClient;
-
-/// <summary>
-/// This is the Main Page Form
-/// </summary>
+using System.Globalization;
 
 namespace MainPageGraphs
 {
@@ -104,7 +101,7 @@ namespace MainPageGraphs
             {
                 int height, age, activity;
                 double weight;
-                string gender, name;
+                string gender;
                 bool sex = true;
 
                 MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
@@ -361,7 +358,7 @@ namespace MainPageGraphs
                         conR.Open();
                         MySqlDataReader ReadWeight = ReadWeightFromDataDayCommand.ExecuteReader();
                         ReadWeight.Read();
-                        double Weight = ReadWeight.GetDouble(0);
+                        string Weight = ReadWeight.GetDouble(0).ToString(CultureInfo.InvariantCulture);
                         conR.Close();
 
                         MySqlCommand InsertDataCommand = new MySqlCommand();

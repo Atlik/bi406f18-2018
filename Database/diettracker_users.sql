@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: diettracker
+-- Host: localhost    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -28,12 +28,12 @@ CREATE TABLE `users` (
   `Gender` varchar(255) NOT NULL,
   `DoB` date NOT NULL,
   `Height` tinyint(255) unsigned NOT NULL,
-  `Weight` double(45,2) unsigned NOT NULL,
+  `Weight` double(255,2) unsigned NOT NULL,
   `Activity` tinyint(4) NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Jonas','Jonas','Male','1994-03-09',180,80.00,2,1),('User1','User','Male','2018-05-10',190,300.00,1,2),('User2','User','Female','2018-05-10',150,50.00,2,3),('User3','User','Female','2018-05-10',170,75.00,3,4);
+INSERT INTO `users` VALUES ('Jesper','Jesper','Male','2000-05-10',200,120.00,2,15),('Jonas','Jonas','Male','1994-03-09',190,80.00,1,16);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-21 20:48:21
+-- Dump completed on 2018-05-24 12:33:17

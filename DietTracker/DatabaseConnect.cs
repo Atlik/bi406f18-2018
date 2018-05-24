@@ -19,7 +19,7 @@ namespace DietTracker
 
         public static MySqlConnection OpenDefaultDBConnection()
         {
-            return OpenDBConnection("localhost", "root", "atlik91502.sql", "diettracker", "none");
+            return OpenDBConnection("localhost", "ApplicationAccess", "", "diettracker", "none");
         }
     }
 }
