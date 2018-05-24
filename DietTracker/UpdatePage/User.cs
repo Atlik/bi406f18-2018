@@ -11,7 +11,7 @@ namespace DietTracker
 {
     class User : ICloneable
     {
-        public string userName { get; set; }
+        public string user { get; set; }
         internal string password { get; set; }
 
         internal string name { get; set; }
@@ -27,7 +27,7 @@ namespace DietTracker
 
         public User(string userName, string name, string gender, string dob, int height, double weight, int activity)
         {
-            this.userName = userName;
+            this.user = userName;
             this.name = name;
             this.gender = gender;
             this.doB = dob;
@@ -38,7 +38,7 @@ namespace DietTracker
 
         public User(string userName, string password, string name, string gender, string dob, int height, double weight, int activity)
         {
-            this.userName = userName;
+            this.user = userName;
             this.password = password;
             this.name = name;
             this.gender = gender;
@@ -50,7 +50,7 @@ namespace DietTracker
 
         public User(string userName, string name, string gender, string dob, int height, double weight, int activity, int id)
         {
-            this.userName = userName;
+            this.user = userName;
             this.name = name;
             this.gender = gender;
             this.doB = dob;
@@ -62,7 +62,7 @@ namespace DietTracker
 
         public User(string userName)
         {
-            this.userName = userName;
+            this.user = userName;
         }
 
         public object Clone()

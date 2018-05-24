@@ -44,16 +44,36 @@ namespace Login
             //check if eligible to be logged in 
             if (login.IsLoggedIn(user, pass))
             {
-                MessageBox.Show("You are logged in successfully!");
-               /* var Landingpage = (LandingPage.LandingPageForm)Tag;
-                Hide();
-                Landingpage.Show();*/
+                
+                /* var Landingpage = (LandingPage.LandingPageForm)Tag;
+                 Hide();
+                 Landingpage.Show();*/
 
-                int cal = 0;
-                MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(user, cal);
-                mainPage.Tag = this;
-                Hide();
-                mainPage.Show(this);
+                try
+                {
+                    var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
+                    MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+                    MySqlConnection conCCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+
+                    MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
+                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + user + "' AND Date = '" + dateTimeToday + "';";
+                    WhatIsCurrentCalorieCommand.Connection = conCCal;
+                    conCCal.Open();
+                    MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
+                    ReadCalories.Read();
+                    int CaloriesRead = ReadCalories.GetInt32(0);
+                    conCCal.Close();
+
+                    MessageBox.Show("You are logged in successfully!");
+                    MainPageForm mainPage = new MainPageForm(user, CaloriesRead);
+                    mainPage.Tag = this;
+                    Hide();
+                    mainPage.Show(this);
+                }
+                catch
+                {
+                    MessageBox.Show("Couldn't log in");
+                }
 
             }
             else

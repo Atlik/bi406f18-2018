@@ -25,7 +25,7 @@ namespace MainPageGraphs
         private TextBox MainPageWeightText;
         private Button UpdateCalories;
 
-        internal string userName { get; }
+        internal string Username { get; }
         internal int CaloriesEaten { get; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace MainPageGraphs
         /// </summary>
         public MainPageForm(string user, int CalEaten)
         {
-            this.userName = user;
+            this.Username = user;
             this.CaloriesEaten = CalEaten;
             InitializeComponent();
         }
@@ -54,7 +54,7 @@ namespace MainPageGraphs
                 MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand weightCommand = new MySqlCommand();
-                weightCommand.CommandText = "SELECT Weight, Date FROM day WHERE UserID = '" + userName + "';";
+                weightCommand.CommandText = "SELECT Weight, Date FROM day WHERE UserID = '" + Username + "';";
                 weightCommand.Connection = conW;
 
                 try
@@ -103,27 +103,28 @@ namespace MainPageGraphs
                 double weight;
                 string gender;
                 bool sex = true;
+                var dateTimeToday1 = DateTime.Today.ToString("yyyy-MM-dd");
 
                 MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand heightCommand = new MySqlCommand();
-                heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + userName + "';";
+                heightCommand.CommandText = "SELECT Height FROM users WHERE Username = '" + Username + "';";
                 heightCommand.Connection = conCal;
 
                 MySqlCommand weightCommand = new MySqlCommand();
-                weightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
+                weightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday1 + "';";
                 weightCommand.Connection = conCal;
 
                 MySqlCommand activityCommand = new MySqlCommand();
-                activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + userName + "';";
+                activityCommand.CommandText = "SELECT Activity FROM users WHERE Username = '" + Username + "';";
                 activityCommand.Connection = conCal;
 
                 MySqlCommand ageCommand = new MySqlCommand();
-                ageCommand.CommandText = "SELECT DoB FROM users WHERE Username = '" + userName + "';";
+                ageCommand.CommandText = "SELECT DoB FROM users WHERE Username = '" + Username + "';";
                 ageCommand.Connection = conCal;
 
                 MySqlCommand genderCommand = new MySqlCommand();
-                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + userName + "';";
+                genderCommand.CommandText = "SELECT Gender FROM users WHERE Username = '" + Username + "';";
                 genderCommand.Connection = conCal;
 
                 conCal.Open();
@@ -174,9 +175,9 @@ namespace MainPageGraphs
 
                 MySqlConnection conW_User = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
-                var dateTimeToday1 = DateTime.Today.ToString("yyyy-MM-dd");
+                
                 MySqlCommand dayWeightCommand = new MySqlCommand();
-                dayWeightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday1 + "';";
+                dayWeightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday1 + "';";
                 dayWeightCommand.Connection = conW_User;
                 conW_User.Open();
                 MySqlDataReader dayWeightReader = dayWeightCommand.ExecuteReader();
@@ -223,7 +224,7 @@ namespace MainPageGraphs
                 MySqlConnection conUser = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand userCommand = new MySqlCommand();
-                userCommand.CommandText = "SELECT Username, Name, Gender, DoB, Height, Weight, Activity FROM users WHERE Username = '" + userName + "';";
+                userCommand.CommandText = "SELECT Username, Name, Gender, DoB, Height, Weight, Activity FROM users WHERE Username = '" + Username + "';";
                 userCommand.Connection = conUser;
 
                 conUser.Open();
@@ -235,7 +236,7 @@ namespace MainPageGraphs
                     string genderOfUser = userReader.GetString(2);
                     string DoB_User = userReader.GetDateTime(3).ToShortDateString();
                     int heightOfUser = userReader.GetInt32(4);
-                    int weightOfUser = userReader.GetInt32(5);
+                    double weightOfUser = userReader.GetDouble(5);
                     int activityLevelOfUser = userReader.GetInt32(6);
 
                     DateTime parsedDoB_User = DateTime.Parse(DoB_User);
@@ -248,7 +249,7 @@ namespace MainPageGraphs
                                   "Gender: " + genderOfUser + Environment.NewLine +
                                   "Your birthday: " + DoB_User + Environment.NewLine +
                                   "Your age: " + age + Environment.NewLine +
-                                  "Your current weight: " + weightOfUser + Environment.NewLine +
+                                  "Your starting weight: " + weightOfUser + Environment.NewLine +
                                   "Your current height: " + heightOfUser + Environment.NewLine +
                                   "Your current Activity Level: " + activityLevelOfUser;
 
@@ -281,12 +282,12 @@ namespace MainPageGraphs
                 MySqlConnection conDW_User = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                 MySqlCommand userWeightCommand = new MySqlCommand();
-                userWeightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + userName + "';";
+                userWeightCommand.CommandText = "SELECT Weight FROM users WHERE Username = '" + Username + "';";
                 userWeightCommand.Connection = conW_User;
 
                 var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                 MySqlCommand dayWeightCommand = new MySqlCommand();
-                dayWeightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                dayWeightCommand.CommandText = "SELECT Weight FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                 dayWeightCommand.Connection = conDW_User;
 
                 conW_User.Open();
@@ -334,7 +335,7 @@ namespace MainPageGraphs
                 var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                 MySqlConnection conCDD = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
                 MySqlCommand DoesDataExistCommand = new MySqlCommand();
-                DoesDataExistCommand.CommandText = "SELECT Date FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                DoesDataExistCommand.CommandText = "SELECT Date FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                 DoesDataExistCommand.Connection = conCDD;
                 conCDD.Open();
 
@@ -353,7 +354,7 @@ namespace MainPageGraphs
 
                         MySqlCommand ReadWeightFromDataDayCommand = new MySqlCommand();
                         ReadWeightFromDataDayCommand.CommandText =
-                            "SELECT Weight FROM day WHERE UserID = '" + userName + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date DESC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                            "SELECT Weight FROM day WHERE UserID = '" + Username + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date DESC LIMIT 1),(SELECT MAX(Date) FROM day));";
                         ReadWeightFromDataDayCommand.Connection = conR;
                         conR.Open();
                         MySqlDataReader ReadWeight = ReadWeightFromDataDayCommand.ExecuteReader();
@@ -364,7 +365,7 @@ namespace MainPageGraphs
                         MySqlCommand InsertDataCommand = new MySqlCommand();
                         InsertDataCommand.CommandText =
                             "INSERT INTO day (Date, Weight, Calories, UserID)" +
-                            "VALUES ('" + dateTimeToday + "', '" + Weight + "', 0, '" + userName + "');";
+                            "VALUES ('" + dateTimeToday + "', '" + Weight + "', 0, '" + Username + "');";
                         InsertDataCommand.Connection = conI;
                         conI.Open();
                         InsertDataCommand.ExecuteNonQuery();
@@ -397,7 +398,7 @@ namespace MainPageGraphs
 
         private void EditUserData(object sender, EventArgs e)
         {
-            DietTracker.UpdatePage.UpdatePageForm UpdateForm = new DietTracker.UpdatePage.UpdatePageForm(userName);
+            DietTracker.UpdatePage.UpdatePageForm UpdateForm = new DietTracker.UpdatePage.UpdatePageForm(Username);
             UpdateForm.Tag = this;
             Hide();
             UpdateForm.Show(this);
@@ -433,7 +434,7 @@ namespace MainPageGraphs
                     MySqlConnection conCCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                     MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                     WhatIsCurrentCalorieCommand.Connection = conCCal;
                     conCCal.Open();
                     MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -445,14 +446,14 @@ namespace MainPageGraphs
                     CaloriesRead += CaloriesVal;
 
                     MySqlCommand UpdateCaloriesCommand = new MySqlCommand();
-                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Calories = '" + CaloriesRead + "' WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Calories = '" + CaloriesRead + "' WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                     UpdateCaloriesCommand.Connection = conCal;
                     conCal.Open();
                     UpdateCaloriesCommand.ExecuteNonQuery();
                     conCal.Close();
 
                     MessageBox.Show("Updated calories succesfully to: " + CaloriesRead);
-                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
                     mainPage.Tag = this;
                     Hide();
                     mainPage.Show(this);
@@ -479,7 +480,7 @@ namespace MainPageGraphs
                     MySqlConnection conW = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                     MySqlCommand UpdateCaloriesCommand = new MySqlCommand();
-                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Weight = '" + weight + "' WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                    UpdateCaloriesCommand.CommandText = "UPDATE day SET Weight = '" + weight + "' WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                     UpdateCaloriesCommand.Connection = conW;
                     conW.Open();
                     UpdateCaloriesCommand.ExecuteNonQuery();
@@ -487,7 +488,7 @@ namespace MainPageGraphs
 
                     MessageBox.Show("Updated weight succesfully");
 
-                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesEaten);
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesEaten);
                     mainPage.Tag = this;
                     Hide();
                     mainPage.Show(this);
@@ -501,12 +502,12 @@ namespace MainPageGraphs
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.WeightChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CalorieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.UpdateCalories = new System.Windows.Forms.Button();
@@ -525,17 +526,17 @@ namespace MainPageGraphs
             // WeightChart
             // 
             this.WeightChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea3.Name = "ChartArea1";
-            this.WeightChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.WeightChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.WeightChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.WeightChart.Legends.Add(legend1);
             this.WeightChart.Location = new System.Drawing.Point(12, 268);
             this.WeightChart.Name = "WeightChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Weight";
-            this.WeightChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Weight";
+            this.WeightChart.Series.Add(series1);
             this.WeightChart.Size = new System.Drawing.Size(459, 181);
             this.WeightChart.TabIndex = 0;
             this.WeightChart.TabStop = false;
@@ -544,21 +545,22 @@ namespace MainPageGraphs
             // CalorieChart
             // 
             this.CalorieChart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            chartArea4.AxisX.IsLabelAutoFit = false;
-            chartArea4.AxisX2.IsLabelAutoFit = false;
-            chartArea4.AxisY.IsLabelAutoFit = false;
-            chartArea4.AxisY2.IsLabelAutoFit = false;
-            chartArea4.Name = "ChartArea1";
-            this.CalorieChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.CalorieChart.Legends.Add(legend4);
+            chartArea2.AxisX.IsLabelAutoFit = false;
+            chartArea2.AxisX2.IsLabelAutoFit = false;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY2.IsLabelAutoFit = false;
+            chartArea2.Name = "ChartArea1";
+            this.CalorieChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CalorieChart.Legends.Add(legend2);
             this.CalorieChart.Location = new System.Drawing.Point(11, 38);
             this.CalorieChart.Name = "CalorieChart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "CalorieIntake";
-            this.CalorieChart.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.LabelForeColor = System.Drawing.Color.Transparent;
+            series2.Legend = "Legend1";
+            series2.Name = "CalorieIntake";
+            this.CalorieChart.Series.Add(series2);
             this.CalorieChart.Size = new System.Drawing.Size(238, 82);
             this.CalorieChart.TabIndex = 0;
             this.CalorieChart.TabStop = false;

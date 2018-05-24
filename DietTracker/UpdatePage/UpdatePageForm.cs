@@ -8,10 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
-/// <summary>
-/// This is the UpdatePage
-/// </summary>
 
 namespace DietTracker.UpdatePage
 {
@@ -20,15 +18,15 @@ namespace DietTracker.UpdatePage
     /// </summary>
     public partial class UpdatePageForm : Form
     {
-        internal string userName;
+        internal string Username;
         /// <summary>
         /// The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
         /// The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
         /// </summary>
 
-        public UpdatePageForm(string userName)
+        public UpdatePageForm(string user)
         {
-            this.userName = userName;
+            this.Username = user;
             InitializeComponent();
         }
 
@@ -38,7 +36,7 @@ namespace DietTracker.UpdatePage
 
             var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
             MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-            WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+            WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
             WhatIsCurrentCalorieCommand.Connection = conCal;
             conCal.Open();
             MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -46,7 +44,7 @@ namespace DietTracker.UpdatePage
             int CaloriesRead = ReadCalories.GetInt32(0);
             conCal.Close();
 
-            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
+            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
             mainPageForm.Tag = this;
             Hide();
             mainPageForm.Show(this);
@@ -56,70 +54,73 @@ namespace DietTracker.UpdatePage
         {
             DateTime doB;
             var a = 0;
-            User orgUser = User.GetUser(userName);
-            User tempUser = orgUser.DoUserChange();
-            tempUser.password = orgUser.password;
-            tempUser.name = orgUser.name;
-            doB = Convert.ToDateTime(orgUser.doB);
-            tempUser.doB = doB.ToString("yyyy-MM-dd");
-            tempUser.doB = tempUser.doB.Substring(0, 10);
-            tempUser.height = orgUser.height;
-            tempUser.weight = orgUser.weight;
-            tempUser.activity = orgUser.activity;
+            User Orguser = User.GetUser(Username);
+            User Tempuser = Orguser.DoUserChange();
+            Tempuser.password = Orguser.password;
+            Tempuser.name = Orguser.name;
+            doB = Convert.ToDateTime(Orguser.doB);
+            Tempuser.doB = doB.ToString("yyyy-MM-dd");
+            Tempuser.doB = Tempuser.doB.Substring(0, 10);
+            Tempuser.height = Orguser.height;
+            Tempuser.weight = Orguser.weight;
+            Tempuser.activity = Orguser.activity;
+            
 
             
             if (UpdatePagePassword.Text != "")
             {
-                tempUser.password = UpdatePagePassword.Text;
+                Tempuser.password = UpdatePagePassword.Text;
                 a++;
             }
             if (UpdatePageName.Text != "")
             {
-                tempUser.name = UpdatePageName.Text;
+                Tempuser.name = UpdatePageName.Text;
                 a++;
             }
             if (UpdatePageDoB.Value.ToShortDateString() != "10-05-2018")
             {
-                tempUser.doB = UpdatePageDoB.Value.ToString("yyyy-MM-dd");
-                if(tempUser.doB == "2018-05-10")
+                Tempuser.doB = UpdatePageDoB.Value.ToString("yyyy-MM-dd");
+                if(Tempuser.doB == "2018-05-10")
                 {
-                    tempUser.doB = orgUser.doB;
+                    Tempuser.doB = Orguser.doB;
                 }
                 a++;
             }
             if (UpdatePageHeight.Text != "")
             {
-                tempUser.height = Convert.ToInt32(UpdatePageHeight.Text);
+                Tempuser.height = Convert.ToInt32(UpdatePageHeight.Text);
                 a++;
             }
             if (UpdatePageWeight.Text != "")
             {
-                tempUser.weight = Convert.ToDouble(UpdatePageWeight.Text);
+                Tempuser.weight = Convert.ToDouble(UpdatePageWeight.Text);
                 a++;
             }
             if (UpdatePageActivity.Value != 0)
             {
-                tempUser.activity = Convert.ToInt32(UpdatePageActivity.Value);
+                Tempuser.activity = Convert.ToInt32(UpdatePageActivity.Value);
                 a++;
             }
 
-            if (tempUser != orgUser)
+            if (Tempuser != Orguser)
             {
                 try
                 {
-                    if(!string.IsNullOrEmpty(tempUser.password) && tempUser.password != orgUser.password && 
-                        tempUser.IsUpdateInfoCorrect(tempUser.userName, tempUser.name, tempUser.doB,
-                        Convert.ToInt32(tempUser.height), Convert.ToInt32(tempUser.weight), tempUser.activity, tempUser, orgUser) != false)
+                    if(!string.IsNullOrEmpty(Tempuser.password) && Tempuser.password != Orguser.password && 
+                        Tempuser.IsUpdateInfoCorrect(Tempuser.user, Tempuser.name, Tempuser.doB,
+                        Convert.ToInt32(Tempuser.height), Convert.ToDouble(Tempuser.weight), Tempuser.activity, Tempuser, Orguser) != false)
                     {
                         MySqlConnection conUU = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlConnection conUP = DatabaseConnect.OpenDefaultDBConnection();
+                        
                         MySqlCommand UpdateUserCommand = new MySqlCommand();
                         MySqlCommand UpdatePwdCommand = new MySqlCommand();
-                        UpdateUserCommand.CommandText = "UPDATE diettracker.users SET Name = '" + tempUser.name +
-                            "', DoB = '" + tempUser.doB + "', Height = '" + tempUser.height + "', Weight = '" + tempUser.weight +
-                            "', Activity = '" + tempUser.activity + "' WHERE Username = '" + orgUser.userName + "';";
-                        UpdatePwdCommand.CommandText = "UPDATE diettracker.password SET Password = '" + tempUser.password + 
-                            "' WHERE ForeignID = '" + orgUser.id + "';";
+                        UpdateUserCommand.CommandText = "UPDATE diettracker.users SET Name = '" + Tempuser.name +
+                            "', DoB = '" + Tempuser.doB + "', Height = '" + Tempuser.height + "', Weight = '" + Tempuser.weight +
+                            "', Activity = '" + Tempuser.activity + "' WHERE Username = '" + Orguser.user + "';";
+                        UpdatePwdCommand.CommandText = "UPDATE diettracker.password SET Password = '" + Tempuser.password + 
+                            "' WHERE ForeignID = '" + Orguser.id + "';";
+
                         UpdateUserCommand.Connection = conUU;
                         UpdatePwdCommand.Connection = conUP;
                         conUU.Open();
@@ -129,11 +130,32 @@ namespace DietTracker.UpdatePage
                         UpdatePwdCommand.ExecuteNonQuery();
                         conUP.Close();
 
+                        MySqlConnection conFW = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand SelectFirstWeightValueCommand = new MySqlCommand();
+                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date <= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                        SelectFirstWeightValueCommand.Connection = conFW;
+                        conFW.Open();
+                        MySqlDataReader FirstWeightRead = SelectFirstWeightValueCommand.ExecuteReader();
+                        FirstWeightRead.Read();
+                        string date = FirstWeightRead.GetDateTime(0).ToString("yyy-MM-dd");
+                        double weight = FirstWeightRead.GetDouble(1);
+                        string inputweight = UpdatePageWeight.Text;
+                        conFW.Close();
+
+                        MySqlConnection conUFW = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand UpdateFirstWeightValueCommand = new MySqlCommand();
+                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + inputweight + "' WHERE UserID = '" + Username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
+                        UpdateFirstWeightValueCommand.Connection = conUFW;
+                        conUFW.Open();
+                        UpdateFirstWeightValueCommand.ExecuteNonQuery();
+                        conUFW.Close();
+
+
                         MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                         var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                         MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                         WhatIsCurrentCalorieCommand.Connection = conCal;
                         conCal.Open();
                         MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -141,20 +163,21 @@ namespace DietTracker.UpdatePage
                         int CaloriesRead = ReadCalories.GetInt32(0);
                         conCal.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);
 
                     }
-                    else if (tempUser.IsUpdateInfoCorrect(tempUser.userName, tempUser.name, tempUser.doB,
-                        Convert.ToInt32(tempUser.height), Convert.ToInt32(tempUser.weight), tempUser.activity, tempUser, orgUser) != false)
+                    else if (Tempuser.IsUpdateInfoCorrect(Tempuser.user, Tempuser.name, Tempuser.doB,
+                        Convert.ToInt32(Tempuser.height), Convert.ToDouble(Tempuser.weight), Tempuser.activity, Tempuser, Orguser) != false)
                     {
+                        string inputweight = UpdatePageWeight.Text;
                         MySqlConnection ConU = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand UpdateCommand = new MySqlCommand();
-                        UpdateCommand.CommandText = "UPDATE diettracker.users SET Name = '" + tempUser.name + 
-                            "', DoB = '" + tempUser.doB + "', Height = '" + tempUser.height + "', Weight = '" + tempUser.weight + 
-                            "', Activity = '" + tempUser.activity + "' WHERE Username = '" + orgUser.userName + "';";
+                        UpdateCommand.CommandText = "UPDATE diettracker.users SET Name = '" + Tempuser.name + 
+                            "', DoB = '" + Tempuser.doB + "', Height = '" + Tempuser.height + "', Weight = '" + inputweight + 
+                            "', Activity = '" + Tempuser.activity + "' WHERE Username = '" + Orguser.user + "';";
                         UpdateCommand.Connection = ConU;
                         ConU.Open();
                         UpdateCommand.ExecuteNonQuery();
@@ -164,7 +187,7 @@ namespace DietTracker.UpdatePage
 
                         var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                         MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + userName + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
                         WhatIsCurrentCalorieCommand.Connection = conCal;
                         conCal.Open();
                         MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -172,7 +195,28 @@ namespace DietTracker.UpdatePage
                         int CaloriesRead = ReadCalories.GetInt32(0);
                         conCal.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(userName, CaloriesRead);
+                        MySqlConnection conFW = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand SelectFirstWeightValueCommand = new MySqlCommand();
+                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date <= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                        SelectFirstWeightValueCommand.Connection = conFW;
+                        conFW.Open();
+                        MySqlDataReader FirstWeightRead = SelectFirstWeightValueCommand.ExecuteReader();
+                        FirstWeightRead.Read();
+                        string date = FirstWeightRead.GetDateTime(0).ToString("yyyy-MM-dd");
+                        string weight = FirstWeightRead.GetDouble(1).ToString(CultureInfo.InvariantCulture);
+                        
+
+                        conFW.Close();
+
+                        MySqlConnection conUFW = DatabaseConnect.OpenDefaultDBConnection();
+                        MySqlCommand UpdateFirstWeightValueCommand = new MySqlCommand();
+                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + inputweight + "' WHERE UserID = '" + Username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
+                        UpdateFirstWeightValueCommand.Connection = conUFW;
+                        conUFW.Open();
+                        UpdateFirstWeightValueCommand.ExecuteNonQuery();
+                        conUFW.Close();
+
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);
