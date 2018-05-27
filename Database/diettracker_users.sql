@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: diettracker
+-- Host: 127.0.0.1    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Jesper','Jesper','Male','2000-05-10',200,120.00,2,15),('Jonas','Jonas','Male','1994-03-09',190,60.75,1,16);
+INSERT INTO `users` VALUES ('Jesper','Jesper','Male','2000-05-10',200,120.00,2,15),('Jonas','Jonas','Male','1994-03-09',160,89.40,1,16),('Test1','Test','Male','1965-05-06',180,80.00,3,17);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-24 16:51:39
+-- Dump completed on 2018-05-27 18:58:01

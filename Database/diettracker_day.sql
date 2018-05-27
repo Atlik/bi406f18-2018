@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: diettracker
+-- Host: 127.0.0.1    Database: diettracker
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -31,7 +31,7 @@ CREATE TABLE `day` (
   PRIMARY KEY (`Key`),
   KEY `Username_idx` (`UserID`),
   CONSTRAINT `Username` FOREIGN KEY (`UserID`) REFERENCES `users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `day` (
 
 LOCK TABLES `day` WRITE;
 /*!40000 ALTER TABLE `day` DISABLE KEYS */;
-INSERT INTO `day` VALUES ('2018-05-12',80.00,2400,'Jesper',1),('2018-05-14',90.00,3000,'Jesper',2),('2018-05-12',60.75,3500,'Jonas',3),('2018-05-15',72.42,4000,'Jonas',4),('2018-05-24',150.63,1000,'Jonas',6);
+INSERT INTO `day` VALUES ('2018-05-12',89.40,3500,'Jonas',3),('2018-05-15',72.42,4000,'Jonas',4),('2018-05-24',150.63,1000,'Jonas',6),('2018-05-27',90.00,80,'Jonas',9),('2018-05-27',81.00,61,'Test1',10);
 /*!40000 ALTER TABLE `day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-24 16:51:38
+-- Dump completed on 2018-05-27 18:58:01
