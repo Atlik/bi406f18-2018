@@ -71,6 +71,18 @@ namespace Register
                 return false;
             }
         }
+        private bool DoubleValidator(string input)
+        {
+            string pattern = "[^0-9.]";
+            if (Regex.IsMatch(input, pattern))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void ClearTexts(string user, string pass, string dob, string n, string h, string w)
         {
@@ -103,9 +115,14 @@ namespace Register
                     MessageBox.Show("You cant have numbers or special characters in your name");
                     return false;
                 }
-                else if (IntValidator(h) || IntValidator(w) == true)
+                else if (IntValidator(h) == true)
                 {
-                    MessageBox.Show("You cant have letters or special characters in your height or weight");
+                    MessageBox.Show("You cant have letters or special characters in your height");
+                    return false;
+                }
+                else if (DoubleValidator(w) == true)
+                {
+                    MessageBox.Show("Weight only accepts numbers and a dot");
                     return false;
                 }
                 else
