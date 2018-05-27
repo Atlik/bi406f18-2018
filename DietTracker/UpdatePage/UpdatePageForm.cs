@@ -18,7 +18,7 @@ namespace DietTracker.UpdatePage
     /// </summary>
     public partial class UpdatePageForm : Form
     {
-        internal string Username;
+        private readonly string _username;
         /// <summary>
         /// The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
         /// The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
@@ -26,7 +26,7 @@ namespace DietTracker.UpdatePage
 
         public UpdatePageForm(string user)
         {
-            this.Username = user;
+            this._username = user;
             InitializeComponent();
         }
 
@@ -36,7 +36,7 @@ namespace DietTracker.UpdatePage
 
             var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
             MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-            WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
+            WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + _username + "' AND Date = '" + dateTimeToday + "';";
             WhatIsCurrentCalorieCommand.Connection = conCal;
             conCal.Open();
             MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -44,17 +44,17 @@ namespace DietTracker.UpdatePage
             int CaloriesRead = ReadCalories.GetInt32(0);
             conCal.Close();
 
-            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
+            MainPageGraphs.MainPageForm mainPageForm = new MainPageGraphs.MainPageForm(_username, CaloriesRead);
             mainPageForm.Tag = this;
             Hide();
             mainPageForm.Show(this);
         }
 
-        internal void UpdateButton_Click(object sender, EventArgs e)
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
             DateTime doB;
             var a = 0;
-            User Orguser = User.GetUser(Username);
+            User Orguser = User.GetUser(_username);
             User Tempuser = Orguser.DoUserChange();
             Tempuser.password = Orguser.password;
             Tempuser.name = Orguser.name;
@@ -132,7 +132,7 @@ namespace DietTracker.UpdatePage
 
                         MySqlConnection conFW = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand SelectFirstWeightValueCommand = new MySqlCommand();
-                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date <= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + _username + "' AND Date <= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
                         SelectFirstWeightValueCommand.Connection = conFW;
                         conFW.Open();
                         MySqlDataReader FirstWeightRead = SelectFirstWeightValueCommand.ExecuteReader();
@@ -143,7 +143,7 @@ namespace DietTracker.UpdatePage
 
                         MySqlConnection conUFW = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand UpdateFirstWeightValueCommand = new MySqlCommand();
-                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + Tempuser.weight + "' WHERE UserID = '" + Username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
+                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + Tempuser.weight + "' WHERE UserID = '" + _username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
                         UpdateFirstWeightValueCommand.Connection = conUFW;
                         conUFW.Open();
                         UpdateFirstWeightValueCommand.ExecuteNonQuery();
@@ -154,7 +154,7 @@ namespace DietTracker.UpdatePage
 
                         var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                         MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + _username + "' AND Date = '" + dateTimeToday + "';";
                         WhatIsCurrentCalorieCommand.Connection = conCal;
                         conCal.Open();
                         MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -162,7 +162,7 @@ namespace DietTracker.UpdatePage
                         int CaloriesRead = ReadCalories.GetInt32(0);
                         conCal.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(_username, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);
@@ -185,7 +185,7 @@ namespace DietTracker.UpdatePage
 
                         var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
                         MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + Username + "' AND Date = '" + dateTimeToday + "';";
+                        WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + _username + "' AND Date = '" + dateTimeToday + "';";
                         WhatIsCurrentCalorieCommand.Connection = conCal;
                         conCal.Open();
                         MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
@@ -195,7 +195,7 @@ namespace DietTracker.UpdatePage
 
                         MySqlConnection conFW = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand SelectFirstWeightValueCommand = new MySqlCommand();
-                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + _username + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
                         SelectFirstWeightValueCommand.Connection = conFW;
                         conFW.Open();
                         MySqlDataReader FirstWeightRead = SelectFirstWeightValueCommand.ExecuteReader();
@@ -207,13 +207,13 @@ namespace DietTracker.UpdatePage
 
                         MySqlConnection conUFW = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand UpdateFirstWeightValueCommand = new MySqlCommand();
-                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + Tempuser.weight.ToString(CultureInfo.InvariantCulture) + "' WHERE UserID = '" + Username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
+                        UpdateFirstWeightValueCommand.CommandText = "UPDATE day SET Weight = '" + Tempuser.weight.ToString(CultureInfo.InvariantCulture) + "' WHERE UserID = '" + _username + "' AND Date = '" + date + "' AND Weight = '" + weight + "';";
                         UpdateFirstWeightValueCommand.Connection = conUFW;
                         conUFW.Open();
                         UpdateFirstWeightValueCommand.ExecuteNonQuery();
                         conUFW.Close();
 
-                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
+                        MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(_username, CaloriesRead);
                         mainPage.Tag = this;
                         Hide();
                         mainPage.Show(this);
@@ -229,8 +229,8 @@ namespace DietTracker.UpdatePage
         private void UpdatePageActivityButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1 = Very little to no exercise at all\n" +
-    "2 = Moderate exercise\n" +
-    "3 = Exercise every day");
+                            "2 = Moderate exercise\n" +
+                            "3 = Exercise every day");
         }
 
         private void RegisterPage_Closed(object sender, FormClosedEventArgs e)

@@ -7,14 +7,14 @@ namespace Register
 {
     class Register
     {
-        internal string Username { get; }
-        internal string Userpassword { get; }
+        private string Username { get; }
+        private string Userpassword { get; }
 
-        internal string Name { get; }
-        internal string DoB { get; }
-        internal string Height { get; }
-        internal string Weight { get; }
-        internal string Activity { get; }
+        private string Name { get; }
+        private string DoB { get; }
+        private string Height { get; }
+        private string Weight { get; }
+        private string Activity { get; }
 
         internal Register(string user, string pass, string n, string dob, string h, string w, string a)
         {

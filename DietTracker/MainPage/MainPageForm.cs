@@ -25,8 +25,8 @@ namespace MainPageGraphs
         private TextBox _mainPageWeightText;
         private Button _updateCalories;
 
-        internal string Username { get; }
-        internal int CaloriesEaten { get; }
+        private string Username { get; }
+        private int CaloriesEaten { get; }
 
         /// <summary>
         /// Grabs the necessary information for the form to know which user is logged in

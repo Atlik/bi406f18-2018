@@ -45,7 +45,7 @@ namespace DietTracker
             this.activity = activity;
         }
 
-        public User(string userName, string name, string gender, string dob, int height, double weight, int activity, int id)
+        private User(string userName, string name, string gender, string dob, int height, double weight, int activity, int id)
         {
             this.user = userName;
             this.name = name;
@@ -57,7 +57,7 @@ namespace DietTracker
             this.id = id;
         }
 
-        public User(string userName)
+        private User(string userName)
         {
             this.user = userName;
         }
@@ -74,7 +74,7 @@ namespace DietTracker
             return ChangedObject;
         }
 
-        internal bool StringValidator(string input)
+        private bool StringValidator(string input)
         {
             string pattern = "[^a-zA-Z-0-9]";
             if (Regex.IsMatch(input, pattern))
@@ -87,7 +87,7 @@ namespace DietTracker
             }
         }
 
-        internal bool StringValidatorName(string input)
+        private bool StringValidatorName(string input)
         {
             string pattern = "[^a-zA-Z]";
             if (Regex.IsMatch(input, pattern))
@@ -100,7 +100,7 @@ namespace DietTracker
             }
         }
 
-        internal bool IntValidator(string input)
+        private bool IntValidator(string input)
         {
             string pattern = "[^0-9]";
             if (Regex.IsMatch(input, pattern))
@@ -113,7 +113,7 @@ namespace DietTracker
             }
         }
 
-        internal bool DoubleValidator(string input)
+        private bool DoubleValidator(string input)
         {
             string pattern = "[^0-9.]";
             if (Regex.IsMatch(input, pattern))
