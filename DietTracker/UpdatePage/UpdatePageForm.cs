@@ -195,7 +195,7 @@ namespace DietTracker.UpdatePage
 
                         MySqlConnection conFW = DatabaseConnect.OpenDefaultDBConnection();
                         MySqlCommand SelectFirstWeightValueCommand = new MySqlCommand();
-                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date <= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                        SelectFirstWeightValueCommand.CommandText = "SELECT Date, Weight from day WHERE UserID = '" + Username + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date ASC LIMIT 1),(SELECT MAX(Date) FROM day));";
                         SelectFirstWeightValueCommand.Connection = conFW;
                         conFW.Open();
                         MySqlDataReader FirstWeightRead = SelectFirstWeightValueCommand.ExecuteReader();
