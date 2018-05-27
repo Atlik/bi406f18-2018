@@ -44,39 +44,49 @@ namespace Login
             //check if eligible to be logged in 
             if (login.IsLoggedIn(user, pass))
             {
+                
+                /* var Landingpage = (LandingPage.LandingPageForm)Tag;
+                 Hide();
+                 Landingpage.Show();*/
 
                 try
                 {
                     var dateTimeToday = DateTime.Today.ToString("yyyy-MM-dd");
-                    //MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
+                    MySqlConnection conCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
                     MySqlConnection conCCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
-                    MySqlCommand whatIsCurrentCalorieCommand = new MySqlCommand();
-                    whatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + user + "' AND Date = '" + dateTimeToday + "';";
-                    whatIsCurrentCalorieCommand.Connection = conCCal;
-
+                    MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
+                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + user + "' AND Date = '" + dateTimeToday + "';";
+                    WhatIsCurrentCalorieCommand.Connection = conCCal;
                     conCCal.Open();
-                    MySqlDataReader readCalories = whatIsCurrentCalorieCommand.ExecuteReader();
-                    readCalories.Read();
-                    int CaloriesRead = readCalories.GetInt32(0);
-                    conCCal.Close();
+                    MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
+                    ReadCalories.Read();
+                    if (ReadCalories.Read() == false)
+                    {
+                        int CaloriesRead = 0;
 
-                    MessageBox.Show("You are logged in successfully!");
-                    MainPageForm mainPage = new MainPageForm(user, CaloriesRead);
-                    mainPage.Tag = this;
-                    Hide();
-                    mainPage.Show(this);
+                        MessageBox.Show("You are logged in successfully!");
+                        MainPageForm mainPage = new MainPageForm(user, CaloriesRead);
+                        mainPage.Tag = this;
+                        Hide();
+                        mainPage.Show(this);
+                    }
+                    else if (ReadCalories.Read() == true)
+                    {
+                        int CaloriesRead = ReadCalories.GetInt32(0);
+                        conCCal.Close();
+
+                        MessageBox.Show("You are logged in successfully!");
+                        MainPageForm mainPage = new MainPageForm(user, CaloriesRead);
+                        mainPage.Tag = this;
+                        Hide();
+                        mainPage.Show(this);
+                    }
                 }
                 catch
                 {
                     MessageBox.Show("Couldn't log in");
                 }
-
-            }
-            else
-            {
-                //show default login error message 
-                //MessageBox.Show("Login Error!"); //(ikke nødvendigt med alle de andre errors men godt at have med!)
             }
         }
 

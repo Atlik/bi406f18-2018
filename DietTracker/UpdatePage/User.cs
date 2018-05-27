@@ -2,6 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace DietTracker
 {
@@ -142,7 +143,8 @@ namespace DietTracker
                 MessageBox.Show("You cannot use letters or special characters in your height.");
                 return false;
             }
-            if (!string.IsNullOrEmpty(Convert.ToString(weight)) && DoubleValidator(Convert.ToString(weight)) == true)
+            string weights = weight.ToString(CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(weights) && DoubleValidator(weights) == true)
             {
                 MessageBox.Show("You cannot use letters or special characters in your weight.");
                 return false;
