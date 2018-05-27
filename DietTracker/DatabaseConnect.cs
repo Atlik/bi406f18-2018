@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace DietTracker
@@ -19,7 +15,7 @@ namespace DietTracker
 
         public static MySqlConnection OpenDefaultDBConnection()
         {
-            return OpenDBConnection("localhost", "ApplicationAccess", "", "diettracker", "none");
+            return OpenDBConnection("localhost", "root", "atlik91502.sql", "diettracker", "none");
         }
     }
 }

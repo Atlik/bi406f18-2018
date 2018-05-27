@@ -1,10 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DietTracker
@@ -191,7 +187,7 @@ namespace DietTracker
             }
             catch
             {
-                MessageBox.Show("Something went terribly worng you moron");
+                MessageBox.Show("Something went wrong while creating User");
                 User orgUser = new User(userName);
                 return orgUser;
             }
@@ -215,7 +211,7 @@ namespace DietTracker
             }
             catch
             {
-                MessageBox.Show("Dunno man.. You done goofed.");
+                MessageBox.Show("Dunno man.. You done goofed. while getting ID");
                 int id = 0;
                 return id;
             }
@@ -240,23 +236,9 @@ namespace DietTracker
             }
             catch
             {
-                MessageBox.Show("Dunno man.. You done really goofed this time.");
+                MessageBox.Show("Dunno man.. You done goofed while getting PWD");
                 return "";
             }
-        }
-
-        static void Main1(string[] args)
-        {
-            var a = new User("Test", "test", "Jesper", "2011-20-11", 190, 100, 18);
-            //var b = (User)a.Clone();
-
-            Console.WriteLine(a.name);
-            //Console.WriteLine(b.Username);
-            var b = a.DoUserChange();
-            Console.WriteLine(b.name);
-            a = b;
-            Console.WriteLine(b.name + " new");
-
         }
     }
 }

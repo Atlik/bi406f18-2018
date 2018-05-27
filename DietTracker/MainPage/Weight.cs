@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +6,7 @@ namespace MainPageGraphs
 {
     class Weightupdater
     {
-        internal string Weight { get; set; }
+        internal string Weight { get; }
 
         internal Weightupdater(string w)
         {

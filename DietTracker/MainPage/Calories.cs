@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -11,7 +8,7 @@ namespace MainPageGraphs
 {
     class Calorieupdater
     {
-        internal string Calories { get; set; }
+        internal string Calories { get; }
         
         internal Calorieupdater(string c)
         {

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MainPageGraphs
 {
     class UpdateCaloriesGraph
     {
-        internal double maxCalories { get; set; }
-        internal double CaloriesEaten { get; set; }
+        internal double maxCalories { get; }
+        internal double CaloriesEaten { get; }
 
         public UpdateCaloriesGraph(double maxCal, double calEaten)
         {

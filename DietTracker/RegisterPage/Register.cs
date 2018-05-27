@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -14,14 +7,14 @@ namespace Register
 {
     class Register
     {
-        internal string Username { get; set; }
-        internal string Userpassword { get; set; }
+        internal string Username { get; }
+        internal string Userpassword { get; }
 
-        internal string Name { get; set; }
-        internal string DoB { get; set; }
-        internal string Height { get; set; }
-        internal string Weight { get; set; }
-        internal string Activity { get; set; }
+        internal string Name { get; }
+        internal string DoB { get; }
+        internal string Height { get; }
+        internal string Weight { get; }
+        internal string Activity { get; }
 
         internal Register(string user, string pass, string n, string dob, string h, string w, string a)
         {
@@ -110,24 +103,20 @@ namespace Register
                 }
                 else
                 {
-                    /*MySqlConnection conR = new MySqlConnection();
-                    conR.ConnectionString = "server=localhost;user id=root;pwd=atlik91502.sql;database=diettracker;SslMode=none";
-                    */
-
                     MySqlConnection conR = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
-                    MySqlCommand UserCommand = new MySqlCommand();
-                    UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
-                    UserCommand.Connection = conR;
+                    MySqlCommand userCommand = new MySqlCommand();
+                    userCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
+                    userCommand.Connection = conR;
                     conR.Open();
-                    MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
+                    MySqlDataReader usernameRead = userCommand.ExecuteReader();
 
                     try
                     {
-                        UsernameRead.Read();
-                        string Username = UsernameRead.GetString(0);
-                        var UserDatabase = String.Format("{0}", Username);
-                        Username = UserDatabase;
+                        usernameRead.Read();
+                        string Username = usernameRead.GetString(0);
+                        var userDatabase = String.Format("{0}", Username);
+                        Username = userDatabase;
                         MessageBox.Show("That username already exists");
                         return false;
                     }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -39,20 +32,6 @@ namespace Login
             }
         }
 
-        //validate integer (Didn't think this was necessary in the end)
-        /*private bool IntegerValidator(string input)
-        {
-            string pattern = "[^0-9]";
-            if (Regex.IsMatch(input, pattern))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
-
         //We clear user inputs before we do any login validation to make sure we dont glitch a random login
         private void ClearTexts(string user, string pass)
         {
@@ -66,20 +45,16 @@ namespace Login
             // MYSQL CODE to receive Usernames from the database
             try
             {
-                /*MySqlConnection myUserConnection = new MySqlConnection();
-                myUserConnection.ConnectionString = "server=localhost;user id=ApplicationAccess;database=diettracker;";
-                */
-
                 MySqlConnection conU = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
-                MySqlCommand UserCommand = new MySqlCommand();
-                UserCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
-                UserCommand.Connection = conU;
+                MySqlCommand userCommand = new MySqlCommand();
+                userCommand.CommandText = "SELECT Username FROM users WHERE Username = '" + user + "';";
+                userCommand.Connection = conU;
                 conU.Open();
-                MySqlDataReader UsernameRead = UserCommand.ExecuteReader();
+                MySqlDataReader usernameRead = userCommand.ExecuteReader();
 
                 /* C# CODE to assign the username equal to the data in the database
-                I use a try here instead of an if, since if the MySqlDataReader can't find the written name in the database it crashes.
+                We use a try here instead of an if, since if the MySqlDataReader can't find the written name in the database it crashes.
                 Further down an exception handles that*/
 
                 //Then we check if the user name is empty 
@@ -99,8 +74,8 @@ namespace Login
 
                 try
                 {
-                    UsernameRead.Read();
-                    string Username = UsernameRead.GetString(0);
+                    usernameRead.Read();
+                    string Username = usernameRead.GetString(0);
                     var UserDatabase = String.Format("{0}", Username);
                     Username = UserDatabase;
 
@@ -126,10 +101,6 @@ namespace Login
                         conU.Close();
                         ClearTexts(user, pass);
 
-                        /*MySqlConnection myPasswordConnection = new MySqlConnection();
-                        myPasswordConnection.ConnectionString = "server=localhost;user id=ApplicationAccess;database=diettracker;";
-                        */
-
                         MySqlConnection conP = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                         MySqlCommand PasswordCommand = new MySqlCommand();
@@ -142,13 +113,13 @@ namespace Login
                         try
                         {
                             PasswordRead.Read();
-                            //MessageBox.Show();
-                            string Userpassword = PasswordRead.GetString(0);
-                            var PasswordDatabase = String.Format("{0}", Userpassword);
-                            Userpassword = PasswordDatabase;
+
+                            string userPassword = PasswordRead.GetString(0);
+                            var passwordDatabase = String.Format("{0}", userPassword);
+                            userPassword = passwordDatabase;
 
                             //Since a password was entered, we check if the password is correct 
-                            if (Userpassword != pass)
+                            if (userPassword != pass)
                             {
                                 MessageBox.Show("Incorrect Username and/or Password");
                                 ClearTexts(user, pass);
