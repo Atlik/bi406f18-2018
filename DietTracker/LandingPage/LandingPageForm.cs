@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace LandingPage
 {
+    /// <summary>
+    /// Class for the landing page
+    /// </summary>
     public partial class LandingPageForm : Form
     {
         /// <summary>

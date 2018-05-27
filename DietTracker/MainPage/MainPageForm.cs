@@ -30,6 +30,8 @@ namespace MainPageGraphs
 
         /// <summary>
         /// Grabs the necessary information for the form to know which user is logged in
+        /// <param name="calEaten"> Calories eaten </param>
+        /// <param name="user"> Name of user </param>
         /// </summary>
         public MainPageForm(string user, int calEaten)
         {

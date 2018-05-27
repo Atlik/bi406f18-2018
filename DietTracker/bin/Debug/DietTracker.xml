@@ -16,6 +16,7 @@
             <summary>
             The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
             The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
+            <param name="user"> Name of user </param>
             </summary>
         </member>
         <member name="F:DietTracker.UpdatePage.UpdatePageForm.components">
@@ -36,6 +37,9 @@
             </summary>
         </member>
         <member name="T:LandingPage.LandingPageForm">
+            <summary>
+            Class for the landing page
+            </summary>
             <summary>
             
             </summary>
@@ -108,6 +112,8 @@
         <member name="M:MainPageGraphs.MainPageForm.#ctor(System.String,System.Int32)">
             <summary>
             Grabs the necessary information for the form to know which user is logged in
+            <param name="calEaten"> Calories eaten </param>
+            <param name="user"> Name of user </param>
             </summary>
         </member>
         <member name="T:Register.RegisterForm">

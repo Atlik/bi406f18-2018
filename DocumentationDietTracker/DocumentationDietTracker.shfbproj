@@ -33,11 +33,12 @@
       <NamespaceSummaryItem name="(global)" isDocumented="True">Global namespace summary</NamespaceSummaryItem>
 <NamespaceSummaryItem name="LandingPage" isDocumented="True">This is the landing page, as in the first form a user will interact with when starting the application</NamespaceSummaryItem>
 <NamespaceSummaryItem name="Login" isDocumented="True">This is the login form for all registered users. Non registered users can't get further</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DietTracker.UpdataPage" isDocumented="True">This is the Form to Update a logged in User</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DietTracker.UpdataPage" isDocumented="False">This is the Form to Update a logged in User</NamespaceSummaryItem>
 <NamespaceSummaryItem name="MainPageGraphs" isDocumented="True">This is the visualisation of data of a logged in user</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Register" isDocumented="True">This is how a potential user can register</NamespaceSummaryItem></NamespaceSummaries>
+<NamespaceSummaryItem name="Register" isDocumented="True">This is how a potential user can register</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DietTracker.UpdatePage" isDocumented="True">This is the Form to Update a logged in User</NamespaceSummaryItem></NamespaceSummaries>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
-    <SyntaxFilters>None</SyntaxFilters>
+    <SyntaxFilters>C#, Visual Basic</SyntaxFilters>
     <PresentationStyle>VS2013</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>True</KeepLogFile>
@@ -45,6 +46,7 @@
     <IndentHtml>False</IndentHtml>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
+    <MissingTags>Summary, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

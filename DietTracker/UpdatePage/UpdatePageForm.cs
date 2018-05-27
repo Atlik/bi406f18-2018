@@ -19,11 +19,12 @@ namespace DietTracker.UpdatePage
     public partial class UpdatePageForm : Form
     {
         private readonly string _username;
+       
         /// <summary>
         /// The Update Page takes the information started for the specific user who's logged in, and changes it depending on if any changes was done on the page
         /// The update page will only update the userinformation that the user changes, and anything else will remain unchanged.
+        /// <param name="user"> Name of user </param>
         /// </summary>
-
         public UpdatePageForm(string user)
         {
             this._username = user;
