@@ -56,11 +56,10 @@ namespace Login
                     MySqlConnection conCCal = DietTracker.DatabaseConnect.OpenDefaultDBConnection();
 
                     MySqlCommand WhatIsCurrentCalorieCommand = new MySqlCommand();
-                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM day WHERE UserID = '" + user + "' AND Date = '" + dateTimeToday + "';";
+                    WhatIsCurrentCalorieCommand.CommandText = "SELECT Calories FROM diettracker.day WHERE UserID = '" + user + "' AND Date = '" + dateTimeToday + "';";
                     WhatIsCurrentCalorieCommand.Connection = conCCal;
                     conCCal.Open();
                     MySqlDataReader ReadCalories = WhatIsCurrentCalorieCommand.ExecuteReader();
-                    ReadCalories.Read();
                     if (ReadCalories.Read() == false)
                     {
                         int CaloriesRead = 0;
@@ -71,7 +70,7 @@ namespace Login
                         Hide();
                         mainPage.Show(this);
                     }
-                    else if (ReadCalories.Read() == true)
+                    else 
                     {
                         int CaloriesRead = ReadCalories.GetInt32(0);
                         conCCal.Close();

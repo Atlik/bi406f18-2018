@@ -26,7 +26,7 @@ namespace MainPageGraphs
         private Button _updateCalories;
 
         private string Username { get; }
-        private int CaloriesEaten { get; }
+        private int CaloriesRead { get; }
 
         /// <summary>
         /// Grabs the necessary information for the form to know which user is logged in
@@ -36,7 +36,7 @@ namespace MainPageGraphs
         public MainPageForm(string user, int calEaten)
         {
             this.Username = user;
-            this.CaloriesEaten = calEaten;
+            this.CaloriesRead = calEaten;
             InitializeComponent();
         }
 
@@ -193,15 +193,15 @@ namespace MainPageGraphs
                 double show = bmrValue.BMRCalc(height, age, weight, activity, sex);
 
                 //Constucts graph
-                var info = new UpdateCaloriesGraph(show, CaloriesEaten);
-                double caloriesLeft = info.maxCalories - info.CaloriesEaten;
+                var info = new UpdateCaloriesGraph(show, CaloriesRead);
+                double caloriesLeft = info.maxCalories - info.CaloriesRead;
                 _calorieChart.Series["CalorieIntake"].Points.AddXY("Calories Eaten", info.maxCalories);
                 _calorieChart.Series["CalorieIntake"].Points.AddXY("Calories left", caloriesLeft);
 
                 //Inserts text for the BMI value
                 double showBMI = bmrValue.BMICalc(currentWeight, height);
                 double newShow = showBMI * 10000;
-                string visible = "Calories eaten: " + info.CaloriesEaten + Environment.NewLine +
+                string visible = "Calories eaten: " + info.CaloriesRead + Environment.NewLine +
                                  "Calories left for today: " + caloriesLeft + Environment.NewLine + Environment.NewLine +
                                  "BMR value (Basal Metabolic Rate)" + Environment.NewLine +
                                  "Calories: " + show + Environment.NewLine + Environment.NewLine +
@@ -358,7 +358,7 @@ namespace MainPageGraphs
 
                         MySqlCommand ReadWeightFromDataDayCommand = new MySqlCommand();
                         ReadWeightFromDataDayCommand.CommandText =
-                            "SELECT Weight FROM day WHERE UserID = '" + Username + "' AND Date >= COALESCE((SELECT Date FROM day ORDER BY Date DESC LIMIT 1),(SELECT MAX(Date) FROM day));";
+                            "SELECT Weight FROM diettracker.day WHERE UserID = '" + Username + "' AND Date >= COALESCE((SELECT Date FROM diettracker.day ORDER BY Date DESC LIMIT 1),(SELECT MAX(Date) FROM diettracker.day));";
                         ReadWeightFromDataDayCommand.Connection = conR;
                         conR.Open();
 
@@ -494,7 +494,7 @@ namespace MainPageGraphs
 
                     MessageBox.Show("Updated weight succesfully");
 
-                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesEaten);
+                    MainPageGraphs.MainPageForm mainPage = new MainPageGraphs.MainPageForm(Username, CaloriesRead);
                     mainPage.Tag = this;
                     Hide();
                     mainPage.Show(this);
